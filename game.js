@@ -4,7 +4,11 @@ var w1;
 var c;
 var astronaut;
 var walls;
-
+var flamethrower;
+var flamethrower_flames;
+var blastHim;
+var blast;
+var game_end_text;
 
 var quitButton;
 var fullButton;
@@ -27,7 +31,7 @@ var gameState2 = function(){
  
 };
 
-//Game end state (game over)
+//Game end state (game win. highest score reached.)
 var gameState3=function() {
 
 };
@@ -89,8 +93,8 @@ gameState5.prototype={
 
 game.state.add('gameState0',gameState0);        // game story state 
 game.state.add('gameState1',gameState1);        // home page state
-game.state.add('gameState2',gameState2);        // play game state
-game.state.add('gameState3',gameState3);        // game over state
+game.state.add('gameState2',gameState2);        // play game state (if out show score and go to leaderboard)
+game.state.add('gameState3',gameState3);        // game win state (end of game. highest score reached.)
 game.state.add('gameState4',gameState4);        // instructions state
 game.state.add('gameState5',gameState5);        // leaderboard state
 game.state.start('gameState2'); // later change it to 1
@@ -164,8 +168,17 @@ function preload5()
 
 function create5()
 {
-
+    game_end_text = game.add.text(game.world.width/2,game.world.height/2,'Leaderboard',{fontSize: '32px', fill:'#FFF'});
+    game_end_text.anchor.setTo(0.5,0.5);
 };
+
+function showGameOver()
+{
+    setTimeout(function(){ game.state.start('gameState5'); }, 1000);
+    
+    game_end_text = game.add.text(game.world.width/2,game.world.height/2,'Game Over',{fontSize: '32px', fill:'#FFF'});
+    game_end_text.anchor.setTo(0.5,0.5);
+}
 
 function update5()
 {
@@ -188,14 +201,15 @@ function goFull() {
  function preload2() 
  {
 
-    game.load.image('w1', 'images/background/w1.jpg'); // space image
+    game.load.image('w1', 'images/background/w3.jpg'); // space image
     game.load.spritesheet('quitButton', 'images/background/quitButton.png', 125,100);
     game.load.spritesheet('fullButton', 'images/background/fullButton.png', 125, 100);
-    game.load.image('c', 'images/background/sc6.png'); // crystals
+    game.load.image('c', 'images/background/sc1.png'); // crystals
     game.load.spritesheet('astronaut', 'images/character/astronaut.png',32,32);
-    game.load.spritesheet('lizard', 'images/aliens/lizard.png',32,32);//alien
-    game.load.spritesheet('spider', 'images/aliens/spider.png',32,32);//alien
-    game.load.spritesheet('moggun', 'images/aliens/moggun.png',32,32);//alien
+    game.load.image('flamethrower', 'images/flame/f2.png');
+    game.load.spritesheet('flamethrower_flames', 'images/flame/Flames/flamethrower_/flamethrower_flames.png',512,512);
+    game.load.spritesheet('blast', 'images/flame/Flames/fireball_hit_/flame_hit.png',512,512);
+
  }
 
  function create2(){
@@ -206,49 +220,37 @@ function goFull() {
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
 
     w1 = game.add.sprite(0, 0, 'w1');
-   
     walls = game.add.group();
-
     game.physics.arcade.enable(walls);
     walls.enableBody=true;
-    walls.immovable=false;
 
     astronaut=game.add.sprite(520,520,'astronaut');
-    astronaut.scale.setTo(0.7,0.7 );
-
+    astronaut.scale.setTo(0.7,0.7);
     game.physics.arcade.enable(astronaut);
     astronaut.enableBody=true;
 
-    moggun=game.add.sprite(520,480,'moggun');
-    moggun.scale.setTo(2,2 );
+    flamethrower = game.add.sprite(420,360,'flamethrower');
+    flamethrower.scale.setTo(0.3,0.3);
+    flamethrower.enableBody=true;
+    game.physics.arcade.enable(flamethrower);
+    flamethrower.body.immovable=true;
 
-    game.physics.arcade.enable(moggun);
-    moggun.enableBody=true;
+    flamethrower = game.add.sprite(420,360,'flamethrower');
+    flamethrower.scale.setTo(0.3,0.3);
 
-    spider=game.add.sprite(200,200,'spider');
-    spider.scale.setTo(0.7,0.7 );
-
-    game.physics.arcade.enable(spider);
-    spider.enableBody=true;
-
-
+    
 
     astronaut.animations.add('left', [3,4,5], 10, true);
     astronaut.animations.add('right', [6,7,8], 10, true);
     astronaut.animations.add('up', [9,10,11], 10, true);
     astronaut.animations.add('down', [0,1,2], 10, true);
 
-    spider.animations.add('left', [7,8,9,10,11,12,13], 10, true);
-    spider.animations.add('right', [21,22,23,24,25,26,27], 10, true);
-    spider.animations.add('up', [14,15,16,17,18,19,20], 10, true);
-    spider.animations.add('down', [0,1,2,3,4,5,6], 10, true);
-
-    moggun.animations.add('left', [7,8,9,10,11,12,13], 10, true);
-    moggun.animations.add('right', [0,1,2,3,4,5,6], 10, true);
-    moggun.animations.add('up', [21,22,23,24,25,26,27], 10, true);
-    moggun.animations.add('down', [14,15,16,17,18,19,20], 10, true);
-
-
+    flamethrower_flames = game.add.sprite(490,325,'flamethrower_flames');
+    flamethrower_flames.scale.setTo(0.2,0.2);
+    flamethrower_flames.enableBody=true;
+    game.physics.arcade.enable(flamethrower_flames);
+    flamethrower_flames.animations.add('burn', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28], 15, true);
+    
 
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
@@ -331,8 +333,9 @@ function goFull() {
     c=walls.create(1160,320,'c');c=walls.create(1240,320,'c');
 
     c=walls.create(80,360,'c');c=walls.create(240,360,'c');c=walls.create(320,360,'c');c=walls.create(400,360,'c');
-    c=walls.create(560,360,'c');c=walls.create(600,360,'c');c=walls.create(640,360,'c');c=walls.create(680,360,'c');
-    c=walls.create(720,360,'c');c=walls.create(760,360,'c');c=walls.create(920,360,'c');c=walls.create(1000,360,'c');
+    //c=walls.create(560,360,'c');c=walls.create(600,360,'c');c=walls.create(640,360,'c');c=walls.create(680,360,'c');
+    //c=walls.create(720,360,'c');c=walls.create(760,360,'c');
+    c=walls.create(920,360,'c');c=walls.create(1000,360,'c');
     c=walls.create(1080,360,'c');c=walls.create(1240,360,'c');
 
     c=walls.create(80,400,'c');c=walls.create(160,400,'c');c=walls.create(200,400,'c');c=walls.create(240,400,'c');
@@ -365,8 +368,6 @@ function goFull() {
     c=walls.create(760,640,'c');c=walls.create(840,640,'c');c=walls.create(920,640,'c');c=walls.create(1000,640,'c');
     c=walls.create(1040,640,'c');c=walls.create(1080,640,'c');
 
-    //c=walls.create(560,520,'c');
-
 
     //.........................................................MAZE ENDS.......................................................
 
@@ -375,7 +376,6 @@ function goFull() {
     quitButton.scale.setTo(quitButton_scale, quitButton_scale);
     fullButton.scale.setTo(fullButton_scale, fullButton_scale);
 
-    //w1.scale.setTo(1.5,1.5);
 
     walls.children.forEach(function(c){
         c.enableBody=true;   
@@ -387,48 +387,86 @@ function goFull() {
 
  }
 
- function update2(){
-    game.physics.arcade.collide(astronaut,walls);
-    game.physics.arcade.collide(spider,walls);
-    game.physics.arcade.collide(moggun,walls);
+ function burn()
+ {
+    flamethrower_flames.animations.play('burn');
+ }
 
+ function burst()
+ {
+    setTimeout(function(){ temp(); }, 500);
+    
+ }
+
+ function temp()
+ {
+    astronaut.kill();
+    blastf();
+ }
+
+function blastf()
+{
+    blast = game.add.sprite(520,360,'blast');
+    blast.scale.setTo(0.1,0.1);
+    blast.animations.add('blastHim',[0,1,2,3,4,5,6,7,8],10,true);
+    setTimeout(function(){ blast.animations.play('blastHim'); },0);
+    showGameOver();
+    
+    
+    
+}
+
+ function update2()
+ {
+    game.physics.arcade.collide(astronaut,walls);
+    game.physics.arcade.collide(astronaut,flamethrower);
 
     //  Reset the players velocity (movement)
     astronaut.body.velocity.x = 0;
     astronaut.body.velocity.y = 0;
 
-    // lizard.body.velocity.x = game.rnd.integerInRange(0, 250);
-    // lizard.body.velocity.y = game.rnd.integerInRange(-250, 250);
-    // spider.body.velocity.x = game.rnd.integerInRange(-250, 250);
-    // spider.body.velocity.y = game.rnd.integerInRange(0, 250);
-    // moggun.body.velocity.x = game.rnd.integerInRange(0, 250);
-    // moggun.body.velocity.y = game.rnd.integerInRange(-250, 250);
+    //STARTING VELOCITY 100, FINAL LEVEL (10) SPEED 300. SPEED INCREASE IN EACH LEVEL 20
+    
+    /*
+    i++;
+    if (i/10===0) 
+    {
+       burn();
+    }
+    */
+
+    burn();
+
+    game.physics.arcade.overlap(astronaut, flamethrower_flames, burst, null, this);
+
+    
+
 
     if (cursors.left.isDown)
     {
         //  Move to the left
-        astronaut.body.velocity.x = -200;
+        astronaut.body.velocity.x = -100;
 
         astronaut.animations.play('left');
     }
     else if (cursors.right.isDown)
     {
         //  Move to the right
-        astronaut.body.velocity.x = 200;
+        astronaut.body.velocity.x = 100;
 
         astronaut.animations.play('right');
     }
     else if (cursors.down.isDown)
     {
         //  Move down
-        astronaut.body.velocity.y = +200;
+        astronaut.body.velocity.y = +100;
 
         astronaut.animations.play('down');
     }
     else if (cursors.up.isDown)
     {
         //  Move up
-        astronaut.body.velocity.y = -200;
+        astronaut.body.velocity.y = -100;
 
         astronaut.animations.play('up');
     }
@@ -440,4 +478,5 @@ function goFull() {
         astronaut.frame = 1;
     }
  }
+
 
