@@ -239,17 +239,12 @@ function goFull() {
     game.physics.arcade.enable(flamethrower);
     flamethrower.body.immovable=true;
 
-    flamethrower = game.add.sprite(420,360,'flamethrower');
-    flamethrower.scale.setTo(0.3,0.3);
-
-    mflamethrower = game.add.sprite(420,360,'mflamethrower');
+    mflamethrower = game.add.sprite(840,360,'mflamethrower');
     mflamethrower.scale.setTo(0.3,0.3);
     mflamethrower.enableBody=true;
     game.physics.arcade.enable(mflamethrower);
     mflamethrower.body.immovable=true;
-    
-    mflamethrower = game.add.sprite(840,360,'mflamethrower');
-    mflamethrower.scale.setTo(0.3,0.3);
+
 
     astronaut.animations.add('left', [3,4,5], 10, true);
     astronaut.animations.add('right', [6,7,8], 10, true);
