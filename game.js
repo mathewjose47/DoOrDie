@@ -6,6 +6,8 @@ var astronaut;
 var walls;
 var flamethrower;
 var flamethrower_flames;
+var mflamethrower;
+var mflamethrower_flames;
 var blastHim;
 var blast;
 var game_end_text;
@@ -174,7 +176,7 @@ function create5()
 
 function showGameOver()
 {
-    setTimeout(function(){ game.state.start('gameState5'); }, 1000);
+    setTimeout(function(){ game.state.start('gameState5'); }, 1000); // BURST ANIMATION TIME
     
     game_end_text = game.add.text(game.world.width/2,game.world.height/2,'Game Over',{fontSize: '32px', fill:'#FFF'});
     game_end_text.anchor.setTo(0.5,0.5);
@@ -208,6 +210,8 @@ function goFull() {
     game.load.spritesheet('astronaut', 'images/character/astronaut.png',32,32);
     game.load.image('flamethrower', 'images/flame/f2.png');
     game.load.spritesheet('flamethrower_flames', 'images/flame/Flames/flamethrower_/flamethrower_flames.png',512,512);
+    game.load.image('mflamethrower', 'images/flame/mf2.png');
+    game.load.spritesheet('mflamethrower_flames', 'images/flame/Flames/flamethrower_/mflamethrower_flames.png',512,512);
     game.load.spritesheet('blast', 'images/flame/Flames/fireball_hit_/flame_hit.png',512,512);
 
  }
@@ -238,7 +242,14 @@ function goFull() {
     flamethrower = game.add.sprite(420,360,'flamethrower');
     flamethrower.scale.setTo(0.3,0.3);
 
+    mflamethrower = game.add.sprite(420,360,'mflamethrower');
+    mflamethrower.scale.setTo(0.3,0.3);
+    mflamethrower.enableBody=true;
+    game.physics.arcade.enable(mflamethrower);
+    mflamethrower.body.immovable=true;
     
+    mflamethrower = game.add.sprite(840,360,'mflamethrower');
+    mflamethrower.scale.setTo(0.3,0.3);
 
     astronaut.animations.add('left', [3,4,5], 10, true);
     astronaut.animations.add('right', [6,7,8], 10, true);
@@ -250,6 +261,12 @@ function goFull() {
     flamethrower_flames.enableBody=true;
     game.physics.arcade.enable(flamethrower_flames);
     flamethrower_flames.animations.add('burn', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28], 15, true);
+
+    mflamethrower_flames = game.add.sprite(760,325,'mflamethrower_flames');
+    mflamethrower_flames.scale.setTo(0.2,0.2);
+    mflamethrower_flames.enableBody=true;
+    game.physics.arcade.enable(mflamethrower_flames);
+    mflamethrower_flames.animations.add('mburn', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28], 15, true);
     
 
     //  Our controls.
@@ -392,10 +409,19 @@ function goFull() {
     flamethrower_flames.animations.play('burn');
  }
 
+function mburn()
+ {
+    mflamethrower_flames.animations.play('mburn');
+ }
+
  function burst()
  {
-    setTimeout(function(){ temp(); }, 500);
-    
+    setTimeout(function(){ temp(); }, 250); // RUNNING INTO FLAMES
+ }
+
+function mburst()
+ {
+    setTimeout(function(){ mtemp(); }, 250); // RUNNING INTO FLAMES
  }
 
  function temp()
@@ -404,15 +430,29 @@ function goFull() {
     blastf();
  }
 
+function mtemp()
+ {
+    astronaut.kill();
+    mblastf();
+ }
+
 function blastf()
 {
     blast = game.add.sprite(520,360,'blast');
     blast.scale.setTo(0.1,0.1);
     blast.animations.add('blastHim',[0,1,2,3,4,5,6,7,8],10,true);
-    setTimeout(function(){ blast.animations.play('blastHim'); },0);
+    setTimeout(function(){ blast.animations.play('blastHim'); },0); //PAUSE BEFORE BLASTING ANIMATION STARTS. (KEEP 0)
     showGameOver();
     
-    
+}
+
+function mblastf()
+{
+    blast = game.add.sprite(800,360,'blast');
+    blast.scale.setTo(0.1,0.1);
+    blast.animations.add('blastHim',[0,1,2,3,4,5,6,7,8],10,true);
+    setTimeout(function(){ blast.animations.play('blastHim'); },0); //PAUSE BEFORE BLASTING ANIMATION STARTS. (KEEP 0)
+    showGameOver();
     
 }
 
@@ -425,7 +465,7 @@ function blastf()
     astronaut.body.velocity.x = 0;
     astronaut.body.velocity.y = 0;
 
-    //STARTING VELOCITY 100, FINAL LEVEL (10) SPEED 300. SPEED INCREASE IN EACH LEVEL 20
+    //KEEP CONSTANT SPEED 150 OF ASTRONAUT AND ALL BOTS
     
     /*
     i++;
@@ -437,7 +477,9 @@ function blastf()
 
     burn();
 
+    mburn();
     game.physics.arcade.overlap(astronaut, flamethrower_flames, burst, null, this);
+    game.physics.arcade.overlap(astronaut, mflamethrower_flames, mburst, null, this);
 
     
 
@@ -445,28 +487,28 @@ function blastf()
     if (cursors.left.isDown)
     {
         //  Move to the left
-        astronaut.body.velocity.x = -100;
+        astronaut.body.velocity.x = -150;
 
         astronaut.animations.play('left');
     }
     else if (cursors.right.isDown)
     {
         //  Move to the right
-        astronaut.body.velocity.x = 100;
+        astronaut.body.velocity.x = 150;
 
         astronaut.animations.play('right');
     }
     else if (cursors.down.isDown)
     {
         //  Move down
-        astronaut.body.velocity.y = +100;
+        astronaut.body.velocity.y = +150;
 
         astronaut.animations.play('down');
     }
     else if (cursors.up.isDown)
     {
         //  Move up
-        astronaut.body.velocity.y = -100;
+        astronaut.body.velocity.y = -150;
 
         astronaut.animations.play('up');
     }
