@@ -11,6 +11,9 @@ var mflamethrower_flames;
 var blastHim;
 var blast;
 var game_end_text;
+var score_text;
+var score=0;
+var seconds;
 
 var quitButton;
 var fullButton;
@@ -97,18 +100,31 @@ gameState2.prototype={
  
     //Convert seconds into minutes and seconds
     var minutes = Math.floor(timeRemaining / 60);
-    var seconds = Math.floor(timeRemaining) - (60 * minutes);
+    seconds = Math.floor(timeRemaining) - (60 * minutes);
  
     //Display minutes, add a 0 to the start if less than 10
     var result = (minutes < 10) ? "0" + minutes : minutes; 
  
     //Display seconds, add a 0 to the start if less than 10
-    result += (seconds < 10) ? ":0" + seconds : ":" + seconds; 
+    result += (seconds < 10) ? ":0" + seconds : ":" + seconds;
  
     me.timeLabel.text = result;
- 
+    
+    setTimeout(function(){ updateScore(); }, 10);
+
+
+
     }
 };
+
+function updateScore()
+{
+    if (seconds==31||seconds==01) 
+    {
+        score += 1;
+        score_text.text = score;
+    }
+}
 
 gameState3.prototype={
 
@@ -211,6 +227,9 @@ function create5()
 {
     game_end_text = game.add.text(game.world.width/2,game.world.height/2,'Leaderboard',{fontSize: '32px', fill:'#FFF'});
     game_end_text.anchor.setTo(0.5,0.5);
+
+    //score_text = game.add.text(game.world.width/2,game.world.height/2+50,'0',{fontSize: '32px', fill:'#FFF'});
+    //score_text.anchor.setTo(0.5,0.5);
 };
 
 function showGameOver()
@@ -256,6 +275,10 @@ function goFull() {
  }
 
  function create2(){
+
+    //score_text = game.add.text(1260,660,'0',{fontSize: '32px', fill:'#FFF'});
+    //score_text.anchor.setTo(0.5,0.5);
+
     game.time.desiredFps = 60;
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -320,6 +343,8 @@ function goFull() {
     });
 
 
+    score_text = game.add.text(1260,660,'0',{fontSize: '32px', fill:'#FFF'});
+    score_text.anchor.setTo(0.5,0.5);
 
 
 
