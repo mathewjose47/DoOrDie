@@ -126,7 +126,7 @@ gameState2.prototype={
 
 function updateScore()
 {
-    if (seconds==31||seconds==01) 
+    if (seconds==29||seconds==59) 
     {
         score += 1;
         score_text.text = score;
@@ -270,7 +270,9 @@ function update5()
 
 };
 function quit(){
-    //
+
+    score=0;
+    game.state.start('gameState1');
 }
 
 function goFull() {
@@ -281,6 +283,8 @@ function goFull() {
         game.scale.startFullScreen(false);
     }
 }
+
+
 
 
  function preload2() 
@@ -339,13 +343,13 @@ function goFull() {
     flamethrower_flames.scale.setTo(0.2,0.2);
     flamethrower_flames.enableBody=true;
     game.physics.arcade.enable(flamethrower_flames);
-    flamethrower_flames.animations.add('burn', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28], 12, false);
+    flamethrower_flames.animations.add('burn', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28], 10, false);
 
     mflamethrower_flames = game.add.sprite(760,325,'mflamethrower_flames');
     mflamethrower_flames.scale.setTo(0.2,0.2);
     mflamethrower_flames.enableBody=true;
     game.physics.arcade.enable(mflamethrower_flames);
-    mflamethrower_flames.animations.add('mburn', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28], 12, false);
+    mflamethrower_flames.animations.add('mburn', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28], 10, false);
     
 
     //  Our controls.
