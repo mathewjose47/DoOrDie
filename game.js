@@ -1,5 +1,6 @@
 var game = new Phaser.Game(1366, 768, Phaser.AUTO );
 
+var lp;
 var w1;
 var c;
 var astronaut;
@@ -15,6 +16,10 @@ var score_text;
 var score=0;
 var seconds;
 
+
+var x;
+var y;
+
 var quitButton;
 var fullButton;
 var fullButton_scale = 0.3;
@@ -28,7 +33,7 @@ var gameState0 = function()
 
 };
 
-//home page state (START STATE) this state will have 4 buttons, leaderboard, story, instructions, play
+//home page state (START STATE) this state will have 4 buttons, story,instructions,play,leaderboard
 var gameState1 = function(){
     
 };
@@ -156,7 +161,7 @@ game.state.add('gameState2',gameState2);        // play game state (if out show 
 game.state.add('gameState3',gameState3);        // game win state (end of game. highest score reached.)
 game.state.add('gameState4',gameState4);        // instructions state
 game.state.add('gameState5',gameState5);        // leaderboard state
-game.state.start('gameState2'); // later change it to 1
+game.state.start('gameState1'); // later change it to 1
 
 function preload0()
 {
@@ -175,17 +180,35 @@ function update0()
 
 function preload1()
 {
-
+    game.load.image('lp', 'images/landing_page.png');
+    game.load.spritesheet('quitButton', 'images/background/quitButton.png', 125,100);
+    game.load.spritesheet('fullButton', 'images/background/fullButton.png', 125, 100);
 };
 
 function create1()
 {
 
+    lp = game.add.sprite(0, 0, 'lp');
+    fullButton = game.add.button(1220, 90, 'fullButton', goFull, this, 2, 1, 0);
+    quitButton = game.add.button(1270, 90, 'quitButton', quit, this, 2, 1, 0);
+    quitButton.scale.setTo(quitButton_scale, quitButton_scale);
+    fullButton.scale.setTo(fullButton_scale, fullButton_scale);
+    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
 };
 
 function update1()
 {
-
+    x = game.input.mousePointer.x;
+    y = game.input.mousePointer.y;
+    console.log(x,y);
+    if (game.input.activePointer.isDown) 
+    {
+        if (x>970&&x<1235&&y>470&&y<530) 
+        {
+            game.state.start('gameState2');
+        }
+    } 
 };
 
 
@@ -277,9 +300,6 @@ function goFull() {
  }
 
  function create2(){
-
-    //score_text = game.add.text(1260,660,'0',{fontSize: '32px', fill:'#FFF'});
-    //score_text.anchor.setTo(0.5,0.5);
 
     game.time.desiredFps = 60;
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -547,11 +567,8 @@ function mblastf()
     astronaut.body.velocity.x = 0;
     astronaut.body.velocity.y = 0;
 
-    //KEEP CONSTANT SPEED 150 OF ASTRONAUT AND ALL BOTS
 
 
-    
-   
 
     if (seconds==9||seconds==10||seconds==19||seconds==20||seconds==29||seconds==30||seconds==39||seconds==40||seconds==49||seconds==50||seconds==59||seconds==00) 
     {
@@ -563,8 +580,7 @@ function mblastf()
     }
     
     
-
-    
+    //KEEP CONSTANT SPEED 150 OF ASTRONAUT AND ALL BOTS
 
 
     if (cursors.left.isDown)
