@@ -20,6 +20,8 @@ var fullButton;
 var fullButton_scale = 0.3;
 var quitButton_scale = 0.3;
 
+var i;
+
 //Game story (story button)
 var gameState0 = function()
 {
@@ -317,13 +319,13 @@ function goFull() {
     flamethrower_flames.scale.setTo(0.2,0.2);
     flamethrower_flames.enableBody=true;
     game.physics.arcade.enable(flamethrower_flames);
-    flamethrower_flames.animations.add('burn', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28], 15, true);
+    flamethrower_flames.animations.add('burn', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28], 12, false);
 
     mflamethrower_flames = game.add.sprite(760,325,'mflamethrower_flames');
     mflamethrower_flames.scale.setTo(0.2,0.2);
     mflamethrower_flames.enableBody=true;
     game.physics.arcade.enable(mflamethrower_flames);
-    mflamethrower_flames.animations.add('mburn', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28], 15, true);
+    mflamethrower_flames.animations.add('mburn', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28], 12, false);
     
 
     //  Our controls.
@@ -488,7 +490,7 @@ function mburn()
 
  function burst()
  {
-    setTimeout(function(){ temp(); }, 250); // RUNNING INTO FLAMES
+    setTimeout(function(){ temp(); }, 250); // RUNNING INTO FLAMES 
  }
 
 function mburst()
@@ -528,30 +530,39 @@ function mblastf()
     
 }
 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
  function update2()
  {
     game.physics.arcade.collide(astronaut,walls);
     game.physics.arcade.collide(astronaut,flamethrower);
+    game.physics.arcade.collide(astronaut,mflamethrower);
 
     //  Reset the players velocity (movement)
     astronaut.body.velocity.x = 0;
     astronaut.body.velocity.y = 0;
 
     //KEEP CONSTANT SPEED 150 OF ASTRONAUT AND ALL BOTS
+
+
     
-    /*
-    i++;
-    if (i/10===0) 
+   
+
+    if (seconds==9||seconds==10||seconds==19||seconds==20||seconds==29||seconds==30||seconds==39||seconds==40||seconds==49||seconds==50||seconds==59||seconds==00) 
     {
-       burn();
+        burn();
+
+        mburn();
+        game.physics.arcade.overlap(astronaut, flamethrower_flames, burst, null, this);
+        game.physics.arcade.overlap(astronaut, mflamethrower_flames, mburst, null, this);
     }
-    */
-
-    burn();
-
-    mburn();
-    game.physics.arcade.overlap(astronaut, flamethrower_flames, burst, null, this);
-    game.physics.arcade.overlap(astronaut, mflamethrower_flames, mburst, null, this);
+    
+    
 
     
 
