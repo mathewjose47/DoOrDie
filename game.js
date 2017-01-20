@@ -117,7 +117,7 @@ gameState2.prototype={
  
     me.timeLabel.text = result;
     
-    setTimeout(function(){ updateScore(); }, 10);
+    setTimeout(function(){ updateScore(); }, 0);
 
 
 
@@ -165,12 +165,19 @@ game.state.start('gameState1'); // later change it to 1
 
 function preload0()
 {
-
+    game.load.spritesheet('quitButton', 'images/background/quitButton.png', 125,100);
+    game.load.spritesheet('fullButton', 'images/background/fullButton.png', 125, 100);
 };
 
 function create0()
 {
+    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
 
+    fullButton = game.add.button(1220, 90, 'fullButton', goFull, this, 2, 1, 0);
+    quitButton = game.add.button(1270, 90, 'quitButton', quit, this, 2, 1, 0);
+    quitButton.scale.setTo(quitButton_scale, quitButton_scale);
+    fullButton.scale.setTo(fullButton_scale, fullButton_scale);
 };
 
 function update0()
@@ -180,13 +187,15 @@ function update0()
 
 function preload1()
 {
-    game.load.image('lp', 'images/landing_page.png');
+    game.load.spritesheet('astronaut', 'images/character/astronaut.png',32,32);
+    game.load.image('lp', 'images/landing_page.jpg');
     game.load.spritesheet('quitButton', 'images/background/quitButton.png', 125,100);
     game.load.spritesheet('fullButton', 'images/background/fullButton.png', 125, 100);
 };
 
 function create1()
 {
+    
 
     lp = game.add.sprite(0, 0, 'lp');
     fullButton = game.add.button(1220, 90, 'fullButton', goFull, this, 2, 1, 0);
@@ -195,18 +204,36 @@ function create1()
     fullButton.scale.setTo(fullButton_scale, fullButton_scale);
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+
+    astronaut=game.add.sprite(630,550,'astronaut');
+    astronaut.scale.setTo(2,2);
+    game.physics.arcade.enable(astronaut);
+    astronaut.animations.add('spin', [0,1,2,0,1,2,0,1,2,3,4,5,3,4,5,3,4,5,6,7,8,6,7,8,6,7,8,9,10,11,9,10,11,9,10,11], 7, true);
 };
 
 function update1()
 {
+    astronaut.animations.play('spin');
     x = game.input.mousePointer.x;
     y = game.input.mousePointer.y;
     console.log(x,y);
     if (game.input.activePointer.isDown) 
     {
-        if (x>970&&x<1235&&y>470&&y<530) 
+        if (x>970&&x<1260&&y>575&&y<630) 
         {
-            game.state.start('gameState2');
+            game.state.start('gameState2'); //play button
+        }
+        else if (x>970&&x<1260&&y>435&&y<490) 
+        {
+            game.state.start('gameState0');//story
+        }
+         else if (x>970&&x<1260&&y>505&&y<560) 
+        {
+           game.state.start('gameState4');//instructions           
+        }
+         else if (x>970&&x<1260&&y>650&&y<700) 
+        {
+            game.state.start('gameState5');//leaderboard
         }
     } 
 };
@@ -215,12 +242,19 @@ function update1()
 
 function preload3()
 {
-
+    game.load.spritesheet('quitButton', 'images/background/quitButton.png', 125,100);
+    game.load.spritesheet('fullButton', 'images/background/fullButton.png', 125, 100);
 };
 
 function create3()
 {
+    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
 
+    fullButton = game.add.button(1220, 90, 'fullButton', goFull, this, 2, 1, 0);
+    quitButton = game.add.button(1270, 90, 'quitButton', quit, this, 2, 1, 0);
+    quitButton.scale.setTo(quitButton_scale, quitButton_scale);
+    fullButton.scale.setTo(fullButton_scale, fullButton_scale);
 };
 
 function update3()
@@ -230,12 +264,19 @@ function update3()
 
 function preload4()
 {
-
+    game.load.spritesheet('quitButton', 'images/background/quitButton.png', 125,100);
+    game.load.spritesheet('fullButton', 'images/background/fullButton.png', 125, 100);
 };
 
 function create4()
 {
+    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
 
+    fullButton = game.add.button(1220, 90, 'fullButton', goFull, this, 2, 1, 0);
+    quitButton = game.add.button(1270, 90, 'quitButton', quit, this, 2, 1, 0);
+    quitButton.scale.setTo(quitButton_scale, quitButton_scale);
+    fullButton.scale.setTo(fullButton_scale, fullButton_scale);
 };
 
 function update4()
@@ -255,6 +296,14 @@ function create5()
 
     //score_text = game.add.text(game.world.width/2,game.world.height/2+50,'0',{fontSize: '32px', fill:'#FFF'});
     //score_text.anchor.setTo(0.5,0.5);
+
+    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+
+    fullButton = game.add.button(1220, 90, 'fullButton', goFull, this, 2, 1, 0);
+    quitButton = game.add.button(1270, 90, 'quitButton', quit, this, 2, 1, 0);
+    quitButton.scale.setTo(quitButton_scale, quitButton_scale);
+    fullButton.scale.setTo(fullButton_scale, fullButton_scale);
 };
 
 function showGameOver()
@@ -289,7 +338,6 @@ function goFull() {
 
  function preload2() 
  {
-
     game.load.image('w1', 'images/background/w3.jpg'); // space image
     game.load.spritesheet('quitButton', 'images/background/quitButton.png', 125,100);
     game.load.spritesheet('fullButton', 'images/background/fullButton.png', 125, 100);
@@ -355,6 +403,8 @@ function goFull() {
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
 
+
+
     // UP COUNTER
     var me = this;
  
@@ -371,6 +421,8 @@ function goFull() {
 
     score_text = game.add.text(1260,660,'0',{fontSize: '32px', fill:'#FFF'});
     score_text.anchor.setTo(0.5,0.5);
+
+
 
 
 
