@@ -16,7 +16,7 @@ var score_text;
 var score=0;
 var seconds;
 
-var decide1=2;
+var decide1=3;
 var decide2=1;
 var decide3=1;
 var decide4=1;
@@ -884,7 +884,7 @@ a1.body.velocity.y=0;
 
     else if (decide1==2) 
     {
-        if (a1.x>=210&&a1.x<=280&&a1.y>=200&&a1.y<=240) 
+        if (a1.x>=210&&a1.x<=320&&a1.y>=200&&a1.y<=240) 
         {
             a1.body.velocity.x = -120;
             a1.animations.play('a1left');
@@ -960,6 +960,60 @@ a1.body.velocity.y=0;
     
       else if (decide1=3) 
     {
+        if (a1.x>=280&&a1.x<=320&&a1.y>=200&&a1.y<=440) 
+        {
+            a1.body.velocity.y = 120;
+            a1.animations.play('a1down');
+        }
+        else if (a1.x>=280&&a1.x<=440&&a1.y>=440&&a1.y<=480) 
+        {
+            a1.body.velocity.x = 120;
+            a1.animations.play('a1right');
+        }
+        else if (a1.x>=440&&a1.x<=480&&a1.y>=440&&a1.y<=680) 
+        {
+            a1.body.velocity.y = 120;
+            a1.animations.play('a1down');
+        }
+        else if (a1.x>=440&&a1.x<=1120&&a1.y>=680&&a1.y<=720) 
+        {
+            a1.body.velocity.x = 120;
+            a1.animations.play('a1right');
+        }
+        else if (a1.x>=1120&&a1.x<=1160&&a1.y>=455&&a1.y<=720) 
+        {
+            a1.body.velocity.y = -120;
+            a1.animations.play('a1up');
+        }
+        else if (a1.x>=1055&&a1.x<=1160&&a1.y>=440&&a1.y<=480) 
+        {
+            a1.body.velocity.x = -120;
+            a1.animations.play('a1left');
+        }
+        else if (a1.x>=1040&&a1.x<=1080&&a1.y>=135&&a1.y<=480) 
+        {
+            a1.body.velocity.y = -120;
+            a1.animations.play('a1up');
+        }
+        else if (a1.x>=295&&a1.x<=1080&&a1.y>=120&&a1.y<=160) 
+        {
+            a1.body.velocity.x = -120;
+            a1.animations.play('a1left');
+        }
+        else if (a1.x>=280&&a1.x<=320&&a1.y>=120&&a1.y<=200) 
+        {
+            a1.body.velocity.y = 120;
+            a1.animations.play('a1down');
+        }
+        
+        
+        else
+        {
+            a1.body.velocity.y=0;
+            a1.body.velocity.x=0;
+            a1.animations.stop();
+            a1.frame=0;
+        }
         
 
     }
