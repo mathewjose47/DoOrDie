@@ -1,3 +1,4 @@
+
 var game = new Phaser.Game(1366, 768, Phaser.AUTO );
 
 var lp;
@@ -16,7 +17,9 @@ var score_text;
 var score=0;
 var seconds;
 
-var decide1=3;
+var flag;
+
+var decide1=4;
 var decide2=1;
 var decide3=1;
 var decide4=1;
@@ -24,6 +27,7 @@ var decide4=1;
 var a4p11=0;
 var a4p12=0;
 var a2p1=1;
+var a1p4=1
 
 var a1;
 var a2;
@@ -183,7 +187,7 @@ game.state.add('gameState2',gameState2);        // play game state (if out show 
 game.state.add('gameState3',gameState3);        // game win state (end of game. highest score reached.)
 game.state.add('gameState4',gameState4);        // instructions state
 game.state.add('gameState5',gameState5);        // leaderboard state
-game.state.start('gameState2'); // later change it to 1
+game.state.start('gameState1'); // later change it to 1
 
 
 
@@ -730,6 +734,7 @@ function playerKill()
         astronaut.body.velocity.x = -150;
 
         astronaut.animations.play('left');
+        flag=1;
     }
     else if (cursors.right.isDown)
     {
@@ -737,6 +742,7 @@ function playerKill()
         astronaut.body.velocity.x = 150;
 
         astronaut.animations.play('right');
+        flag=2;
     }
     else if (cursors.down.isDown)
     {
@@ -744,10 +750,36 @@ function playerKill()
         astronaut.body.velocity.y = +150;
 
         astronaut.animations.play('down');
+        flag=3;
     }
     else if (cursors.up.isDown)
     {
         //  Move up
+        astronaut.body.velocity.y = -150;
+
+        astronaut.animations.play('up');
+        flag=4;
+    }
+    else if (flag==1) 
+    {
+        astronaut.body.velocity.x = -150;
+
+        astronaut.animations.play('left');
+    }
+    else if (flag==2) 
+    {
+        astronaut.body.velocity.x = 150;
+
+        astronaut.animations.play('right');
+    }
+    else if (flag==3) 
+    {
+        astronaut.body.velocity.y = +150;
+
+        astronaut.animations.play('down');
+    }
+    else if (flag==4) 
+    {
         astronaut.body.velocity.y = -150;
 
         astronaut.animations.play('up');
@@ -769,7 +801,7 @@ function playerKill()
 
 
 
-
+    
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////          A1          ///////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -958,7 +990,7 @@ a1.body.velocity.y=0;
 
 //////////////////////////////////////////////////         A1 Path3        ///////////////////////////////////////////////////////
     
-      else if (decide1=3) 
+      else if (decide1==3) 
     {
         if (a1.x>=280&&a1.x<=320&&a1.y>=200&&a1.y<=440) 
         {
@@ -1017,6 +1049,63 @@ a1.body.velocity.y=0;
         
 
     }
+//////////////////////////////////////////////////         A1 Path4        ///////////////////////////////////////////////////////
+
+    else if (decide1==4) 
+    {
+
+        if (a1.x>=280&&a1.x<=320&&a1.y>=135&&a1.y<=240&&a1p4==1) 
+        {
+            a1.body.velocity.y = -120;
+            a1.animations.play('a1up');
+        }
+        else if (a1.x>=280&&a1.x<=1120&&a1.y>=120&&a1.y<=160&&a1p4==1) 
+        {
+            a1.body.velocity.x = 120;
+            a1.animations.play('a1right');
+        }
+        else if (a1.x>=1120&&a1.x<=1160&&a1.y>=55&&a1.y<=160) 
+        {
+            a1.body.velocity.y = -120;
+            a1.animations.play('a1up');
+            a1p4=0;
+        }
+        else if (a1.x>=215&&a1.x<=1160&&a1.y>=40&&a1.y<=80) 
+        {
+            a1.body.velocity.x = -120;
+            a1.animations.play('a1left');
+        }
+        else if (a1.x>=200&&a1.x<=240&&a1.y>=40&&a1.y<=120) 
+        {
+            a1.body.velocity.y = 120;
+            a1.animations.play('a1down');
+        }
+        else if (a1.x>=200&&a1.x<=285&&a1.y>=120&&a1.y<=160) 
+        {
+            a1.body.velocity.x = 120;
+            a1.animations.play('a1right');
+        }
+        else if (a1.x>=280&&a1.x<=320&&a1.y>=120&&a1.y<=200&&a1p4==0) 
+        {
+            a1.body.velocity.y = 120;
+            a1.animations.play('a1down');
+        }
+        else if (a1.x>200) 
+        {
+            a1p4=1;
+        }
+        else
+        {
+            a1.body.velocity.y=0;
+            a1.body.velocity.x=0;
+            a1.animations.stop();
+            a1.frame=0;
+
+        }
+        
+
+    }
+
 
 
 
@@ -1192,11 +1281,11 @@ console.log('x3,y3 : '+a3.x+' , '+a3.y);
     a3.body.velocity.x=0;
     a3.body.velocity.y=0;
 
-    if (a3.x==282&&a3.y>=600&&a3.y<640) 
-    {
-        decide3=game.rnd.integerInRange(1,2);
-        console.log(decide3);
-    }
+    // if (a3.x==282&&a3.y>=600&&a3.y<640) 
+    // {
+    //     decide3=game.rnd.integerInRange(1,2);
+    //     console.log(decide3);
+    // }
 
 
 //////////////////////////////////////////////////         A3 Path1        ///////////////////////////////////////////////////////
@@ -1313,11 +1402,11 @@ console.log('x4,y4 : '+a4.x+' , '+a4.y);
     a4.body.velocity.x=0;
     a4.body.velocity.y=0;
 
-    if (a4.x==1038&&a4.y>=600&&a4.y<640) 
-    {
-        decide4=game.rnd.integerInRange(1,2);
-        console.log(decide4);
-    }
+    // if (a4.x==1038&&a4.y>=600&&a4.y<640) 
+    // {
+    //     decide4=game.rnd.integerInRange(1,2);
+    //     console.log(decide4);
+    // }
 
 //////////////////////////////////////////////////         A4 Path1        ///////////////////////////////////////////////////////
 
@@ -1432,8 +1521,5 @@ if (decide4==1)
 //--------------------------------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------------------------------
  } //END OF UPDATE2 FUNCTION
-
-
-
 
 
