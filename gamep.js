@@ -455,10 +455,14 @@ function preload5()
 {
     game.load.image('sb', 'images/background/w3.jpg');
     game.load.audio('button_press','audio/blop.mp3');
+    game.load.audio('pirates','audio/pirates.mp3');
 };
 
 function create5()
 {
+    pirates=game.add.audio('pirates');
+    pirates.loop=true;
+    pirates.play();
     sb = game.add.sprite(0, 0, 'sb');
     game_end_text = game.add.text(game.world.width/2,game.world.height/2,'Leaderboard',{fontSize: '32px', fill:'#FFF'});
     game_end_text.anchor.setTo(0.5,0.5);
@@ -503,7 +507,7 @@ function showGameOver()
     astronaut.kill();
     setTimeout(function(){ 
         game.state.start('gameState5');
-        game.sound.stopAll(); 
+        //game.sound.stopAll(); 
     }, 2700); // kill_sound time
 
     game_end_text = game.add.text(game.world.width/2,game.world.height/2,'Game Over',{fontSize: '32px', fill:'#FFF'});
