@@ -1,6 +1,6 @@
+var game = new Phaser.Game(1366,768, Phaser.AUTO );
 
-var game = new Phaser.Game(1366, 768, Phaser.AUTO );
-
+var sb;
 var lp;
 var w1;
 var c;
@@ -16,10 +16,13 @@ var game_end_text;
 var score_text;
 var score=0;
 var seconds;
-
+var style;
+var story_text;
 var flag;
 
-var decide1=4;
+var arrows;
+
+var decide1=5;
 var decide2=1;
 var decide3=1;
 var decide4=1;
@@ -52,6 +55,9 @@ var fullButton_scale = 0.3;
 var quitButton_scale = 0.3;
 
 var i;
+
+var w = 1320;
+var h = 720;
 
 //Game story (story button)
 var gameState0 = function()
@@ -195,6 +201,7 @@ function preload0()
 {
     game.load.spritesheet('quitButton', 'images/background/quitButton.png', 125,100);
     game.load.spritesheet('fullButton', 'images/background/fullButton.png', 125, 100);
+    game.load.image('sb', 'images/background/w3.jpg');
 };
 
 function create0()
@@ -202,10 +209,22 @@ function create0()
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
 
+    sb = game.add.sprite(0, 0, 'sb');
+
     fullButton = game.add.button(1220, 90, 'fullButton', goFull, this, 2, 1, 0);
     quitButton = game.add.button(1270, 90, 'quitButton', quit, this, 2, 1, 0);
     quitButton.scale.setTo(quitButton_scale, quitButton_scale);
     fullButton.scale.setTo(fullButton_scale, fullButton_scale);
+
+    story_text = game.add.text(game.world.width/2,120,'STORY',{font: "Algerian" ,fontSize: '45px', fill:'#FFF'});
+    story_text.anchor.setTo(0.5,0.5);
+
+    style = { font: '30pt Gabriola', fill: 'white', align: 'justified', wordWrap: true, wordWrapWidth: 1135 };
+
+    game.add.text(120, 200, "Year 2245, Human intergalactic missions are on a new high, explorers of the day and age, daring astronauts (Historical term for explorers) storm nook and corners of the cluster, but not all missions are adventurous and enticing, some… are horrifyingly deadly.", style);
+    game.add.text(120, 375, "One such unfortunate explorer is caught in a labyrinth of razor-sharp debris plagued with unwelcoming creatures whose natural instinct is to kill anything incognizant. His only hope is to run for his life till the mathematics of certainty proves to be a life saver.", style);
+    game.add.text(120, 550, "An inferno in Heaven with the devil on back!!! My lads!!! Let the the games begin!!!", style);
+  
 };
 
 function update0()
@@ -223,8 +242,6 @@ function preload1()
 
 function create1()
 {
-    
-
     lp = game.add.sprite(0, 0, 'lp');
     fullButton = game.add.button(1220, 90, 'fullButton', goFull, this, 2, 1, 0);
     quitButton = game.add.button(1270, 90, 'quitButton', quit, this, 2, 1, 0);
@@ -244,7 +261,7 @@ function update1()
     astronaut.animations.play('spin');
     x = game.input.mousePointer.x;
     y = game.input.mousePointer.y;
-    console.log(x,y);
+    //console.log(x,y);
     if (game.input.activePointer.isDown) 
     {
         if (x>970&&x<1260&&y>575&&y<630) 
@@ -294,6 +311,15 @@ function preload4()
 {
     game.load.spritesheet('quitButton', 'images/background/quitButton.png', 125,100);
     game.load.spritesheet('fullButton', 'images/background/fullButton.png', 125, 100);
+    game.load.image('sb', 'images/background/w3.jpg');
+    game.load.image('arrows', 'images/background/arrows.png');
+    game.load.spritesheet('astronaut', 'images/character/astronaut.png',32,32);
+    game.load.image('flamethrower', 'images/flame/f2.png');
+    game.load.spritesheet('flamethrower_flames', 'images/flame/Flames/flamethrower_/flamethrower_flames.png',512,512);
+    game.load.image('mflamethrower', 'images/flame/mf2.png');
+    game.load.spritesheet('mflamethrower_flames', 'images/flame/Flames/flamethrower_/mflamethrower_flames.png',512,512);
+    game.load.spritesheet('a1', 'images/aliens/spider.png',35,35);
+
 };
 
 function create4()
@@ -301,29 +327,106 @@ function create4()
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
 
+    sb = game.add.sprite(0, 0, 'sb');
+
+    story_text = game.add.text(game.world.width/2,120,'INSTRUCTIONS',{font: "Algerian" ,fontSize: '45px', fill:'#FFF'});
+    story_text.anchor.setTo(0.5,0.5);
+
     fullButton = game.add.button(1220, 90, 'fullButton', goFull, this, 2, 1, 0);
     quitButton = game.add.button(1270, 90, 'quitButton', quit, this, 2, 1, 0);
     quitButton.scale.setTo(quitButton_scale, quitButton_scale);
     fullButton.scale.setTo(fullButton_scale, fullButton_scale);
+
+    style = { font: '18pt Hobo Std', fill: 'white', align: 'justified', wordWrap: true, wordWrapWidth: 1135 };
+
+    arrows=game.add.sprite(175, 175, 'arrows');
+    arrows.scale.setTo(0.55,0.55);
+
+    game.add.text(415, 240, "Use arrow keys to move the astronaut around the maze", style);
+
+    astronaut=game.add.sprite(1090, 200, 'astronaut');
+    astronaut.scale.setTo(2,2);
+
+    game.physics.arcade.enable(astronaut);
+    astronaut.animations.add('spin', [0,1,2,0,1,2,0,1,2,3,4,5,3,4,5,3,4,5,6,7,8,6,7,8,6,7,8,9,10,11,9,10,11,9,10,11], 7, true);
+
+    game.add.text(590, 390, "Avoid the aliens!! ", style);
+    a1=game.add.sprite(335,375,'a1');
+    a1.scale.setTo(2,2);
+    game.physics.arcade.enable(a1);
+    a2=game.add.sprite(940,375,'a1');
+    a2.scale.setTo(2,2);
+
+    a1.animations.add('spin',[0,1,2,3,4,5,7,8,9,10,11,12,14,15,16,17,18,19,21,22,23,24,25,26],7,true);
+    a2.animations.add('spin',[0,1,2,3,4,5,21,22,23,24,25,26,14,15,16,17,18,19,7,8,9,10,11,12],7,true);
+
+    game.add.text(455, 555, "And stay away from their Flamethrowers ", style);
+
+    flamethrower = game.add.sprite(150,545,'flamethrower');
+    flamethrower.scale.setTo(0.5,0.5);
+    flamethrower.enableBody=true;
+    game.physics.arcade.enable(flamethrower);
+  
+
+    mflamethrower = game.add.sprite(1050,545,'mflamethrower');
+    mflamethrower.scale.setTo(0.5,0.5);
+    mflamethrower.enableBody=true;
+    game.physics.arcade.enable(mflamethrower);
+
+    flamethrower_flames = game.add.sprite(265,465,'flamethrower_flames');
+    flamethrower_flames.scale.setTo(0.4,0.4);
+    flamethrower_flames.enableBody=true;
+    game.physics.arcade.enable(flamethrower_flames);
+    flamethrower_flames.animations.add('burn', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28], 10, false);
+
+    mflamethrower_flames = game.add.sprite(880,465,'mflamethrower_flames');
+    mflamethrower_flames.scale.setTo(0.4,0.4);
+    mflamethrower_flames.enableBody=true;
+    game.physics.arcade.enable(mflamethrower_flames);
+    mflamethrower_flames.animations.add('mburn', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28], 10, false);
+
+
 };
 
 function update4()
 {
+    astronaut.animations.play('spin');
+    a1.animations.play('spin');
+    a2.animations.play('spin');
 
+    flamethrower_flames.animations.play('burn');
+    mflamethrower_flames.animations.play('mburn');
 };
 
 function preload5()
 {
-
+    game.load.image('sb', 'images/background/w3.jpg');
 };
 
 function create5()
 {
+    sb = game.add.sprite(0, 0, 'sb');
     game_end_text = game.add.text(game.world.width/2,game.world.height/2,'Leaderboard',{fontSize: '32px', fill:'#FFF'});
     game_end_text.anchor.setTo(0.5,0.5);
 
-    //score_text = game.add.text(game.world.width/2,game.world.height/2+50,'0',{fontSize: '32px', fill:'#FFF'});
-    //score_text.anchor.setTo(0.5,0.5);
+    // $.ajax({
+    //     type: 'POST',
+    //     url: '/input_score',
+    //     data: { score:score },
+    //     dataType: 'json',
+    //     success: function(response){
+    //         if(response.msg === "success"){
+    //             console.log('success');
+    //         }
+    //         else{
+    //             $('#error-msg').html('');
+    //             $('#error-msg').append('<span>Server error!</span>');
+    //         }
+    //     }
+    //     });
+
+    score_text = game.add.text(game.world.width/2,game.world.height/2+75,score,{fontSize: '32px', fill:'#000'});
+    score_text.anchor.setTo(0.5,0.5);
 
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
@@ -336,10 +439,14 @@ function create5()
 
 function showGameOver()
 {
-    setTimeout(function(){ game.state.start('gameState5'); }, 1000); // BURST ANIMATION TIME
-    
+    astronaut.kill();
+    setTimeout(function(){ 
+        game.state.start('gameState5');
+ 
+    }, 1000); // BURST ANIMATION TIME
+
     game_end_text = game.add.text(game.world.width/2,game.world.height/2,'Game Over',{fontSize: '32px', fill:'#FFF'});
-    game_end_text.anchor.setTo(0.5,0.5);
+    game_end_text.anchor.setTo(0.5,0.5); 
 }
 
 function update5()
@@ -353,10 +460,12 @@ function quit(){
 }
 
 function goFull() {
-    if (game.scale.isFullScreen){
+    if (game.scale.isFullScreen)
+    {
         game.scale.stopFullScreen();
     }
-    else{
+    else
+    {
         game.scale.startFullScreen(false);
     }
 }
@@ -378,6 +487,8 @@ function goFull() {
     game.load.spritesheet('blast', 'images/flame/Flames/fireball_hit_/flame_hit.png',512,512);
 
     game.load.spritesheet('a1', 'images/aliens/spider.png',35,35);
+
+    game.load.image('menu', 'images/menu.jpg', 270, 180);
 
  }
 
@@ -438,8 +549,6 @@ function goFull() {
     a1.scale.setTo(0.75,0.75);
     game.physics.arcade.enable(a1);
     a1.enableBody=true;
-    x1=280;
-    y1=200;
 
     a2=game.add.sprite(1040,200,'a1');
     a2.scale.setTo(0.75,0.75);
@@ -492,7 +601,7 @@ function goFull() {
     });
 
 
-    score_text = game.add.text(1260,660,'0',{fontSize: '32px', fill:'#FFF'});
+    score_text = game.add.text(1260,660,'0',{fontSize: '32px', fill:'#0F0'});
     score_text.anchor.setTo(0.5,0.5);
 
 
@@ -573,10 +682,7 @@ function goFull() {
     c=walls.create(1160,320,'c');c=walls.create(1240,320,'c');
 
     c=walls.create(80,360,'c');c=walls.create(240,360,'c');c=walls.create(320,360,'c');c=walls.create(400,360,'c');
-    //c=walls.create(560,360,'c');c=walls.create(600,360,'c');c=walls.create(640,360,'c');c=walls.create(680,360,'c');
-    //c=walls.create(720,360,'c');c=walls.create(760,360,'c');
-    c=walls.create(920,360,'c');c=walls.create(1000,360,'c');
-    c=walls.create(1080,360,'c');c=walls.create(1240,360,'c');
+    c=walls.create(920,360,'c');c=walls.create(1000,360,'c');c=walls.create(1080,360,'c');c=walls.create(1240,360,'c');
 
     c=walls.create(80,400,'c');c=walls.create(160,400,'c');c=walls.create(200,400,'c');c=walls.create(240,400,'c');
     c=walls.create(320,400,'c');c=walls.create(400,400,'c');c=walls.create(440,400,'c');c=walls.create(480,400,'c');
@@ -622,8 +728,62 @@ function goFull() {
         game.physics.arcade.enable(c);
         c.body.immovable=true;
     });
-  
-    
+
+
+
+ // pause_label = game.add.text(80, 80, 'Pause', { font: '24px Arial', fill: '#fff' });
+ //    pause_label.inputEnabled = true;
+ //    pause_label.events.onInputUp.add(function () {
+ //        // When the paus button is pressed, we pause the game
+ //        game.paused = true;
+
+ //        // Then add the menu
+ //        menu = game.add.sprite(w/2, h/2, 'menu');
+ //        menu.anchor.setTo(0.5, 0.5);
+
+        // And a label to illustrate which menu item was chosen. (This is not necessary)
+    //     choiseLabel = game.add.text(w/2, h-150, 'Click outside menu to continue', { font: '30px Arial', fill: '#fff' });
+    //     choiseLabel.anchor.setTo(0.5, 0.5);
+    // });
+
+    // Add a input listener that can help us return from being paused
+    // game.input.onDown.add(unpause, self);
+
+    // And finally the method that handels the pause menu
+    // function unpause(event){
+    //     // Only act if paused
+    //     if(game.paused){
+    //         // Calculate the corners of the menu
+    //         var x1 = w/2 - 270/2, x2 = w/2 + 270/2,
+    //             y1 = h/2 - 180/2, y2 = h/2 + 180/2;
+
+    //         // Check if the click was inside the menu
+    //         if(event.x > x1 && event.x < x2 && event.y > y1 && event.y < y2 ){
+    //             // The choicemap is an array that will help us see which item was clicked
+    //             var choisemap = ['one', 'two', 'three', 'four', 'five', 'six'];
+
+    //             // Get menu local coordinates for the click
+    //             var x = event.x - x1,
+    //                 y = event.y - y1;
+
+                // // Calculate the choice 
+                // var choise = Math.floor(x / 90) + 3*Math.floor(y / 90);
+
+                // // Display the choice
+    //             choiseLabel.text = 'You chose menu item: ' + choisemap[choise];
+    //         }
+    //         else{
+    //             // Remove the menu and the label
+    //             menu.destroy();
+    //             choiseLabel.destroy();
+
+    //             // Unpause the game
+    //             game.paused = false;
+    //         }
+       // }
+   // };
+
+
 
  }
 
@@ -666,7 +826,6 @@ function blastf()
     blast.animations.add('blastHim',[0,1,2,3,4,5,6,7,8],10,true);
     setTimeout(function(){ blast.animations.play('blastHim'); },0); //PAUSE BEFORE BLASTING ANIMATION STARTS. (KEEP 0)
     showGameOver();
-    
 }
 
 function mblastf()
@@ -683,15 +842,6 @@ function mblastf()
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function playerKill()
-{
-    astronaut.kill();
-    setTimeout(function(){ game.state.start('gameState5'); }, 1000); // Time before leaderboard
-    game_end_text = game.add.text(game.world.width/2,game.world.height/2,'Game Over',{fontSize: '32px', fill:'#FFF'});
-    game_end_text.anchor.setTo(0.5,0.5);
-}
-
-
  function update2()
  {
     game.physics.arcade.collide(astronaut,walls);
@@ -703,92 +853,78 @@ function playerKill()
     game.physics.arcade.collide(a3,walls);
     game.physics.arcade.collide(a4,walls);
 
-    game.physics.arcade.overlap(astronaut, a1, playerKill, null, this);
-    game.physics.arcade.overlap(astronaut, a2, playerKill, null, this);
-    game.physics.arcade.overlap(astronaut, a3, playerKill, null, this);
-    game.physics.arcade.overlap(astronaut, a4, playerKill, null, this);
+    game.physics.arcade.overlap(astronaut, a1, showGameOver, null, this);
+    game.physics.arcade.overlap(astronaut, a2, showGameOver, null, this);
+    game.physics.arcade.overlap(astronaut, a3, showGameOver, null, this);
+    game.physics.arcade.overlap(astronaut, a4, showGameOver, null, this);
 
-    //  Reset the players velocity (movement)
-    astronaut.body.velocity.x = 0;
-    astronaut.body.velocity.y = 0;
-
-
-
+    
 
     if (seconds==9||seconds==10||seconds==19||seconds==20||seconds==29||seconds==30||seconds==39||seconds==40||seconds==49||seconds==50||seconds==59||seconds==00) 
     {
         burn();
-
         mburn();
         game.physics.arcade.overlap(astronaut, flamethrower_flames, burst, null, this);
         game.physics.arcade.overlap(astronaut, mflamethrower_flames, mburst, null, this);
     }
     
-    
-    //KEEP CONSTANT SPEED 150 OF ASTRONAUT AND ALL BOTS
-
-
+    if (astronaut.x==x&&astronaut.y==y) 
+    {
+        flag=5;
+    }
+    //  Reset the players velocity (movement)
+    astronaut.body.velocity.x = 0;
+    astronaut.body.velocity.y = 0;
+    x=astronaut.x;
+    y=astronaut.y;
     if (cursors.left.isDown)
     {
-        //  Move to the left
         astronaut.body.velocity.x = -150;
-
         astronaut.animations.play('left');
         flag=1;
     }
     else if (cursors.right.isDown)
     {
-        //  Move to the right
         astronaut.body.velocity.x = 150;
-
         astronaut.animations.play('right');
         flag=2;
     }
     else if (cursors.down.isDown)
     {
-        //  Move down
         astronaut.body.velocity.y = +150;
-
         astronaut.animations.play('down');
         flag=3;
     }
     else if (cursors.up.isDown)
     {
-        //  Move up
         astronaut.body.velocity.y = -150;
-
         astronaut.animations.play('up');
         flag=4;
     }
     else if (flag==1) 
     {
         astronaut.body.velocity.x = -150;
-
         astronaut.animations.play('left');
     }
     else if (flag==2) 
     {
         astronaut.body.velocity.x = 150;
-
         astronaut.animations.play('right');
     }
     else if (flag==3) 
     {
         astronaut.body.velocity.y = +150;
-
         astronaut.animations.play('down');
     }
     else if (flag==4) 
     {
         astronaut.body.velocity.y = -150;
-
         astronaut.animations.play('up');
     }
-    else
+    else if (flag==5)
     {
         //  Stand still
         astronaut.animations.stop();
-
         astronaut.frame = 1;
     }
 
@@ -799,9 +935,6 @@ function playerKill()
 
 
 
-
-
-    
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////          A1          ///////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -810,8 +943,8 @@ a1.body.velocity.x=0;
 a1.body.velocity.y=0;
 // if (a1.x>=280&&a1.x<=320&&a1.y>=198&&a1.y<200) 
 //     {
-//         //decide1=game.rnd.integerInRange(1,3);
-//         //console.log(decide1);
+//         decide1=game.rnd.integerInRange(1,4);
+//         console.log(decide1);
 //     }
 
 //////////////////////////////////////////////////        A1 Path1        ///////////////////////////////////////////////////////
@@ -997,6 +1130,8 @@ a1.body.velocity.y=0;
             a1.body.velocity.y = 120;
             a1.animations.play('a1down');
         }
+
+        
         else if (a1.x>=280&&a1.x<=440&&a1.y>=440&&a1.y<=480) 
         {
             a1.body.velocity.x = 120;
@@ -1046,12 +1181,13 @@ a1.body.velocity.y=0;
             a1.animations.stop();
             a1.frame=0;
         }
-        
-
     }
+
+
 //////////////////////////////////////////////////         A1 Path4        ///////////////////////////////////////////////////////
 
-    else if (decide1==4) 
+
+ else if (decide1==4) 
     {
 
         if (a1.x>=280&&a1.x<=320&&a1.y>=135&&a1.y<=240&&a1p4==1) 
@@ -1059,6 +1195,12 @@ a1.body.velocity.y=0;
             a1.body.velocity.y = -120;
             a1.animations.play('a1up');
         }
+        else if (a1.x>=280&&a1.x<=1120&&a1.y>=120&&a1.y<=160&&a1p4==1) {
+            
+            move(a1, 'a1', 'right');
+        }
+
+
         else if (a1.x>=280&&a1.x<=1120&&a1.y>=120&&a1.y<=160&&a1p4==1) 
         {
             a1.body.velocity.x = 120;
@@ -1107,8 +1249,65 @@ a1.body.velocity.y=0;
     }
 
 
+//////////////////////////////////////////////////         A1 Path5        ///////////////////////////////////////////////////////
 
 
+     if (decide1==5) 
+    {
+        if (a1.x>=280&&a1.x<=320&&a1.y>=200&&a1.y<=600) 
+        {
+            a1.body.velocity.y = 120;
+            a1.animations.play('a1down');
+        }
+        else if (a1.x>=215&&a1.x<=320&&a1.y>=600&&a1.y<=640) 
+        {
+            a1.body.velocity.x = -120;
+            a1.animations.play('a1left');
+        }
+        else if (a1.x>=200&&a1.x<=240&&a1.y>=600&&a1.y<=680) 
+        {
+            a1.body.velocity.y = 120;
+            a1.animations.play('a1down');
+        }
+        else if (a1.x>=200&&a1.x<=1120&&a1.y>=680&&a1.y<=720) 
+        {
+            a1.body.velocity.x = 120;
+            a1.animations.play('a1right');
+        }
+        else if (a1.x>=1120&&a1.x<=1160&&a1.y>440&&a1.y<=720) 
+        {
+            a1.body.velocity.y = -120;
+            a1.animations.play('a1up');
+        }
+        else if (a1.x>=1055&&a1.x<=1160&&a1.y>=440&&a1.y<=480) 
+        {
+            a1.body.velocity.x = -120;
+            a1.animations.play('a1left');
+        }
+        else if (a1.x>=1040&&a1.x<=1080&&a1.y>=135&&a1.y<=480) 
+        {
+            a1.body.velocity.y = -120;
+            a1.animations.play('a1up');
+        }
+        else if (a1.x>=295&&a1.x<=1080&&a1.y>=120&&a1.y<=160) 
+        {
+            a1.body.velocity.x = -120;
+            a1.animations.play('a1left');
+        }
+        
+        else if (a1.x>=280&&a1.x<=320&&a1.y>=120&&a1.y<=200) 
+        {
+            a1.body.velocity.y = 120;
+            a1.animations.play('a1down');
+        }
+        else
+        {
+            a1.body.velocity.y=0;
+            a1.body.velocity.x=0;
+            a1.animations.stop();
+            a1.frame=0;
+        }
+    }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1263,7 +1462,138 @@ if (decide2==1)
 
 //////////////////////////////////////////////////         A2 Path2        ///////////////////////////////////////////////////////
 
-
+else if (decide2==2) 
+{
+    if (a2.x>=965&&a2.x<=1080&&a2.y>=200&&a2.y<=205&&a2p1==1) 
+        {
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+        }
+        else if (a2.x>=960&&a2.x<=1000&&a2.y>=200&&a2.y<=280) 
+        {
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=885&&a2.x<=1000&&a2.y>=280&&a2.y<=320) 
+        {
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+        }
+        else if (a2.x>=880&&a2.x<=920&&a2.y>=205&&a2.y<=320) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else if (a2.x>=725&&a2.x<=920&&a2.y>200&&a2.y<=240) 
+        {
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+        }
+        else if (a2.x>=720&&a2.x<=760&&a2.y>=125&&a2.y<=240) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else if (a2.x>=205&&a2.x<=760&&a2.y>=120&&a2.y<=160) 
+        {
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+        }
+        else if (a2.x>=200&&a2.x<=240&&a2.y>=45&&a2.y<=160) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else if (a2.x>=200&&a2.x<=1120&&a2.y>=40&&a2.y<=80) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+        else if (a2.x>=1120&&a2.x<=1160&&a2.y>=40&&a2.y<=120) 
+        {
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=1045&&a2.x<=1160&&a2.y>=120&&a2.y<=160) 
+        {
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+            a2p1=0;
+        }
+        else if (a2.x>=1040&&a2.x<=1160&&a2.y>=120&&a2.y<=202&&a2p1==0) 
+        {
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=1040&&a2.x<=1120&&a2.y>=200&&a2.y<=240&&a2p1==0) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+        else if (a2.x>=1120&&a2.x<=1160&&a2.y>=200&&a2.y<=280) 
+        {
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=1120&&a2.x<=1200&&a2.y>=280&&a2.y<=300) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+        else if (a2.x>=1200&&a2.x<=1240&&a2.y>=205&&a2.y<=320) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else if (a2.x>=1200&&a2.x<=1280&&a2.y>=200&&a2.y<=240) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+        else if (a2.x>=1280&&a2.x<=1320&&a2.y>=200&&a2.y<=520) 
+        {
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=1205&&a2.x<=1320&&a2.y>=520&&a2.y<=560) 
+        {
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+        }
+        else if (a2.x>=1200&&a2.x<=1240&&a2.y>=365&&a2.y<=560) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else if (a2.x>=1125&&a2.x<=1240&&a2.y>=360&&a2.y<=400) 
+        {
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+        }
+        else if (a2.x>=1120&&a2.x<=1160&&a2.y>=325&&a2.y<=400) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else if (a2.x>=1045&&a2.x<=1160&&a2.y>=320&&a2.y<=360) 
+        {
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+            a2p1=1;
+        }
+        else if (a2.x>=1040&&a2.x<=1080&&a2.y>=160&&a2.y<=360&&a2p1==1) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else
+        {
+            a2.body.velocity.y=0;
+            a2.body.velocity.x=0;
+            a2.animations.stop();
+            a2.frame=0;
+        }
+}
 
 
 
@@ -1281,11 +1611,11 @@ console.log('x3,y3 : '+a3.x+' , '+a3.y);
     a3.body.velocity.x=0;
     a3.body.velocity.y=0;
 
-    // if (a3.x==282&&a3.y>=600&&a3.y<640) 
-    // {
-    //     decide3=game.rnd.integerInRange(1,2);
-    //     console.log(decide3);
-    // }
+    if (a3.x==282&&a3.y>=600&&a3.y<640) 
+    {
+        decide3=game.rnd.integerInRange(1,2);
+        console.log(decide3);
+    }
 
 
 //////////////////////////////////////////////////         A3 Path1        ///////////////////////////////////////////////////////
@@ -1402,11 +1732,11 @@ console.log('x4,y4 : '+a4.x+' , '+a4.y);
     a4.body.velocity.x=0;
     a4.body.velocity.y=0;
 
-    // if (a4.x==1038&&a4.y>=600&&a4.y<640) 
-    // {
-    //     decide4=game.rnd.integerInRange(1,2);
-    //     console.log(decide4);
-    // }
+    if (a4.x==1038&&a4.y>=600&&a4.y<640) 
+    {
+        decide4=game.rnd.integerInRange(1,2);
+        console.log(decide4);
+    }
 
 //////////////////////////////////////////////////         A4 Path1        ///////////////////////////////////////////////////////
 
@@ -1516,10 +1846,66 @@ if (decide4==1)
     }
 
 //////////////////////////////////////////////////         A4 Path2        ///////////////////////////////////////////////////////
+// function gridToPixel(point) {
+//     var p = ((point-4)*40)+20;
+//     return p;
+}
+
+// function points(spider, spiderName, xTwo, yTwo) {
+   
+//     var x2 = ((xTwo-4)*40)+20;
+//     var y2 = ((yTwo-4)*40)+20;
+
+//     if(spider.x==x2 && spider.y==y2) {
+//          return;
+//     }
+    
+//     if(spider.x==x2 && spider.y>y2) {
+//          move(spider, spiderName, 'up');
+//          return;
+//     }
+
+//     if(spider.x==x2 && spider.y<y2) {
+//          move(spider, spiderName, 'down');
+//          return;
+//     }
+
+//     if(spider.x>x2 && spider.y==y2) {
+//          move(spider, spiderName, 'left');
+//          return;
+//     }
+
+//     if(spider.x<x2 && spider.y==y2) {
+//          move(spider, spiderName, 'right');
+//          return;
+//     }
+    
+
+// }
+
+// function move(spider, spiderName, direction){
+
+//     if(direction=='down') {
+//          spider.body.velocity.y = 120;
+//     }
+//     else if(direction=='up') {
+//         spider.body.velocity.y = -120;
+//     }
+//     else if(direction=='left') {
+//         spider.body.velocity.x = -120;
+//     }
+//     else {
+//         spider.body.velocity.x = 120;
+//     }
+
+    
+//     spider.animations.play(spiderName+direction);    
+    
+// }
 
 
 //--------------------------------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------------------------------
- } //END OF UPDATE2 FUNCTION
+ //} //END OF UPDATE2 FUNCTION
 
 
