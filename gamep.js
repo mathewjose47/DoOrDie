@@ -19,6 +19,19 @@ var seconds;
 var style;
 var story_text;
 var flag;
+var flagv;
+var flagh;
+var flag1;
+
+var button_press;
+var flames_sound;
+var kill_sound;
+var background_music;
+var score_increase_sound;
+
+var l=0;
+var m=0.000000;
+
 
 var arrows;
 
@@ -55,9 +68,6 @@ var fullButton_scale = 0.3;
 var quitButton_scale = 0.3;
 
 var i;
-
-var w = 1320;
-var h = 720;
 
 //Game story (story button)
 var gameState0 = function()
@@ -158,7 +168,8 @@ gameState2.prototype={
 
 function updateScore()
 {
-    if (seconds==29||seconds==59) 
+    
+    if (seconds==15||seconds==45) 
     {
         score += 1;
         score_text.text = score;
@@ -202,12 +213,14 @@ function preload0()
     game.load.spritesheet('quitButton', 'images/background/quitButton.png', 125,100);
     game.load.spritesheet('fullButton', 'images/background/fullButton.png', 125, 100);
     game.load.image('sb', 'images/background/w3.jpg');
+    game.load.audio('button_press','audio/blop.mp3');
 };
 
 function create0()
 {
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+    button_press=game.add.audio('button_press');
 
     sb = game.add.sprite(0, 0, 'sb');
 
@@ -215,6 +228,8 @@ function create0()
     quitButton = game.add.button(1270, 90, 'quitButton', quit, this, 2, 1, 0);
     quitButton.scale.setTo(quitButton_scale, quitButton_scale);
     fullButton.scale.setTo(fullButton_scale, fullButton_scale);
+
+    
 
     story_text = game.add.text(game.world.width/2,120,'STORY',{font: "Algerian" ,fontSize: '45px', fill:'#FFF'});
     story_text.anchor.setTo(0.5,0.5);
@@ -238,6 +253,7 @@ function preload1()
     game.load.image('lp', 'images/landing_page.jpg');
     game.load.spritesheet('quitButton', 'images/background/quitButton.png', 125,100);
     game.load.spritesheet('fullButton', 'images/background/fullButton.png', 125, 100);
+    game.load.audio('button_press','audio/blop.mp3');
 };
 
 function create1()
@@ -249,6 +265,10 @@ function create1()
     fullButton.scale.setTo(fullButton_scale, fullButton_scale);
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+
+    button_press=game.add.audio('button_press');
+
+    
 
     astronaut=game.add.sprite(630,550,'astronaut');
     astronaut.scale.setTo(2,2);
@@ -266,18 +286,22 @@ function update1()
     {
         if (x>970&&x<1260&&y>575&&y<630) 
         {
+            button_press.play();
             game.state.start('gameState2'); //play button
         }
         else if (x>970&&x<1260&&y>435&&y<490) 
         {
+            button_press.play();
             game.state.start('gameState0');//story
         }
          else if (x>970&&x<1260&&y>505&&y<560) 
         {
+            button_press.play();
            game.state.start('gameState4');//instructions           
         }
          else if (x>970&&x<1260&&y>650&&y<700) 
         {
+            button_press.play();
             game.state.start('gameState5');//leaderboard
         }
     } 
@@ -289,17 +313,21 @@ function preload3()
 {
     game.load.spritesheet('quitButton', 'images/background/quitButton.png', 125,100);
     game.load.spritesheet('fullButton', 'images/background/fullButton.png', 125, 100);
+    game.load.audio('button_press','audio/blop.mp3');
 };
 
 function create3()
 {
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+    button_press=game.add.audio('button_press');
 
     fullButton = game.add.button(1220, 90, 'fullButton', goFull, this, 2, 1, 0);
     quitButton = game.add.button(1270, 90, 'quitButton', quit, this, 2, 1, 0);
     quitButton.scale.setTo(quitButton_scale, quitButton_scale);
     fullButton.scale.setTo(fullButton_scale, fullButton_scale);
+
+    
 };
 
 function update3()
@@ -319,6 +347,7 @@ function preload4()
     game.load.image('mflamethrower', 'images/flame/mf2.png');
     game.load.spritesheet('mflamethrower_flames', 'images/flame/Flames/flamethrower_/mflamethrower_flames.png',512,512);
     game.load.spritesheet('a1', 'images/aliens/spider.png',35,35);
+    game.load.audio('button_press','audio/blop.mp3');
 
 };
 
@@ -328,6 +357,8 @@ function create4()
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
 
     sb = game.add.sprite(0, 0, 'sb');
+
+    button_press=game.add.audio('button_press');
 
     story_text = game.add.text(game.world.width/2,120,'INSTRUCTIONS',{font: "Algerian" ,fontSize: '45px', fill:'#FFF'});
     story_text.anchor.setTo(0.5,0.5);
@@ -339,68 +370,70 @@ function create4()
 
     style = { font: '18pt Hobo Std', fill: 'white', align: 'justified', wordWrap: true, wordWrapWidth: 1135 };
 
-    arrows=game.add.sprite(175, 175, 'arrows');
-    arrows.scale.setTo(0.55,0.55);
+    // setTimeout(function()
+    // { 
+        arrows=game.add.sprite(175, 175, 'arrows');
+        arrows.scale.setTo(0.55,0.55);
+        game.add.text(415, 240, "Use arrow keys to move the astronaut around the maze", style);
+        astronaut=game.add.sprite(1090, 200, 'astronaut');
+        astronaut.scale.setTo(2,2);
+        game.physics.arcade.enable(astronaut);
+        astronaut.animations.add('spin', [0,1,2,0,1,2,0,1,2,3,4,5,3,4,5,3,4,5,6,7,8,6,7,8,6,7,8,9,10,11,9,10,11,9,10,11], 7, true);
+        astronaut.animations.play('spin');
+    // }, 1000);
 
-    game.add.text(415, 240, "Use arrow keys to move the astronaut around the maze", style);
+    // setTimeout(function()
+    // { 
+        game.add.text(590, 390, "Avoid the aliens!! ", style);
+        a1=game.add.sprite(335,375,'a1');
+        a1.scale.setTo(2,2);
+        game.physics.arcade.enable(a1);
+        a2=game.add.sprite(940,375,'a1');
+        a2.scale.setTo(2,2);
+        a1.animations.add('spin',[0,1,2,3,4,5,7,8,9,10,11,12,14,15,16,17,18,19,21,22,23,24,25,26],7,true);
+        a2.animations.add('spin',[0,1,2,3,4,5,21,22,23,24,25,26,14,15,16,17,18,19,7,8,9,10,11,12],7,true);
+        a1.animations.play('spin');
+        a2.animations.play('spin');
+    // }, 4000);
 
-    astronaut=game.add.sprite(1090, 200, 'astronaut');
-    astronaut.scale.setTo(2,2);
+    // setTimeout(function()
+    // { 
+        game.add.text(455, 555, "And stay away from their Flamethrowers ", style);
+        flamethrower = game.add.sprite(150,545,'flamethrower');
+        flamethrower.scale.setTo(0.5,0.5);
+        flamethrower.enableBody=true;
+        game.physics.arcade.enable(flamethrower);
+        mflamethrower = game.add.sprite(1050,545,'mflamethrower');
+        mflamethrower.scale.setTo(0.5,0.5);
+        mflamethrower.enableBody=true;
+        game.physics.arcade.enable(mflamethrower);
+        flamethrower_flames = game.add.sprite(265,465,'flamethrower_flames');
+        flamethrower_flames.scale.setTo(0.4,0.4);
+        flamethrower_flames.enableBody=true;
+        game.physics.arcade.enable(flamethrower_flames);
+        flamethrower_flames.animations.add('burn', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28], 10, true);
+        mflamethrower_flames = game.add.sprite(880,465,'mflamethrower_flames');
+        mflamethrower_flames.scale.setTo(0.4,0.4);
+        mflamethrower_flames.enableBody=true;
+        game.physics.arcade.enable(mflamethrower_flames);
+        mflamethrower_flames.animations.add('mburn', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28], 10, true);
+        flamethrower_flames.animations.play('burn');
+        mflamethrower_flames.animations.play('mburn');
 
-    game.physics.arcade.enable(astronaut);
-    astronaut.animations.add('spin', [0,1,2,0,1,2,0,1,2,3,4,5,3,4,5,3,4,5,6,7,8,6,7,8,6,7,8,9,10,11,9,10,11,9,10,11], 7, true);
-
-    game.add.text(590, 390, "Avoid the aliens!! ", style);
-    a1=game.add.sprite(335,375,'a1');
-    a1.scale.setTo(2,2);
-    game.physics.arcade.enable(a1);
-    a2=game.add.sprite(940,375,'a1');
-    a2.scale.setTo(2,2);
-
-    a1.animations.add('spin',[0,1,2,3,4,5,7,8,9,10,11,12,14,15,16,17,18,19,21,22,23,24,25,26],7,true);
-    a2.animations.add('spin',[0,1,2,3,4,5,21,22,23,24,25,26,14,15,16,17,18,19,7,8,9,10,11,12],7,true);
-
-    game.add.text(455, 555, "And stay away from their Flamethrowers ", style);
-
-    flamethrower = game.add.sprite(150,545,'flamethrower');
-    flamethrower.scale.setTo(0.5,0.5);
-    flamethrower.enableBody=true;
-    game.physics.arcade.enable(flamethrower);
-  
-
-    mflamethrower = game.add.sprite(1050,545,'mflamethrower');
-    mflamethrower.scale.setTo(0.5,0.5);
-    mflamethrower.enableBody=true;
-    game.physics.arcade.enable(mflamethrower);
-
-    flamethrower_flames = game.add.sprite(265,465,'flamethrower_flames');
-    flamethrower_flames.scale.setTo(0.4,0.4);
-    flamethrower_flames.enableBody=true;
-    game.physics.arcade.enable(flamethrower_flames);
-    flamethrower_flames.animations.add('burn', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28], 10, false);
-
-    mflamethrower_flames = game.add.sprite(880,465,'mflamethrower_flames');
-    mflamethrower_flames.scale.setTo(0.4,0.4);
-    mflamethrower_flames.enableBody=true;
-    game.physics.arcade.enable(mflamethrower_flames);
-    mflamethrower_flames.animations.add('mburn', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28], 10, false);
+    // }, 7000);
 
 
 };
 
 function update4()
 {
-    astronaut.animations.play('spin');
-    a1.animations.play('spin');
-    a2.animations.play('spin');
-
-    flamethrower_flames.animations.play('burn');
-    mflamethrower_flames.animations.play('mburn');
+    
 };
 
 function preload5()
 {
     game.load.image('sb', 'images/background/w3.jpg');
+    game.load.audio('button_press','audio/blop.mp3');
 };
 
 function create5()
@@ -409,22 +442,28 @@ function create5()
     game_end_text = game.add.text(game.world.width/2,game.world.height/2,'Leaderboard',{fontSize: '32px', fill:'#FFF'});
     game_end_text.anchor.setTo(0.5,0.5);
 
-    // $.ajax({
-    //     type: 'POST',
-    //     url: '/input_score',
-    //     data: { score:score },
-    //     dataType: 'json',
-    //     success: function(response){
-    //         if(response.msg === "success"){
-    //             console.log('success');
-    //         }
-    //         else{
-    //             $('#error-msg').html('');
-    //             $('#error-msg').append('<span>Server error!</span>');
-    //         }
-    //     }
-    //     });
+    button_press=game.add.audio('button_press');
 
+
+        $.ajax({
+        type: 'POST',
+        url: '/input_score',
+        data: { score:score },
+        dataType: 'json',
+        success: function(response){
+            if(response.msg === "success"){
+                console.log('success');
+            }
+            else{
+                $('#error-msg').html('');
+                $('#error-msg').append('<span>Server error!</span>');
+            }
+        }
+        });
+   
+    
+
+    
     score_text = game.add.text(game.world.width/2,game.world.height/2+75,score,{fontSize: '32px', fill:'#000'});
     score_text.anchor.setTo(0.5,0.5);
 
@@ -439,11 +478,12 @@ function create5()
 
 function showGameOver()
 {
+    kill_sound.play();
     astronaut.kill();
     setTimeout(function(){ 
         game.state.start('gameState5');
  
-    }, 1000); // BURST ANIMATION TIME
+    }, 2700); // kill_sound time
 
     game_end_text = game.add.text(game.world.width/2,game.world.height/2,'Game Over',{fontSize: '32px', fill:'#FFF'});
     game_end_text.anchor.setTo(0.5,0.5); 
@@ -455,11 +495,13 @@ function update5()
 };
 function quit(){
 
+    button_press.play();
     score=0;
     game.state.start('gameState1');
 }
 
 function goFull() {
+    button_press.play();
     if (game.scale.isFullScreen)
     {
         game.scale.stopFullScreen();
@@ -488,11 +530,18 @@ function goFull() {
 
     game.load.spritesheet('a1', 'images/aliens/spider.png',35,35);
 
-    game.load.image('menu', 'images/menu.jpg', 270, 180);
-
+    game.load.audio('button_press','audio/blop.mp3');
+    game.load.audio('kill_sound','audio/torture-sound.mp3');
+    game.load.audio('flames_sound','audio/flames1.mp3');
+    game.load.audio('score_increase_sound','audio/score_increase.mp3');
  }
 
  function create2(){
+
+    button_press=game.add.audio('button_press');
+    kill_sound=game.add.audio('kill_sound');
+    flames_sound=game.add.audio('flames_sound');
+    score_increase_sound=game.add.audio('score_increase_sound');
 
     game.time.desiredFps = 60;
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -501,12 +550,13 @@ function goFull() {
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
 
     w1 = game.add.sprite(0, 0, 'w1');
+
     walls = game.add.group();
     game.physics.arcade.enable(walls);
     walls.enableBody=true;
 
     astronaut=game.add.sprite(520,520,'astronaut');
-    astronaut.scale.setTo(0.7,0.7);
+    astronaut.scale.setTo(0.9,0.9);
     game.physics.arcade.enable(astronaut);
     astronaut.enableBody=true;
 
@@ -728,10 +778,9 @@ function goFull() {
         game.physics.arcade.enable(c);
         c.body.immovable=true;
     });
+ }
 
-
-
- // pause_label = game.add.text(80, 80, 'Pause', { font: '24px Arial', fill: '#fff' });
+// pause_label = game.add.text(80, 80, 'Pause', { font: '24px Arial', fill: '#fff' });
  //    pause_label.inputEnabled = true;
  //    pause_label.events.onInputUp.add(function () {
  //        // When the paus button is pressed, we pause the game
@@ -785,7 +834,8 @@ function goFull() {
 
 
 
- }
+
+
 
  function burn()
  {
@@ -823,7 +873,7 @@ function blastf()
 {
     blast = game.add.sprite(520,360,'blast');
     blast.scale.setTo(0.1,0.1);
-    blast.animations.add('blastHim',[0,1,2,3,4,5,6,7,8],10,true);
+    blast.animations.add('blastHim',[0,1,2,3,4,5,6,7,8],10,false);
     setTimeout(function(){ blast.animations.play('blastHim'); },0); //PAUSE BEFORE BLASTING ANIMATION STARTS. (KEEP 0)
     showGameOver();
 }
@@ -832,7 +882,7 @@ function mblastf()
 {
     blast = game.add.sprite(800,360,'blast');
     blast.scale.setTo(0.1,0.1);
-    blast.animations.add('blastHim',[0,1,2,3,4,5,6,7,8],10,true);
+    blast.animations.add('blastHim',[0,1,2,3,4,5,6,7,8],10,false);
     setTimeout(function(){ blast.animations.play('blastHim'); },0); //PAUSE BEFORE BLASTING ANIMATION STARTS. (KEEP 0)
     showGameOver();
     
@@ -842,8 +892,64 @@ function mblastf()
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+function fix()
+{
+    // x=astronaut.x;
+    // y=astronaut.y;
+    
+    console.log(astronaut.x +' , '+astronaut.y);
+
+    if ((flagv==0||flagv==1)&&(astronaut.x%40)>20&&flagh==1&&flag1==1) 
+    {
+        console.log('fixing x 1');
+
+        m=(astronaut.x)/40;
+        l=parseInt(m);
+        console.log('l,m :'+l+','+m);
+        astronaut.x=astronaut.x+(1-(m-l))*40;
+        flag1=0;
+    }
+    else if ((flagv==0||flagv==1)&&(astronaut.x%40)<25&&(astronaut.x%40)>10&&flagh==0&&flag1==1) 
+    {
+        console.log('fixing x 2');
+
+        m=(astronaut.x)/40;
+        l=parseInt(m);
+        console.log('l,m :'+l+','+m);
+        astronaut.x=astronaut.x-(m-l)*40+10;
+        flag1=0;
+    }
+    if ((flagh==0||flagh==1)&&(astronaut.y%40)>20&&(astronaut.y%40)>10&&flagv==1&&flag1==1) 
+    {
+        console.log('fixing y 1');
+
+        m=(astronaut.y)/40;
+        l=parseInt(m);
+        console.log('l,m :'+l+','+m);
+        astronaut.y=astronaut.y+(1-(m-l))*40;
+        flag1=0;
+    }
+    else if ((flagh==0||flagh==1)&&(astronaut.y%40)<25&&(astronaut.y%40)>10&&flagv==0&&flag1==1) 
+    {
+        console.log('fixing y 2');
+
+        m=(astronaut.y)/40;
+        l=parseInt(m);
+        console.log('l,m :'+l+','+m);
+        astronaut.y=astronaut.y-(m-l)*40+10;
+        flag1=0;
+    }
+
+    console.log('after fixing '+astronaut.x +' , '+astronaut.y);
+
+
+}
+
+
  function update2()
  {
+    game.physics.arcade.overlap(astronaut, walls, fix, null, this);
+
     game.physics.arcade.collide(astronaut,walls);
     game.physics.arcade.collide(astronaut,flamethrower);
     game.physics.arcade.collide(astronaut,mflamethrower);
@@ -857,13 +963,23 @@ function mblastf()
     game.physics.arcade.overlap(astronaut, a2, showGameOver, null, this);
     game.physics.arcade.overlap(astronaut, a3, showGameOver, null, this);
     game.physics.arcade.overlap(astronaut, a4, showGameOver, null, this);
-
     
 
+    if (seconds==14||seconds==44) 
+    {
+        score_increase_sound.play();
+    }
+    if (seconds==8||seconds==18||seconds==28||seconds==38||seconds==48||seconds==58) 
+    {
+        flames_sound.play();
+    }
     if (seconds==9||seconds==10||seconds==19||seconds==20||seconds==29||seconds==30||seconds==39||seconds==40||seconds==49||seconds==50||seconds==59||seconds==00) 
     {
+
         burn();
+        
         mburn();
+        
         game.physics.arcade.overlap(astronaut, flamethrower_flames, burst, null, this);
         game.physics.arcade.overlap(astronaut, mflamethrower_flames, mburst, null, this);
     }
@@ -881,45 +997,61 @@ function mblastf()
     {
         astronaut.body.velocity.x = -150;
         astronaut.animations.play('left');
+        flagh=0;
         flag=1;
+        flag1=1;
     }
     else if (cursors.right.isDown)
     {
         astronaut.body.velocity.x = 150;
         astronaut.animations.play('right');
         flag=2;
+        flagh=1;
+        flag1=1;
     }
     else if (cursors.down.isDown)
     {
         astronaut.body.velocity.y = +150;
         astronaut.animations.play('down');
         flag=3;
+        flagv=1;
+        flag1=1;
     }
     else if (cursors.up.isDown)
     {
         astronaut.body.velocity.y = -150;
         astronaut.animations.play('up');
         flag=4;
+        flagv=0;
+        flag1=1;
     }
     else if (flag==1) 
     {
         astronaut.body.velocity.x = -150;
         astronaut.animations.play('left');
+        flagh=0;
+        flag1=1;
     }
     else if (flag==2) 
     {
         astronaut.body.velocity.x = 150;
         astronaut.animations.play('right');
+        flagh=1;
+        flag1=1;
     }
     else if (flag==3) 
     {
         astronaut.body.velocity.y = +150;
         astronaut.animations.play('down');
+        flagv=1;
+        flag1=1;
     }
     else if (flag==4) 
     {
         astronaut.body.velocity.y = -150;
         astronaut.animations.play('up');
+        flagv=0;
+        flag1=1;
     }
     else if (flag==5)
     {
@@ -938,14 +1070,14 @@ function mblastf()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////          A1          ///////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-console.log('x1,y1 : '+a1.x+' , '+a1.y);
+//console.log('x1,y1 : '+a1.x+' , '+a1.y);
 a1.body.velocity.x=0;
 a1.body.velocity.y=0;
-// if (a1.x>=280&&a1.x<=320&&a1.y>=198&&a1.y<200) 
-//     {
-//         decide1=game.rnd.integerInRange(1,4);
-//         console.log(decide1);
-//     }
+if (a1.x>=280&&a1.x<=320&&a1.y>=198&&a1.y<200) 
+    {
+        decide1=game.rnd.integerInRange(1,4);
+        console.log(decide1);
+    }
 
 //////////////////////////////////////////////////        A1 Path1        ///////////////////////////////////////////////////////
 
@@ -1130,8 +1262,6 @@ a1.body.velocity.y=0;
             a1.body.velocity.y = 120;
             a1.animations.play('a1down');
         }
-
-        
         else if (a1.x>=280&&a1.x<=440&&a1.y>=440&&a1.y<=480) 
         {
             a1.body.velocity.x = 120;
@@ -1195,12 +1325,6 @@ a1.body.velocity.y=0;
             a1.body.velocity.y = -120;
             a1.animations.play('a1up');
         }
-        else if (a1.x>=280&&a1.x<=1120&&a1.y>=120&&a1.y<=160&&a1p4==1) {
-            
-            move(a1, 'a1', 'right');
-        }
-
-
         else if (a1.x>=280&&a1.x<=1120&&a1.y>=120&&a1.y<=160&&a1p4==1) 
         {
             a1.body.velocity.x = 120;
@@ -1251,8 +1375,7 @@ a1.body.velocity.y=0;
 
 //////////////////////////////////////////////////         A1 Path5        ///////////////////////////////////////////////////////
 
-
-     if (decide1==5) 
+    else if (decide1==5) 
     {
         if (a1.x>=280&&a1.x<=320&&a1.y>=200&&a1.y<=600) 
         {
@@ -1314,7 +1437,7 @@ a1.body.velocity.y=0;
 ///////////////////////////////////////////////////          A2          ///////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-console.log('x2,y2 : '+a2.x+' , '+a2.y);
+//console.log('x2,y2 : '+a2.x+' , '+a2.y);
 
     a2.body.velocity.x=0;
     a2.body.velocity.y=0;
@@ -1606,7 +1729,7 @@ else if (decide2==2)
 ///////////////////////////////////////////////////          A3          ///////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-console.log('x3,y3 : '+a3.x+' , '+a3.y);
+//console.log('x3,y3 : '+a3.x+' , '+a3.y);
 
     a3.body.velocity.x=0;
     a3.body.velocity.y=0;
@@ -1727,7 +1850,7 @@ console.log('x3,y3 : '+a3.x+' , '+a3.y);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-console.log('x4,y4 : '+a4.x+' , '+a4.y);
+//console.log('x4,y4 : '+a4.x+' , '+a4.y);
 
     a4.body.velocity.x=0;
     a4.body.velocity.y=0;
@@ -1846,10 +1969,12 @@ if (decide4==1)
     }
 
 //////////////////////////////////////////////////         A4 Path2        ///////////////////////////////////////////////////////
+
+
 // function gridToPixel(point) {
 //     var p = ((point-4)*40)+20;
 //     return p;
-}
+//}
 
 // function points(spider, spiderName, xTwo, yTwo) {
    
@@ -1903,9 +2028,11 @@ if (decide4==1)
     
 // }
 
+//--------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------
+ 
 
-//--------------------------------------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------------------------------------
- //} //END OF UPDATE2 FUNCTION
+} //END OF UPDATE2 FUNCTION
+
 
 
