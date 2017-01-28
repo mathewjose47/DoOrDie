@@ -28,6 +28,9 @@ var flames_sound;
 var kill_sound;
 var background_music;
 var score_increase_sound;
+var ghosts;
+var pirates;
+
 
 var l=0;
 var m=0.000000;
@@ -214,6 +217,9 @@ function preload0()
     game.load.spritesheet('fullButton', 'images/background/fullButton.png', 125, 100);
     game.load.image('sb', 'images/background/w3.jpg');
     game.load.audio('button_press','audio/blop.mp3');
+    game.load.audio('ghosts','audio/bm1.wav');
+
+    
 };
 
 function create0()
@@ -221,6 +227,10 @@ function create0()
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
     button_press=game.add.audio('button_press');
+    ghosts=game.add.audio('ghosts');
+    ghosts.loop=true;
+    ghosts.play();
+    
 
     sb = game.add.sprite(0, 0, 'sb');
 
@@ -244,7 +254,8 @@ function create0()
 
 function update0()
 {
-
+    console.log('playing');
+   
 };
 
 function preload1()
@@ -254,6 +265,7 @@ function preload1()
     game.load.spritesheet('quitButton', 'images/background/quitButton.png', 125,100);
     game.load.spritesheet('fullButton', 'images/background/fullButton.png', 125, 100);
     game.load.audio('button_press','audio/blop.mp3');
+    game.load.audio('ghosts','audio/bm1.wav');
 };
 
 function create1()
@@ -267,8 +279,9 @@ function create1()
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
 
     button_press=game.add.audio('button_press');
-
-    
+    ghosts=game.add.audio('ghosts');
+    ghosts.loop=true;
+    ghosts.play();
 
     astronaut=game.add.sprite(630,550,'astronaut');
     astronaut.scale.setTo(2,2);
@@ -286,21 +299,25 @@ function update1()
     {
         if (x>970&&x<1260&&y>575&&y<630) 
         {
+            game.sound.stopAll();
             button_press.play();
             game.state.start('gameState2'); //play button
         }
         else if (x>970&&x<1260&&y>435&&y<490) 
         {
+            game.sound.stopAll();
             button_press.play();
             game.state.start('gameState0');//story
         }
          else if (x>970&&x<1260&&y>505&&y<560) 
         {
+            game.sound.stopAll();
             button_press.play();
            game.state.start('gameState4');//instructions           
         }
          else if (x>970&&x<1260&&y>650&&y<700) 
         {
+            game.sound.stopAll();
             button_press.play();
             game.state.start('gameState5');//leaderboard
         }
@@ -348,6 +365,7 @@ function preload4()
     game.load.spritesheet('mflamethrower_flames', 'images/flame/Flames/flamethrower_/mflamethrower_flames.png',512,512);
     game.load.spritesheet('a1', 'images/aliens/spider.png',35,35);
     game.load.audio('button_press','audio/blop.mp3');
+    game.load.audio('ghosts','audio/bm1.wav');
 
 };
 
@@ -359,6 +377,9 @@ function create4()
     sb = game.add.sprite(0, 0, 'sb');
 
     button_press=game.add.audio('button_press');
+    ghosts=game.add.audio('ghosts');
+    ghosts.loop=true;
+    ghosts.play();
 
     story_text = game.add.text(game.world.width/2,120,'INSTRUCTIONS',{font: "Algerian" ,fontSize: '45px', fill:'#FFF'});
     story_text.anchor.setTo(0.5,0.5);
@@ -482,7 +503,7 @@ function showGameOver()
     astronaut.kill();
     setTimeout(function(){ 
         game.state.start('gameState5');
- 
+        game.sound.stopAll(); 
     }, 2700); // kill_sound time
 
     game_end_text = game.add.text(game.world.width/2,game.world.height/2,'Game Over',{fontSize: '32px', fill:'#FFF'});
@@ -495,6 +516,7 @@ function update5()
 };
 function quit(){
 
+    game.sound.stopAll();
     button_press.play();
     score=0;
     game.state.start('gameState1');
@@ -534,6 +556,7 @@ function goFull() {
     game.load.audio('kill_sound','audio/torture-sound.mp3');
     game.load.audio('flames_sound','audio/flames1.mp3');
     game.load.audio('score_increase_sound','audio/score_increase.mp3');
+    game.load.audio('pirates','audio/pirates.mp3');
  }
 
  function create2(){
@@ -542,6 +565,10 @@ function goFull() {
     kill_sound=game.add.audio('kill_sound');
     flames_sound=game.add.audio('flames_sound');
     score_increase_sound=game.add.audio('score_increase_sound');
+    pirates=game.add.audio('pirates');
+    pirates.loop=true;
+    pirates.play();
+    
 
     game.time.desiredFps = 60;
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -948,6 +975,8 @@ function fix()
 
  function update2()
  {
+
+
     game.physics.arcade.overlap(astronaut, walls, fix, null, this);
 
     game.physics.arcade.collide(astronaut,walls);
