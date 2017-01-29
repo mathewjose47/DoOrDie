@@ -31,6 +31,11 @@ var score_increase_sound;
 var ghosts;
 var pirates;
 
+var pause_button;
+var mute_button;
+var pause_button_scale=0.12;
+var mute_button_scale=0.15;
+
 
 var l=0;
 var m=0.000000;
@@ -124,6 +129,7 @@ gameState2.prototype={
     preload : preload2,
     create : create2,
     update : update2,
+    
 
     createTimer: function(){
  
@@ -163,6 +169,7 @@ gameState2.prototype={
     me.timeLabel.text = result;
     
     setTimeout(function(){ updateScore(); }, 0);
+
 
 
 
@@ -219,6 +226,7 @@ function preload0()
     game.load.audio('button_press','audio/blop.mp3');
     game.load.audio('ghosts','audio/bm1.wav');
 
+    game.load.image('mute_button', 'images/background/mute_button.png');
     
 };
 
@@ -231,6 +239,8 @@ function create0()
     ghosts.loop=true;
     ghosts.play();
     
+    mute_button = game.add.button(105, 90, 'mute_button', toggleMute, this, 2, 1, 0);
+    mute_button.scale.setTo(mute_button_scale, mute_button_scale);
 
     sb = game.add.sprite(0, 0, 'sb');
 
@@ -238,6 +248,11 @@ function create0()
     quitButton = game.add.button(1270, 90, 'quitButton', quit, this, 2, 1, 0);
     quitButton.scale.setTo(quitButton_scale, quitButton_scale);
     fullButton.scale.setTo(fullButton_scale, fullButton_scale);
+
+    pause_button = game.add.button(75, 90, 'pause_button', goFull, this, 2, 1, 0);
+    mute_button = game.add.button(120, 90, 'mute_button', quit, this, 2, 1, 0);
+    pause_button.scale.setTo(pause_button_scale, pause_button_scale);
+    mute_button.scale.setTo(mute_button_scale, mute_button_scale);
 
     
 
@@ -254,7 +269,6 @@ function create0()
 
 function update0()
 {
-    console.log('playing');
    
 };
 
@@ -266,6 +280,10 @@ function preload1()
     game.load.spritesheet('fullButton', 'images/background/fullButton.png', 125, 100);
     game.load.audio('button_press','audio/blop.mp3');
     game.load.audio('ghosts','audio/bm1.wav');
+
+    game.load.image('mute_button', 'images/background/mute_button.png');
+
+
 };
 
 function create1()
@@ -277,6 +295,9 @@ function create1()
     fullButton.scale.setTo(fullButton_scale, fullButton_scale);
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+
+    mute_button = game.add.button(50, 90, 'mute_button', toggleMute, this, 2, 1, 0);
+    mute_button.scale.setTo(mute_button_scale, mute_button_scale);
 
     button_press=game.add.audio('button_press');
     ghosts=game.add.audio('ghosts');
@@ -331,6 +352,7 @@ function preload3()
     game.load.spritesheet('quitButton', 'images/background/quitButton.png', 125,100);
     game.load.spritesheet('fullButton', 'images/background/fullButton.png', 125, 100);
     game.load.audio('button_press','audio/blop.mp3');
+    game.load.image('mute_button', 'images/background/mute_button.png');
 };
 
 function create3()
@@ -343,6 +365,9 @@ function create3()
     quitButton = game.add.button(1270, 90, 'quitButton', quit, this, 2, 1, 0);
     quitButton.scale.setTo(quitButton_scale, quitButton_scale);
     fullButton.scale.setTo(fullButton_scale, fullButton_scale);
+
+    mute_button = game.add.button(105, 90, 'mute_button', toggleMute, this, 2, 1, 0);
+    mute_button.scale.setTo(mute_button_scale, mute_button_scale);
 
     
 };
@@ -366,6 +391,7 @@ function preload4()
     game.load.spritesheet('a1', 'images/aliens/spider.png',35,35);
     game.load.audio('button_press','audio/blop.mp3');
     game.load.audio('ghosts','audio/bm1.wav');
+    game.load.image('mute_button', 'images/background/mute_button.png');
 
 };
 
@@ -380,6 +406,9 @@ function create4()
     ghosts=game.add.audio('ghosts');
     ghosts.loop=true;
     ghosts.play();
+
+    mute_button = game.add.button(105, 90, 'mute_button', toggleMute, this, 2, 1, 0);
+    mute_button.scale.setTo(mute_button_scale, mute_button_scale);
 
     story_text = game.add.text(game.world.width/2,120,'INSTRUCTIONS',{font: "Algerian" ,fontSize: '45px', fill:'#FFF'});
     story_text.anchor.setTo(0.5,0.5);
@@ -455,19 +484,19 @@ function preload5()
 {
     game.load.image('sb', 'images/background/w3.jpg');
     game.load.audio('button_press','audio/blop.mp3');
-    game.load.audio('pirates','audio/pirates.mp3');
+    game.load.image('mute_button', 'images/background/mute_button.png');
 };
 
 function create5()
 {
-    pirates=game.add.audio('pirates');
-    pirates.loop=true;
-    pirates.play();
     sb = game.add.sprite(0, 0, 'sb');
     game_end_text = game.add.text(game.world.width/2,game.world.height/2,'Leaderboard',{fontSize: '32px', fill:'#FFF'});
     game_end_text.anchor.setTo(0.5,0.5);
 
     button_press=game.add.audio('button_press');
+
+    mute_button = game.add.button(105, 90, 'mute_button', toggleMute, this, 2, 1, 0);
+    mute_button.scale.setTo(mute_button_scale, mute_button_scale);
 
 
         $.ajax({
@@ -507,7 +536,7 @@ function showGameOver()
     astronaut.kill();
     setTimeout(function(){ 
         game.state.start('gameState5');
-        //game.sound.stopAll(); 
+        game.sound.stopAll(); 
     }, 2700); // kill_sound time
 
     game_end_text = game.add.text(game.world.width/2,game.world.height/2,'Game Over',{fontSize: '32px', fill:'#FFF'});
@@ -556,14 +585,21 @@ function goFull() {
 
     game.load.spritesheet('a1', 'images/aliens/spider.png',35,35);
 
+    game.load.image('pause_button', 'images/background/pause_button.png');
+    game.load.image('mute_button', 'images/background/mute_button.png');
+
     game.load.audio('button_press','audio/blop.mp3');
     game.load.audio('kill_sound','audio/torture-sound.mp3');
     game.load.audio('flames_sound','audio/flames1.mp3');
     game.load.audio('score_increase_sound','audio/score_increase.mp3');
     game.load.audio('pirates','audio/pirates.mp3');
+
+
  }
 
  function create2(){
+
+
 
     button_press=game.add.audio('button_press');
     kill_sound=game.add.audio('kill_sound');
@@ -572,6 +608,7 @@ function goFull() {
     pirates=game.add.audio('pirates');
     pirates.loop=true;
     pirates.play();
+        
     
 
     game.time.desiredFps = 60;
@@ -803,6 +840,14 @@ function goFull() {
     quitButton.scale.setTo(quitButton_scale, quitButton_scale);
     fullButton.scale.setTo(fullButton_scale, fullButton_scale);
 
+    
+    
+    mute_button = game.add.button(105, 90, 'mute_button', toggleMute, this, 2, 1, 0);
+    mute_button.scale.setTo(mute_button_scale, mute_button_scale);
+
+
+    pause_button = game.add.button(60, 90, 'pause_button', pauseGame, this, 2, 1, 0);
+    pause_button.scale.setTo(pause_button_scale, pause_button_scale);
 
     walls.children.forEach(function(c){
         c.enableBody=true;   
@@ -811,61 +856,40 @@ function goFull() {
     });
  }
 
-// pause_label = game.add.text(80, 80, 'Pause', { font: '24px Arial', fill: '#fff' });
- //    pause_label.inputEnabled = true;
- //    pause_label.events.onInputUp.add(function () {
- //        // When the paus button is pressed, we pause the game
- //        game.paused = true;
 
- //        // Then add the menu
- //        menu = game.add.sprite(w/2, h/2, 'menu');
- //        menu.anchor.setTo(0.5, 0.5);
+function pauseGame()
+{
+    button_press.play();
+    if (!game.paused) 
+    {
+       game.paused = true;
+       pause_button.tint = 16700000;
+    } 
+    else 
+    {
+       game.paused = false;
+       pause_button.tint = 16777215;
+    }
+    game.input.onDown.add(function() 
+    {
+        if (game.paused) game.paused = false;
+        pause_button.tint = 16777215;
+    }, this);
+}
 
-        // And a label to illustrate which menu item was chosen. (This is not necessary)
-    //     choiseLabel = game.add.text(w/2, h-150, 'Click outside menu to continue', { font: '30px Arial', fill: '#fff' });
-    //     choiseLabel.anchor.setTo(0.5, 0.5);
-    // });
-
-    // Add a input listener that can help us return from being paused
-    // game.input.onDown.add(unpause, self);
-
-    // And finally the method that handels the pause menu
-    // function unpause(event){
-    //     // Only act if paused
-    //     if(game.paused){
-    //         // Calculate the corners of the menu
-    //         var x1 = w/2 - 270/2, x2 = w/2 + 270/2,
-    //             y1 = h/2 - 180/2, y2 = h/2 + 180/2;
-
-    //         // Check if the click was inside the menu
-    //         if(event.x > x1 && event.x < x2 && event.y > y1 && event.y < y2 ){
-    //             // The choicemap is an array that will help us see which item was clicked
-    //             var choisemap = ['one', 'two', 'three', 'four', 'five', 'six'];
-
-    //             // Get menu local coordinates for the click
-    //             var x = event.x - x1,
-    //                 y = event.y - y1;
-
-                // // Calculate the choice 
-                // var choise = Math.floor(x / 90) + 3*Math.floor(y / 90);
-
-                // // Display the choice
-    //             choiseLabel.text = 'You chose menu item: ' + choisemap[choise];
-    //         }
-    //         else{
-    //             // Remove the menu and the label
-    //             menu.destroy();
-    //             choiseLabel.destroy();
-
-    //             // Unpause the game
-    //             game.paused = false;
-    //         }
-       // }
-   // };
-
-
-
-
+function toggleMute()
+{
+    button_press.play();
+    if (!game.sound.mute) 
+    {
+       game.sound.mute = true;
+       mute_button.tint = 16700000;
+    } else 
+    {
+       game.sound.mute = false;
+       mute_button.tint = 16777215;
+    }
+}
 
 
  function burn()
@@ -904,7 +928,7 @@ function blastf()
 {
     blast = game.add.sprite(520,360,'blast');
     blast.scale.setTo(0.1,0.1);
-    blast.animations.add('blastHim',[0,1,2,3,4,5,6,7,8],10,false);
+    blast.animations.add('blastHim',[0,1,2,3,4,5,6,7,8],10,true);
     setTimeout(function(){ blast.animations.play('blastHim'); },0); //PAUSE BEFORE BLASTING ANIMATION STARTS. (KEEP 0)
     showGameOver();
 }
@@ -1008,11 +1032,8 @@ function fix()
     }
     if (seconds==9||seconds==10||seconds==19||seconds==20||seconds==29||seconds==30||seconds==39||seconds==40||seconds==49||seconds==50||seconds==59||seconds==00) 
     {
-
-        burn();
-        
+        burn(); 
         mburn();
-        
         game.physics.arcade.overlap(astronaut, flamethrower_flames, burst, null, this);
         game.physics.arcade.overlap(astronaut, mflamethrower_flames, mburst, null, this);
     }
