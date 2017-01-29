@@ -45,7 +45,7 @@ var arrows;
 
 var decide1=5;
 var decide2=2;
-var decide3=2;
+var decide3=4;
 var decide4=1;
 
 var a4p11=0;
@@ -53,6 +53,7 @@ var a4p12=0;
 var a2p1=1;
 var a1p4=1;
 var a3p21=0;
+var a3p4=0;
 
 var a1;
 var a2;
@@ -2108,7 +2109,171 @@ console.log('x3,y3 : '+a3.x+' , '+a3.y);
         }
     }
 
+//////////////////////////////////////////////////         A3 Path4        ///////////////////////////////////////////////////////
+    else if (decide3==4) 
+    {
+        if (a3.x>=280&&a3.x<=360&&a3.y>=600&&a3.y<=640&&a3p4==0) 
+        {
+            a3.body.velocity.x = 120;
+            a3.animations.play('a3right');
+        }
+        else if (a3.x>=360&&a3.x<=400&&a3.y>=600&&a3.y<=680&&a3p4==0) 
+        {
+            a3.body.velocity.y = 120;
+            a3.animations.play('a3down');
+        }
+        else if (a3.x>=360&&a3.x<=440&&a3.y>=680&&a3.y<=720) 
+        {
+            a3.body.velocity.x = 120;
+            a3.animations.play('a3right');
+        }
+        else if (a3.x>=440&&a3.x<=480&&a3.y>=525&&a3.y<=720) 
+        {
+            a3.body.velocity.y = -120;
+            a3.animations.play('a3up');
+        }
+        else if (a3.x>=440&&a3.x<=600&&a3.y>=520&&a3.y<=560) 
+        {
+            a3.body.velocity.x = 120;
+            a3.animations.play('a3right');
+        }
+        else if (a3.x>=600&&a3.x<=640&&a3.y>=520&&a3.y<=600) 
+        {
+            a3.body.velocity.y = 120;
+            a3.animations.play('a3down');
+        }
+        else if (a3.x>=600&&a3.x<=720&&a3.y>=600&&a3.y<=640) 
+        {
+            a3.body.velocity.x = 120;
+            a3.animations.play('a3right');
+        }
+        else if (a3.x>=720&&a3.x<=760&&a3.y>=600&&a3.y<=680) 
+        {
+            a3.body.velocity.y = 120;
+            a3.animations.play('a3down');
+        }
+        else if (a3.x>=720&&a3.x<=880&&a3.y>=680&&a3.y<=720) 
+        {
+            a3.body.velocity.x = 120;
+            a3.animations.play('a3right');
+        }
+        else if (a3.x>=880&&a3.x<=920&&a3.y>=525&&a3.y<=720) 
+        {
+            a3.body.velocity.y = -120;
+            a3.animations.play('a3up');
+        }
+        else if (a3.x>=805&&a3.x<=920&&a3.y>=520&&a3.y<=560) 
+        {
+            a3.body.velocity.x = -120;
+            a3.animations.play('a3left');
+        }
+        else if (a3.x>=800&&a3.x<=840&&a3.y>=285&&a3.y<=560) 
+        {
+            a3.body.velocity.y = -120;
+            a3.animations.play('a3up');
+        }
+        else if (a3.x>=725&&a3.x<=840&&a3.y>=280&&a3.y<=320) 
+        {
+            a3.body.velocity.x = -120;
+            a3.animations.play('a3left');
+        }
+        else if (a3.x>=720&&a3.x<=760&&a3.y>=205&&a3.y<=320) 
+        {
+            a3.body.velocity.y = -120;
+            a3.animations.play('a3up');
+        }
+        else if (a3.x>=720&&a3.x<=880&&a3.y>=200&&a3.y<=240) 
+        {
+            a3.body.velocity.x = 120;
+            a3.animations.play('a3right');
+        }
+        else if (a3.x>=880&&a3.x<=920&&a3.y>=125&&a3.y<=240&&a3p4==0) 
+        {
+            a3.body.velocity.y = -120;
+            a3.animations.play('a3up');
+        }
+        else if (a3.x>=880&&a3.x<=960&&a3.y>=120&&a3.y<=160&&a3p4==0) 
+        {
+            a3.body.velocity.x = 120;
+            a3.animations.play('a3right');
+        }
+        else if (a3.x>=960&&a3.x<=1000&&a3.y>=120&&a3.y<=280) 
+        {
+            a3.body.velocity.y = 120;
+            a3.animations.play('a3down');
+        }
+        else if (a3.x>=960&&a3.x<=1040&&a3.y>=280&&a3.y<=320) 
+        {
+            a3.body.velocity.x = 120;
+            a3.animations.play('a3right');
+        }
+        else if (a3.x>=1040&&a3.x<=1080&&a3.y>=125&&a3.y<=320) 
+        {
+            a3.body.velocity.y = -120;
+            a3.animations.play('a3up');
+        }
+        else if (a3.x>=1040&&a3.x<=1120&&a3.y>=120&&a3.y<=160) 
+        {
+            a3.body.velocity.x = 120;
+            a3.animations.play('a3right');
+        }
+        else if (a3.x>=1120&&a3.x<=1160&&a3.y>=45&&a3.y<=160) 
+        {
+            a3.body.velocity.y = -120;
+            a3.animations.play('a3up');
+        }
+        else if (a3.x>=885&&a3.x<=1160&&a3.y>=40&&a3.y<=80) 
+        {
+            a3p4=1;
+            a3.body.velocity.x = -120;
+            a3.animations.play('a3left');
+        }
+        else if (a3.x>=880&&a3.x<=920&&a3.y>=40&&a3.y<=120&&a3p4==1) 
+        {
+            a3.body.velocity.y = 120;
+            a3.animations.play('a3down');
+        }
+        else if (a3.x>=525&&a3.x<=920&&a3.y>=120&&a3.y<=160&&a3p4==1) 
+        {
+            a3.body.velocity.x = -120;
+            a3.animations.play('a3left');
+        }
+        else if (a3.x>=520&&a3.x<=560&&a3.y>=45&&a3.y<=160) 
+        {
+            a3.body.velocity.y = -120;
+            a3.animations.play('a3up');
+        }
+        else if (a3.x>=445&&a3.x<=560&&a3.y>=40&&a3.y<=80) 
+        {
+            a3.body.velocity.x = -120;
+            a3.animations.play('a3left');
+        }
+        else if (a3.x>=440&&a3.x<=480&&a3.y>=40&&a3.y<=280) 
+        {
+            a3.body.velocity.y = 120;
+            a3.animations.play('a3down');
+        }
+        else if (a3.x>=365&&a3.x<=480&&a3.y>=280&&a3.y<=320) 
+        {
+            a3.body.velocity.x = -120;
+            a3.animations.play('a3left');
+        }
+        else if (a3.x>=360&&a3.x<=400&&a3.y>=280&&a3.y<=600&&a3p4==1) 
+        {
+            a3.body.velocity.y = 120;
+            a3.animations.play('a3down');
+        }
+        else if (a3.x>=285&&a3.x<=400&&a3.y>=600&&a3.y<=680&&a3p4==1) 
+        {
+            a3.body.velocity.x = -120;
+            a3.animations.play('a3left');
+        }
+        else if (a3.x<285)
+        {
+            a3p4=0;
+        }
 
+    }
 
 
 
