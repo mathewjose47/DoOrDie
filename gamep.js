@@ -44,7 +44,7 @@ var m=0.000000;
 var arrows;
 
 var decide1=5;
-var decide2=2;
+var decide2=3;
 var decide3=4;
 var decide4=1;
 
@@ -1720,7 +1720,68 @@ if (decide2==1)
 //////////////////////////////////////////////////         A2 Path3        ///////////////////////////////////////////////////////
 
 
+if (decide2==3) 
+    {
+        if (a2.x>=1040&&a2.x<=1120&&a2.y>=200&&a2.y<204) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+        else if (a2.x>=1120&&a2.x<=1160&&a2.y>=200&&a2.y<=280) 
+        {
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=1120&&a2.x<=1200&&a2.y>=280&&a2.y<=320) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+        else if (a2.x>=1200&&a2.x<=1240&&a2.y>=280&&a2.y<=520) 
+        {
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=1135&&a2.x<=1240&&a2.y>520&&a2.y<=560) 
+        {
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+        }
+        else if (a2.x>=1120&&a2.x<=1160&&a2.y>=520&&a2.y<=680) 
+        {
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=895&&a2.x<=1160&&a2.y>=680&&a2.y<=720) 
+        {
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+        }
+        else if (a2.x>=880&&a2.x<=920&&a2.y>=455&&a2.y<=720) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else if (a2.x>=880&&a2.x<=1040&&a2.y>=440&&a2.y<=480) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
 
+        else if (a2.x>=1040&&a2.x<=1080&&a2.y>=205&&a2.y<=480) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        
+        else
+        {
+            a2.body.velocity.y=0;
+            a2.body.velocity.x=0;
+            a2.animations.stop();
+            a2.frame=0;
+        }
+    }
 
 
 
