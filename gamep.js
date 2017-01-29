@@ -44,7 +44,7 @@ var m=0.000000;
 var arrows;
 
 var decide1=5;
-var decide2=1;
+var decide2=2;
 var decide3=1;
 var decide4=1;
 
@@ -485,10 +485,16 @@ function preload5()
     game.load.image('sb', 'images/background/w3.jpg');
     game.load.audio('button_press','audio/blop.mp3');
     game.load.image('mute_button', 'images/background/mute_button.png');
+    game.load.audio('pirates','audio/pirates.mp3');
 };
 
 function create5()
 {
+
+    pirates=game.add.audio('pirates');
+    pirates.loop=true;
+    pirates.play();
+
     sb = game.add.sprite(0, 0, 'sb');
     game_end_text = game.add.text(game.world.width/2,game.world.height/2,'Leaderboard',{fontSize: '32px', fill:'#FFF'});
     game_end_text.anchor.setTo(0.5,0.5);
@@ -536,7 +542,7 @@ function showGameOver()
     astronaut.kill();
     setTimeout(function(){ 
         game.state.start('gameState5');
-        game.sound.stopAll(); 
+        //game.sound.stopAll(); 
     }, 2700); // kill_sound time
 
     game_end_text = game.add.text(game.world.width/2,game.world.height/2,'Game Over',{fontSize: '32px', fill:'#FFF'});
@@ -1639,126 +1645,66 @@ if (decide2==1)
 
 //////////////////////////////////////////////////         A2 Path2        ///////////////////////////////////////////////////////
 
-else if (decide2==2) 
-{
-    if (a2.x>=965&&a2.x<=1080&&a2.y>=200&&a2.y<=205&&a2p1==1) 
+if (decide2==2) 
+    {
+        if (a2.x>=975&&a2.x<=1080&&a2.y>=200&&a2.y<=240) 
         {
             a2.body.velocity.x = -120;
             a2.animations.play('a2left');
         }
-        else if (a2.x>=960&&a2.x<=1000&&a2.y>=200&&a2.y<=280) 
+        else if (a2.x>=960&&a2.x<=1000&&a2.y>=200&&a2.y<=440) 
         {
             a2.body.velocity.y = 120;
             a2.animations.play('a2down');
         }
-        else if (a2.x>=885&&a2.x<=1000&&a2.y>=280&&a2.y<=320) 
+        else if (a2.x>=895&&a2.x<=1000&&a2.y>=440&&a2.y<=480) 
         {
             a2.body.velocity.x = -120;
             a2.animations.play('a2left');
         }
-        else if (a2.x>=880&&a2.x<=920&&a2.y>=205&&a2.y<=320) 
+        else if (a2.x>=880&&a2.x<=920&&a2.y>=440&&a2.y<=520) 
         {
-            a2.body.velocity.y = -120;
-            a2.animations.play('a2up');
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
         }
-        else if (a2.x>=725&&a2.x<=920&&a2.y>200&&a2.y<=240) 
-        {
-            a2.body.velocity.x = -120;
-            a2.animations.play('a2left');
-        }
-        else if (a2.x>=720&&a2.x<=760&&a2.y>=125&&a2.y<=240) 
-        {
-            a2.body.velocity.y = -120;
-            a2.animations.play('a2up');
-        }
-        else if (a2.x>=205&&a2.x<=760&&a2.y>=120&&a2.y<=160) 
+        else if (a2.x>=815&&a2.x<=920&&a2.y>520&&a2.y<=560) 
         {
             a2.body.velocity.x = -120;
             a2.animations.play('a2left');
         }
-        else if (a2.x>=200&&a2.x<=240&&a2.y>=45&&a2.y<=160) 
+        else if (a2.x>=800&&a2.x<=840&&a2.y>=295&&a2.y<=560) 
         {
             a2.body.velocity.y = -120;
             a2.animations.play('a2up');
         }
-        else if (a2.x>=200&&a2.x<=1120&&a2.y>=40&&a2.y<=80) 
+        else if (a2.x>=535&&a2.x<=840&&a2.y>=280&&a2.y<=320) 
+        {
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+        }
+        else if (a2.x>=520&&a2.x<=560&&a2.y>=280&&a2.y<=680) 
+        {
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=520&&a2.x<=1120&&a2.y>=680&&a2.y<=720) 
         {
             a2.body.velocity.x = 120;
             a2.animations.play('a2right');
         }
-        else if (a2.x>=1120&&a2.x<=1160&&a2.y>=40&&a2.y<=120) 
+        else if (a2.x>=1120&&a2.x<=1160&&a2.y>=455&&a2.y<=720) 
         {
-            a2.body.velocity.y = 120;
-            a2.animations.play('a2down');
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
         }
-        else if (a2.x>=1045&&a2.x<=1160&&a2.y>=120&&a2.y<=160) 
+        else if (a2.x>=1050&&a2.x<=1160&&a2.y>=440&&a2.y<=480) 
         {
             a2.body.velocity.x = -120;
             a2.animations.play('a2left');
             a2p1=0;
         }
-        else if (a2.x>=1040&&a2.x<=1160&&a2.y>=120&&a2.y<=202&&a2p1==0) 
-        {
-            a2.body.velocity.y = 120;
-            a2.animations.play('a2down');
-        }
-        else if (a2.x>=1040&&a2.x<=1120&&a2.y>=200&&a2.y<=240&&a2p1==0) 
-        {
-            a2.body.velocity.x = 120;
-            a2.animations.play('a2right');
-        }
-        else if (a2.x>=1120&&a2.x<=1160&&a2.y>=200&&a2.y<=280) 
-        {
-            a2.body.velocity.y = 120;
-            a2.animations.play('a2down');
-        }
-        else if (a2.x>=1120&&a2.x<=1200&&a2.y>=280&&a2.y<=300) 
-        {
-            a2.body.velocity.x = 120;
-            a2.animations.play('a2right');
-        }
-        else if (a2.x>=1200&&a2.x<=1240&&a2.y>=205&&a2.y<=320) 
-        {
-            a2.body.velocity.y = -120;
-            a2.animations.play('a2up');
-        }
-        else if (a2.x>=1200&&a2.x<=1280&&a2.y>=200&&a2.y<=240) 
-        {
-            a2.body.velocity.x = 120;
-            a2.animations.play('a2right');
-        }
-        else if (a2.x>=1280&&a2.x<=1320&&a2.y>=200&&a2.y<=520) 
-        {
-            a2.body.velocity.y = 120;
-            a2.animations.play('a2down');
-        }
-        else if (a2.x>=1205&&a2.x<=1320&&a2.y>=520&&a2.y<=560) 
-        {
-            a2.body.velocity.x = -120;
-            a2.animations.play('a2left');
-        }
-        else if (a2.x>=1200&&a2.x<=1240&&a2.y>=365&&a2.y<=560) 
-        {
-            a2.body.velocity.y = -120;
-            a2.animations.play('a2up');
-        }
-        else if (a2.x>=1125&&a2.x<=1240&&a2.y>=360&&a2.y<=400) 
-        {
-            a2.body.velocity.x = -120;
-            a2.animations.play('a2left');
-        }
-        else if (a2.x>=1120&&a2.x<=1160&&a2.y>=325&&a2.y<=400) 
-        {
-            a2.body.velocity.y = -120;
-            a2.animations.play('a2up');
-        }
-        else if (a2.x>=1045&&a2.x<=1160&&a2.y>=320&&a2.y<=360) 
-        {
-            a2.body.velocity.x = -120;
-            a2.animations.play('a2left');
-            a2p1=1;
-        }
-        else if (a2.x>=1040&&a2.x<=1080&&a2.y>=160&&a2.y<=360&&a2p1==1) 
+       
+        else if (a2.x>=1040&&a2.x<=1080&&a2.y>=200&&a2.y<=480) 
         {
             a2.body.velocity.y = -120;
             a2.animations.play('a2up');
@@ -1770,7 +1716,13 @@ else if (decide2==2)
             a2.animations.stop();
             a2.frame=0;
         }
-}
+    }
+
+
+
+
+//////////////////////////////////////////////////         A2 Path3        ///////////////////////////////////////////////////////
+
 
 
 
