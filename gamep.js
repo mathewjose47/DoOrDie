@@ -22,6 +22,8 @@ var flag;
 var flagv;
 var flagh;
 var flag1;
+var bot5=0;
+var bot6=0;
 
 var button_press;
 var flames_sound;
@@ -43,10 +45,14 @@ var m=0.000000;
 
 var arrows;
 
-var decide1=5;
-var decide2=2;
-var decide3=5;
+var decide1=1;
+var decide2=1;
+var decide3=1;
 var decide4=1;
+var decide5=2;
+var decide6=2;
+var decide7=1;
+var decide8=1;
 
 var a4p11=0;
 var a4p12=0;
@@ -55,11 +61,18 @@ var a1p4=1;
 var a3p21=0;
 var a3p4=0;
 var a3p5=0;
+var a5p4=1;
+var a6p1=1;
 
 var a1;
 var a2;
 var a3;
 var a4;
+var a5;
+var a6;
+var a7;
+var a8;
+
 
 var x1;
 var y1;
@@ -708,6 +721,26 @@ function goFull() {
     game.physics.arcade.enable(a4);
     a4.enableBody=true;
 
+    a5=game.add.sprite(280,200,'a1');
+    a5.scale.setTo(0.75,0.75);
+    game.physics.arcade.enable(a5);
+    a5.enableBody=true;
+
+    a6=game.add.sprite(1040,200,'a1');
+    a6.scale.setTo(0.75,0.75);
+    game.physics.arcade.enable(a6);
+    a6.enableBody=true;
+
+    // a7=game.add.sprite(280,600,'a1');
+    // a7.scale.setTo(0.75,0.75);
+    // game.physics.arcade.enable(a7);
+    // a7.enableBody=true;
+
+    // a8=game.add.sprite(1040,600,'a1');
+    // a8.scale.setTo(0.75,0.75);
+    // game.physics.arcade.enable(a8);
+    // a8.enableBody=true;
+
     a1.animations.add('a1left', [7,8,9,10,11,12], 10, true);
     a1.animations.add('a1right', [21,22,23,24,25,26], 10, true);
     a1.animations.add('a1up', [14,15,16,17,18,19], 10, true);
@@ -727,6 +760,26 @@ function goFull() {
     a4.animations.add('a4right', [21,22,23,24,25,26], 10, true);
     a4.animations.add('a4up', [14,15,16,17,18,19], 10, true);
     a4.animations.add('a4down', [0,1,2,3,4,5], 10, true);
+
+    a5.animations.add('a5left', [7,8,9,10,11,12], 10, true);
+    a5.animations.add('a5right', [21,22,23,24,25,26], 10, true);
+    a5.animations.add('a5up', [14,15,16,17,18,19], 10, true);
+    a5.animations.add('a5down', [0,1,2,3,4,5], 10, true);
+
+    a6.animations.add('a6left', [7,8,9,10,11,12], 10, true);
+    a6.animations.add('a6right', [21,22,23,24,25,26], 10, true);
+    a6.animations.add('a6up', [14,15,16,17,18,19], 10, true);
+    a6.animations.add('a6down', [0,1,2,3,4,5], 10, true);
+
+    // a7.animations.add('a4left', [7,8,9,10,11,12], 10, true);
+    // a7.animations.add('a4right', [21,22,23,24,25,26], 10, true);
+    // a7.animations.add('a4up', [14,15,16,17,18,19], 10, true);
+    // a7.animations.add('a4down', [0,1,2,3,4,5], 10, true);
+
+    // a8.animations.add('a4left', [7,8,9,10,11,12], 10, true);
+    // a8.animations.add('a4right', [21,22,23,24,25,26], 10, true);
+    // a8.animations.add('a4up', [14,15,16,17,18,19], 10, true);
+    // a8.animations.add('a4down', [0,1,2,3,4,5], 10, true);
 
 
     // UP COUNTER
@@ -1018,11 +1071,31 @@ function fix()
     game.physics.arcade.collide(a2,walls);
     game.physics.arcade.collide(a3,walls);
     game.physics.arcade.collide(a4,walls);
+    game.physics.arcade.collide(a5,walls);
+    game.physics.arcade.collide(a6,walls);
 
     game.physics.arcade.overlap(astronaut, a1, showGameOver, null, this);
     game.physics.arcade.overlap(astronaut, a2, showGameOver, null, this);
     game.physics.arcade.overlap(astronaut, a3, showGameOver, null, this);
     game.physics.arcade.overlap(astronaut, a4, showGameOver, null, this);
+    if (bot5==1) 
+    {
+        game.physics.arcade.overlap(astronaut, a5, showGameOver, null, this);
+        a5.visible=true;
+    }
+    else
+    {
+        a5.visible=false;
+    }
+    if (bot6==1) 
+    {
+        game.physics.arcade.overlap(astronaut, a6, showGameOver, null, this);
+        a6.visible=true;
+    }
+    else
+    {
+        a6.visible=false;
+    }
     
 
     if (seconds==14||seconds==44) 
@@ -1040,7 +1113,29 @@ function fix()
         game.physics.arcade.overlap(astronaut, flamethrower_flames, burst, null, this);
         game.physics.arcade.overlap(astronaut, mflamethrower_flames, mburst, null, this);
     }
+
+
+//--------------------------------------------------------------------------------------------------------------------------
     
+    if (score>=10) 
+    {
+        if (!(astronaut.x>=120&&astronaut.x<=480&&astronaut.y>=80&&astronaut.y<=440)) 
+        {
+            bot5=1;
+        }
+    }
+
+    if (score>=20) 
+    {
+        if (!(astronaut.x>=40&&astronaut.x<=480&&astronaut.y>=360&&astronaut.y<=680)) 
+        {
+            bot6=1;
+        }
+    }
+
+//--------------------------------------------------------------------------------------------------------------------------
+
+
     if (astronaut.x==x&&astronaut.y==y) 
     {
         flag=5;
@@ -1131,7 +1226,7 @@ a1.body.velocity.x=0;
 a1.body.velocity.y=0;
 if (a1.x>=280&&a1.x<=320&&a1.y>=198&&a1.y<200) 
     {
-        decide1=game.rnd.integerInRange(1,4);
+        //decide1=game.rnd.integerInRange(1,5);
         console.log(decide1);
     }
 
@@ -1312,7 +1407,7 @@ if (a1.x>=280&&a1.x<=320&&a1.y>=198&&a1.y<200)
 //////////////////////////////////////////////////         A1 Path3        ///////////////////////////////////////////////////////
     
       else if (decide1==3) 
-    {
+      {
         if (a1.x>=280&&a1.x<=320&&a1.y>=200&&a1.y<=440) 
         {
             a1.body.velocity.y = 120;
@@ -1500,7 +1595,7 @@ if (a1.x>=280&&a1.x<=320&&a1.y>=198&&a1.y<200)
 
     if (a2.x>=1040&&a2.x<=1080&&a2.y==220) 
     {
-        //decide2=game.rnd.integerInRange(1,2);
+        //decide2=game.rnd.integerInRange(1,3);
         console.log(decide2);
     }
 
@@ -1697,7 +1792,6 @@ if (decide2==1)
         {
             a2.body.velocity.x = -120;
             a2.animations.play('a2left');
-            a2p1=0;
         }
        
         else if (a2.x>=1040&&a2.x<=1080&&a2.y>=205&&a2.y<=480) 
@@ -1792,15 +1886,15 @@ if (decide2==1)
 ///////////////////////////////////////////////////          A3          ///////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-console.log('x3,y3 : '+a3.x+' , '+a3.y);
+//console.log('x3,y3 : '+a3.x+' , '+a3.y);
 
     a3.body.velocity.x=0;
     a3.body.velocity.y=0;
 
     if (a3.x==282&&a3.y>=600&&a3.y<640) 
     {
-        //decide3=game.rnd.integerInRange(3);
-        console.log(decide3);
+        //decide3=game.rnd.integerInRange(1,4);
+        //console.log(decide3);
     }
 
 
@@ -2514,7 +2608,7 @@ else if (decide3==5)
 
     if (a4.x==1038&&a4.y>=600&&a4.y<640) 
     {
-        decide4=game.rnd.integerInRange(1,2);
+        //decide4=game.rnd.integerInRange(1);
         console.log(decide4);
     }
 
@@ -2631,6 +2725,691 @@ if (decide4==1)
 //--------------------------------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------------------------------
  
+
+ ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////          A5          ///////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+if (bot5==1) 
+{
+
+
+
+//console.log('x5,y5 : '+a5.x+' , '+a5.y);
+a5.body.velocity.x=0;
+a5.body.velocity.y=0;
+if (a5.x>=280&&a5.x<=320&&a5.y>=198&&a5.y<200) 
+    {
+        //decide5=game.rnd.integerInRange(1,5);
+        //console.log(decide5);
+    }
+
+//////////////////////////////////////////////////        A5 Path1        ///////////////////////////////////////////////////////
+
+    if (decide5==1) 
+    {
+        if (a5.x>=280&&a5.x<=320&&a5.y>=200&&a5.y<=280) 
+        {
+            a5.body.velocity.y = 120;
+            a5.animations.play('a5down');
+        }
+        else if (a5.x>=280&&a5.x<=360&&a5.y>=280&&a5.y<=320) 
+        {
+            a5.body.velocity.x = 120;
+            a5.animations.play('a5right');
+        }
+        else if (a5.x>=360&&a5.x<=400&&a5.y>=280&&a5.y<=680) 
+        {
+            a5.body.velocity.y = 120;
+            a5.animations.play('a5down');
+        }
+        else if (a5.x>=360&&a5.x<=600&&a5.y>=680&&a5.y<=720) 
+        {
+            a5.body.velocity.x = 120;
+            a5.animations.play('a5right');
+        }
+        else if (a5.x>=600&&a5.x<=640&&a5.y>520&&a5.y<=720) 
+        {
+            a5.body.velocity.y = -120;
+            a5.animations.play('a5up');
+        }
+        else if (a5.x>=525&&a5.x<=640&&a5.y>=520&&a5.y<=560) 
+        {
+            a5.body.velocity.x = -120;
+            a5.animations.play('a5left');
+        }
+        else if (a5.x>=520&&a5.x<=560&&a5.y>=445&&a5.y<=520) 
+        {
+            a5.body.velocity.y = -120;
+            a5.animations.play('a5up');
+        }
+        else if (a5.x>=520&&a5.x<=800&&a5.y>=440&&a5.y<=480) 
+        {
+            a5.body.velocity.x = 120;
+            a5.animations.play('a5right');
+        }
+        else if (a5.x>=800&&a5.x<=840&&a5.y>=285&&a5.y<=480) 
+        {
+            a5.body.velocity.y = -120;
+            a5.animations.play('a5up');
+        }
+        else if (a5.x>=605&&a5.x<=840&&a5.y>=280&&a5.y<=320) 
+        {
+            a5.body.velocity.x = -120;
+            a5.animations.play('a5left');
+        }
+        else if (a5.x>=600&&a5.x<=640&&a5.y>=125&&a5.y<=320) 
+        {
+            a5.body.velocity.y = -120;
+            a5.animations.play('a5up');
+        }
+        else if (a5.x>=600&&a5.x<=800&&a5.y>=120&&a5.y<=160) 
+        {
+            a5.body.velocity.x = 120;
+            a5.animations.play('a5right');
+        }
+        else if (a5.x>=800&&a5.x<=840&&a5.y>=45&&a5.y<=160) 
+        {
+            a5.body.velocity.y = -120;
+            a5.animations.play('a5up');
+        }
+        else if (a5.x>=445&&a5.x<=840&&a5.y>=40&&a5.y<=80) 
+        {
+            a5.body.velocity.x = -120;
+            a5.animations.play('a5left');
+        }
+        else if (a5.x>=440&&a5.x<=480&&a5.y>=40&&a5.y<=120) 
+        {
+            a5.body.velocity.y = 120;
+            a5.animations.play('a5down');
+        }
+        else if (a5.x>=285&&a5.x<=480&&a5.y>=120&&a5.y<=160) 
+        {
+            a5.body.velocity.x = -120;
+            a5.animations.play('a5left');
+        }
+        else if (a5.x>=280&&a5.x<=320&&a5.y>=120&&a5.y<=200) 
+        {
+            a5.body.velocity.y = 120;
+            a5.animations.play('a5down');
+        }
+        else
+        {
+            a5.body.velocity.y=0;
+            a5.body.velocity.x=0;
+            a5.animations.stop();
+            a5.frame=0;
+        }
+    }
+
+//////////////////////////////////////////////////        A5 Path2        ///////////////////////////////////////////////////////
+else if (decide5==2) 
+    {
+        if (a5.x>=210&&a5.x<=320&&a5.y>=200&&a5.y<=240) 
+        {
+            a5.body.velocity.x = -120;
+            a5.animations.play('a5left');
+        }
+        else if (a5.x>=200&&a5.x<=240&&a5.y>=200&&a5.y<=360) 
+        {
+            a5.body.velocity.y = 120;
+            a5.animations.play('a5down');
+        }
+        else if (a5.x>=130&&a5.x<=240&&a5.y>=350&&a5.y<=400) 
+        {
+            a5.body.velocity.x = -120;
+            a5.animations.play('a5left');
+        }
+        else if (a5.x>=120&&a5.x<=160&&a5.y>=215&&a5.y<=399) 
+        {
+            a5.body.velocity.y = -120;
+            a5.animations.play('a5up');
+        }
+        else if (a5.x>=55&&a5.x<=160&&a5.y>=200&&a5.y<=240) 
+        {
+            a5.body.velocity.x = -120;
+            a5.animations.play('a5left');
+        }
+        else if (a5.x>=40&&a5.x<=80&&a5.y>=200&&a5.y<=520) 
+        {
+            a5.body.velocity.y = 120;
+            a5.animations.play('a5down');
+        }
+        else if (a5.x>=40&&a5.x<=200&&a5.y>=520&&a5.y<=560) 
+        {
+            a5.body.velocity.x = 120;
+            a5.animations.play('a5right');
+        }
+        else if (a5.x>=200&&a5.x<=240&&a5.y>=520&&a5.y<=680) 
+        {
+            a5.body.velocity.y = 120;
+            a5.animations.play('a5down');
+        }
+        else if (a5.x>=200&&a5.x<=365&&a5.y>=680&&a5.y<=720) 
+        {
+            a5.body.velocity.x = 120;
+            a5.animations.play('a5right');
+        }
+        else if (a5.x>=360&&a5.x<=400&&a5.y>=135&&a5.y<=720) 
+        {
+            a5.body.velocity.y = -120;
+            a5.animations.play('a5up');
+        }
+        else if (a5.x>=290&&a5.x<=400&&a5.y>=120&&a5.y<=160) 
+        {
+            a5.body.velocity.x = -120;
+            a5.animations.play('a5left');
+        }
+        else if (a5.x>=280&&a5.x<=320&&a5.y>=120&&a5.y<=200) 
+        {
+            a5.body.velocity.y = 120;
+            a5.animations.play('a5down');
+        }
+        
+        else
+        {
+            a5.body.velocity.y=0;
+            a5.body.velocity.x=0;
+            a5.animations.stop();
+            a5.frame=0;
+        }
+
+    }
+
+//////////////////////////////////////////////////        A5 Path3        ///////////////////////////////////////////////////////
+
+else if (decide5==3) 
+      {
+        if (a5.x>=280&&a5.x<=320&&a5.y>=200&&a5.y<=440) 
+        {
+            a5.body.velocity.y = 120;
+            a5.animations.play('a5down');
+        }
+        else if (a5.x>=280&&a5.x<=440&&a5.y>=440&&a5.y<=480) 
+        {
+            a5.body.velocity.x = 120;
+            a5.animations.play('a5right');
+        }
+        else if (a5.x>=440&&a5.x<=480&&a5.y>=440&&a5.y<=680) 
+        {
+            a5.body.velocity.y = 120;
+            a5.animations.play('a5down');
+        }
+        else if (a5.x>=440&&a5.x<=1120&&a5.y>=680&&a5.y<=720) 
+        {
+            a5.body.velocity.x = 120;
+            a5.animations.play('a5right');
+        }
+        else if (a5.x>=1120&&a5.x<=1160&&a5.y>=455&&a5.y<=720) 
+        {
+            a5.body.velocity.y = -120;
+            a5.animations.play('a5up');
+        }
+        else if (a5.x>=1055&&a5.x<=1160&&a5.y>=440&&a5.y<=480) 
+        {
+            a5.body.velocity.x = -120;
+            a5.animations.play('a5left');
+        }
+        else if (a5.x>=1040&&a5.x<=1080&&a5.y>=135&&a5.y<=480) 
+        {
+            a5.body.velocity.y = -120;
+            a5.animations.play('a5up');
+        }
+        else if (a5.x>=295&&a5.x<=1080&&a5.y>=120&&a5.y<=160) 
+        {
+            a5.body.velocity.x = -120;
+            a5.animations.play('a5left');
+        }
+        else if (a5.x>=280&&a5.x<=320&&a5.y>=120&&a5.y<=200) 
+        {
+            a5.body.velocity.y = 120;
+            a5.animations.play('a5down');
+        }
+        else
+        {
+            a5.body.velocity.y=0;
+            a5.body.velocity.x=0;
+            a5.animations.stop();
+            a5.frame=0;
+        }
+    }
+
+
+//////////////////////////////////////////////////         A5 Path4        ///////////////////////////////////////////////////////
+
+else if (decide5==4) 
+    {
+
+        if (a5.x>=280&&a5.x<=320&&a5.y>=135&&a5.y<=240&&a5p4==1) 
+        {
+            a5.body.velocity.y = -120;
+            a5.animations.play('a5up');
+        }
+        else if (a5.x>=280&&a5.x<=1120&&a5.y>=120&&a5.y<=160&&a5p4==1) 
+        {
+            a5.body.velocity.x = 120;
+            a5.animations.play('a5right');
+        }
+        else if (a5.x>=1120&&a5.x<=1160&&a5.y>=55&&a5.y<=160) 
+        {
+            a5.body.velocity.y = -120;
+            a5.animations.play('a5up');
+            a5p4=0;
+        }
+        else if (a5.x>=215&&a5.x<=1160&&a5.y>=40&&a5.y<=80) 
+        {
+            a5.body.velocity.x = -120;
+            a5.animations.play('a5left');
+        }
+        else if (a5.x>=200&&a5.x<=240&&a5.y>=40&&a5.y<=120) 
+        {
+            a5.body.velocity.y = 120;
+            a5.animations.play('a5down');
+        }
+        else if (a5.x>=200&&a5.x<=285&&a5.y>=120&&a5.y<=160) 
+        {
+            a5.body.velocity.x = 120;
+            a5.animations.play('a5right');
+        }
+        else if (a5.x>=280&&a5.x<=320&&a5.y>=120&&a5.y<=200&&a5p4==0) 
+        {
+            a5.body.velocity.y = 120;
+            a5.animations.play('a5down');
+        }
+        else if (a5.x>200) 
+        {
+            a5p4=1;
+        }
+        else
+        {
+            a5.body.velocity.y=0;
+            a5.body.velocity.x=0;
+            a5.animations.stop();
+            a5.frame=0;
+
+        }
+        
+
+    }
+
+
+//////////////////////////////////////////////////         A5 Path5        ///////////////////////////////////////////////////////
+
+else if (decide5==5) 
+    {
+        if (a5.x>=280&&a5.x<=320&&a5.y>=200&&a5.y<=600) 
+        {
+            a5.body.velocity.y = 120;
+            a5.animations.play('a5down');
+        }
+        else if (a5.x>=215&&a5.x<=320&&a5.y>=600&&a5.y<=640) 
+        {
+            a5.body.velocity.x = -120;
+            a5.animations.play('a5left');
+        }
+        else if (a5.x>=200&&a5.x<=240&&a5.y>=600&&a5.y<=680) 
+        {
+            a5.body.velocity.y = 120;
+            a5.animations.play('a5down');
+        }
+        else if (a5.x>=200&&a5.x<=1120&&a5.y>=680&&a5.y<=720) 
+        {
+            a5.body.velocity.x = 120;
+            a5.animations.play('a5right');
+        }
+        else if (a5.x>=1120&&a5.x<=1160&&a5.y>440&&a5.y<=720) 
+        {
+            a5.body.velocity.y = -120;
+            a5.animations.play('a5up');
+        }
+        else if (a5.x>=1055&&a5.x<=1160&&a5.y>=440&&a5.y<=480) 
+        {
+            a5.body.velocity.x = -120;
+            a5.animations.play('a5left');
+        }
+        else if (a5.x>=1040&&a5.x<=1080&&a5.y>=135&&a5.y<=480) 
+        {
+            a5.body.velocity.y = -120;
+            a5.animations.play('a5up');
+        }
+        else if (a5.x>=295&&a5.x<=1080&&a5.y>=120&&a5.y<=160) 
+        {
+            a5.body.velocity.x = -120;
+            a5.animations.play('a5left');
+        }
+        
+        else if (a5.x>=280&&a5.x<=320&&a5.y>=120&&a5.y<=200) 
+        {
+            a5.body.velocity.y = 120;
+            a5.animations.play('a5down');
+        }
+        else
+        {
+            a5.body.velocity.y=0;
+            a5.body.velocity.x=0;
+            a5.animations.stop();
+            a5.frame=0;
+        }
+    }
+
+
+
+} // END OF IF BOT5==1
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////          A6          ///////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+if (bot6==1) 
+{
+
+//console.log('x6,y6 : '+a6.x+' , '+a6.y);
+
+    a6.body.velocity.x=0;
+    a6.body.velocity.y=0;
+
+    if (a6.x>=1040&&a6.x<=1080&&a6.y==220) 
+    {
+        //decide6=game.rnd.integerInRange(1,3);
+        console.log(decide6);
+    }
+
+//////////////////////////////////////////////////         A6 Path1        ///////////////////////////////////////////////////////
+
+if (decide6==1) 
+    {
+        if (a6.x>=965&&a6.x<=1080&&a6.y>=200&&a6.y<=205&&a6p1==1) 
+        {
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+        }
+        else if (a6.x>=960&&a6.x<=1000&&a6.y>=200&&a6.y<=280) 
+        {
+            a6.body.velocity.y = 120;
+            a6.animations.play('a6down');
+        }
+        else if (a6.x>=885&&a6.x<=1000&&a6.y>=280&&a6.y<=320) 
+        {
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+        }
+        else if (a6.x>=880&&a6.x<=920&&a6.y>=205&&a6.y<=320) 
+        {
+            a6.body.velocity.y = -120;
+            a6.animations.play('a6up');
+        }
+        else if (a6.x>=725&&a6.x<=920&&a6.y>200&&a6.y<=240) 
+        {
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+        }
+        else if (a6.x>=720&&a6.x<=760&&a6.y>=125&&a6.y<=240) 
+        {
+            a6.body.velocity.y = -120;
+            a6.animations.play('a6up');
+        }
+        else if (a6.x>=205&&a6.x<=760&&a6.y>=120&&a6.y<=160) 
+        {
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+        }
+        else if (a6.x>=200&&a6.x<=240&&a6.y>=45&&a6.y<=160) 
+        {
+            a6.body.velocity.y = -120;
+            a6.animations.play('a6up');
+        }
+        else if (a6.x>=200&&a6.x<=1120&&a6.y>=40&&a6.y<=80) 
+        {
+            a6.body.velocity.x = 120;
+            a6.animations.play('a6right');
+        }
+        else if (a6.x>=1120&&a6.x<=1160&&a6.y>=40&&a6.y<=120) 
+        {
+            a6.body.velocity.y = 120;
+            a6.animations.play('a6down');
+        }
+        else if (a6.x>=1045&&a6.x<=1160&&a6.y>=120&&a6.y<=160) 
+        {
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+            a6p1=0;
+        }
+        else if (a6.x>=1040&&a6.x<=1160&&a6.y>=120&&a6.y<=202&&a6p1==0) 
+        {
+            a6.body.velocity.y = 120;
+            a6.animations.play('a6down');
+        }
+        else if (a6.x>=1040&&a6.x<=1120&&a6.y>=200&&a6.y<=240&&a6p1==0) 
+        {
+            a6.body.velocity.x = 120;
+            a6.animations.play('a6right');
+        }
+        else if (a6.x>=1120&&a6.x<=1160&&a6.y>=200&&a6.y<=280) 
+        {
+            a6.body.velocity.y = 120;
+            a6.animations.play('a6down');
+        }
+        else if (a6.x>=1120&&a6.x<=1200&&a6.y>=280&&a6.y<=300) 
+        {
+            a6.body.velocity.x = 120;
+            a6.animations.play('a6right');
+        }
+        else if (a6.x>=1200&&a6.x<=1240&&a6.y>=205&&a6.y<=320) 
+        {
+            a6.body.velocity.y = -120;
+            a6.animations.play('a6up');
+        }
+        else if (a6.x>=1200&&a6.x<=1280&&a6.y>=200&&a6.y<=240) 
+        {
+            a6.body.velocity.x = 120;
+            a6.animations.play('a6right');
+        }
+        else if (a6.x>=1280&&a6.x<=1320&&a6.y>=200&&a6.y<=520) 
+        {
+            a6.body.velocity.y = 120;
+            a6.animations.play('a6down');
+        }
+        else if (a6.x>=1205&&a6.x<=1320&&a6.y>=520&&a6.y<=560) 
+        {
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+        }
+        else if (a6.x>=1200&&a6.x<=1240&&a6.y>=365&&a6.y<=560) 
+        {
+            a6.body.velocity.y = -120;
+            a6.animations.play('a6up');
+        }
+        else if (a6.x>=1125&&a6.x<=1240&&a6.y>=360&&a6.y<=400) 
+        {
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+        }
+        else if (a6.x>=1120&&a6.x<=1160&&a6.y>=325&&a6.y<=400) 
+        {
+            a6.body.velocity.y = -120;
+            a6.animations.play('a6up');
+        }
+        else if (a6.x>=1045&&a6.x<=1160&&a6.y>=320&&a6.y<=360) 
+        {
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+            a6p1=1;
+        }
+        else if (a6.x>=1040&&a6.x<=1080&&a6.y>=160&&a6.y<=360&&a6p1==1) 
+        {
+            a6.body.velocity.y = -120;
+            a6.animations.play('a6up');
+        }
+        else
+        {
+            a6.body.velocity.y=0;
+            a6.body.velocity.x=0;
+            a6.animations.stop();
+            a6.frame=0;
+        }
+    }
+
+//////////////////////////////////////////////////         A6 Path2        ///////////////////////////////////////////////////////
+
+    else if (decide6==2) 
+    {
+        if (a6.x>=975&&a6.x<=1080&&a6.y>=200&&a6.y<204) 
+        {
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+        }
+        else if (a6.x>=960&&a6.x<=1000&&a6.y>=200&&a6.y<=440) 
+        {
+            a6.body.velocity.y = 120;
+            a6.animations.play('a6down');
+        }
+        else if (a6.x>=895&&a6.x<=1000&&a6.y>=440&&a6.y<=480) 
+        {
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+        }
+        else if (a6.x>=880&&a6.x<=920&&a6.y>=440&&a6.y<=520) 
+        {
+            a6.body.velocity.y = 120;
+            a6.animations.play('a6down');
+        }
+        else if (a6.x>=815&&a6.x<=920&&a6.y>520&&a6.y<=560) 
+        {
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+        }
+        else if (a6.x>=800&&a6.x<=840&&a6.y>=295&&a6.y<=560) 
+        {
+            a6.body.velocity.y = -120;
+            a6.animations.play('a6up');
+        }
+        else if (a6.x>=535&&a6.x<=840&&a6.y>=280&&a6.y<=320) 
+        {
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+        }
+        else if (a6.x>=520&&a6.x<=560&&a6.y>=280&&a6.y<=680) 
+        {
+            a6.body.velocity.y = 120;
+            a6.animations.play('a6down');
+        }
+        else if (a6.x>=520&&a6.x<=1120&&a6.y>=680&&a6.y<=720) 
+        {
+            a6.body.velocity.x = 120;
+            a6.animations.play('a6right');
+        }
+        else if (a6.x>=1120&&a6.x<=1160&&a6.y>=455&&a6.y<=720) 
+        {
+            a6.body.velocity.y = -120;
+            a6.animations.play('a6up');
+        }
+        else if (a6.x>=1050&&a6.x<=1160&&a6.y>=440&&a6.y<=480) 
+        {
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+        }
+       
+        else if (a6.x>=1040&&a6.x<=1080&&a6.y>=205&&a6.y<=480) 
+        {
+            a6.body.velocity.y = -120;
+            a6.animations.play('a6up');
+        }
+        else
+        {
+            a6.body.velocity.y=0;
+            a6.body.velocity.x=0;
+            a6.animations.stop();
+            a6.frame=0;
+        }
+    }
+
+
+
+
+//////////////////////////////////////////////////         A2 Path3        ///////////////////////////////////////////////////////
+
+ else if (decide6==3) 
+    {
+        if (a6.x>=1040&&a6.x<=1120&&a6.y>=200&&a6.y<204) 
+        {
+            a6.body.velocity.x = 120;
+            a6.animations.play('a6right');
+        }
+        else if (a6.x>=1120&&a6.x<=1160&&a6.y>=200&&a6.y<=280) 
+        {
+            a6.body.velocity.y = 120;
+            a6.animations.play('a6down');
+        }
+        else if (a6.x>=1120&&a6.x<=1200&&a6.y>=280&&a6.y<=320) 
+        {
+            a6.body.velocity.x = 120;
+            a6.animations.play('a6right');
+        }
+        else if (a6.x>=1200&&a6.x<=1240&&a6.y>=280&&a6.y<=520) 
+        {
+            a6.body.velocity.y = 120;
+            a6.animations.play('a6down');
+        }
+        else if (a6.x>=1135&&a6.x<=1240&&a6.y>520&&a6.y<=560) 
+        {
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+        }
+        else if (a6.x>=1120&&a6.x<=1160&&a6.y>=520&&a6.y<=680) 
+        {
+            a6.body.velocity.y = 120;
+            a6.animations.play('a6down');
+        }
+        else if (a6.x>=895&&a6.x<=1160&&a6.y>=680&&a6.y<=720) 
+        {
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+        }
+        else if (a2.x>=880&&a2.x<=920&&a6.y>=455&&a6.y<=720) 
+        {
+            a6.body.velocity.y = -120;
+            a6.animations.play('a6up');
+        }
+        else if (a6.x>=880&&a6.x<=1040&&a6.y>=440&&a6.y<=480) 
+        {
+            a6.body.velocity.x = 120;
+            a6.animations.play('a6right');
+        }
+
+        else if (a6.x>=1040&&a6.x<=1080&&a6.y>=205&&a6.y<=480) 
+        {
+            a6.body.velocity.y = -120;
+            a6.animations.play('a6up');
+        }
+        
+        else
+        {
+            a6.body.velocity.y=0;
+            a6.body.velocity.x=0;
+            a6.animations.stop();
+            a6.frame=0;
+        }
+    }
+
+} // END OF BOT6 ka if
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 } //END OF UPDATE2 FUNCTION
 
