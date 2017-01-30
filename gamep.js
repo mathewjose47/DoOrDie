@@ -44,8 +44,8 @@ var m=0.000000;
 var arrows;
 
 var decide1=5;
-var decide2=3;
-var decide3=4;
+var decide2=2;
+var decide3=5;
 var decide4=1;
 
 var a4p11=0;
@@ -54,6 +54,7 @@ var a2p1=1;
 var a1p4=1;
 var a3p21=0;
 var a3p4=0;
+var a3p5=0;
 
 var a1;
 var a2;
@@ -224,9 +225,9 @@ function preload0()
 {
     game.load.spritesheet('quitButton', 'images/background/quitButton.png', 125,100);
     game.load.spritesheet('fullButton', 'images/background/fullButton.png', 125, 100);
-    game.load.image('sb', 'images/background/w3.jpg');
+    game.load.image('sb', 'images/background/w33.jpg');
     game.load.audio('button_press','audio/blop.mp3');
-    game.load.audio('ghosts','audio/bm1.wav');
+    game.load.audio('ghosts','audio/Mission-Impossible.mp3');
 
     game.load.image('mute_button', 'images/background/mute_button.png');
     
@@ -241,22 +242,23 @@ function create0()
     ghosts.loop=true;
     ghosts.play();
     
-    mute_button = game.add.button(105, 90, 'mute_button', toggleMute, this, 2, 1, 0);
-    mute_button.scale.setTo(mute_button_scale, mute_button_scale);
+    
 
     sb = game.add.sprite(0, 0, 'sb');
+    mute_button = game.add.button(105, 90, 'mute_button', toggleMute, this, 2, 1, 0);
+    mute_button.scale.setTo(mute_button_scale, mute_button_scale);
+    if (!game.sound.mute) 
+    {
+       mute_button.tint = 16777215;
+    } else 
+    {
+       mute_button.tint = 16700000;
+    }
 
     fullButton = game.add.button(1220, 90, 'fullButton', goFull, this, 2, 1, 0);
     quitButton = game.add.button(1270, 90, 'quitButton', quit, this, 2, 1, 0);
     quitButton.scale.setTo(quitButton_scale, quitButton_scale);
     fullButton.scale.setTo(fullButton_scale, fullButton_scale);
-
-    pause_button = game.add.button(75, 90, 'pause_button', goFull, this, 2, 1, 0);
-    mute_button = game.add.button(120, 90, 'mute_button', quit, this, 2, 1, 0);
-    pause_button.scale.setTo(pause_button_scale, pause_button_scale);
-    mute_button.scale.setTo(mute_button_scale, mute_button_scale);
-
-    
 
     story_text = game.add.text(game.world.width/2,120,'STORY',{font: "Algerian" ,fontSize: '45px', fill:'#FFF'});
     story_text.anchor.setTo(0.5,0.5);
@@ -281,7 +283,7 @@ function preload1()
     game.load.spritesheet('quitButton', 'images/background/quitButton.png', 125,100);
     game.load.spritesheet('fullButton', 'images/background/fullButton.png', 125, 100);
     game.load.audio('button_press','audio/blop.mp3');
-    game.load.audio('ghosts','audio/bm1.wav');
+    game.load.audio('ghosts','audio/Mission-Impossible.mp3');
 
     game.load.image('mute_button', 'images/background/mute_button.png');
 
@@ -300,6 +302,13 @@ function create1()
 
     mute_button = game.add.button(50, 90, 'mute_button', toggleMute, this, 2, 1, 0);
     mute_button.scale.setTo(mute_button_scale, mute_button_scale);
+    if (!game.sound.mute) 
+    {
+       mute_button.tint = 16777215;
+    } else 
+    {
+       mute_button.tint = 16700000;
+    }
 
     button_press=game.add.audio('button_press');
     ghosts=game.add.audio('ghosts');
@@ -383,7 +392,7 @@ function preload4()
 {
     game.load.spritesheet('quitButton', 'images/background/quitButton.png', 125,100);
     game.load.spritesheet('fullButton', 'images/background/fullButton.png', 125, 100);
-    game.load.image('sb', 'images/background/w3.jpg');
+    game.load.image('sb', 'images/background/w33.jpg');
     game.load.image('arrows', 'images/background/arrows.png');
     game.load.spritesheet('astronaut', 'images/character/astronaut.png',32,32);
     game.load.image('flamethrower', 'images/flame/f2.png');
@@ -392,7 +401,7 @@ function preload4()
     game.load.spritesheet('mflamethrower_flames', 'images/flame/Flames/flamethrower_/mflamethrower_flames.png',512,512);
     game.load.spritesheet('a1', 'images/aliens/spider.png',35,35);
     game.load.audio('button_press','audio/blop.mp3');
-    game.load.audio('ghosts','audio/bm1.wav');
+    game.load.audio('ghosts','audio/Mission-Impossible.mp3');
     game.load.image('mute_button', 'images/background/mute_button.png');
 
 };
@@ -411,6 +420,13 @@ function create4()
 
     mute_button = game.add.button(105, 90, 'mute_button', toggleMute, this, 2, 1, 0);
     mute_button.scale.setTo(mute_button_scale, mute_button_scale);
+    if (!game.sound.mute) 
+    {
+       mute_button.tint = 16777215;
+    } else 
+    {
+       mute_button.tint = 16700000;
+    }
 
     story_text = game.add.text(game.world.width/2,120,'INSTRUCTIONS',{font: "Algerian" ,fontSize: '45px', fill:'#FFF'});
     story_text.anchor.setTo(0.5,0.5);
@@ -484,7 +500,7 @@ function update4()
 
 function preload5()
 {
-    game.load.image('sb', 'images/background/w3.jpg');
+    game.load.image('sb', 'images/background/w33.jpg');
     game.load.audio('button_press','audio/blop.mp3');
     game.load.image('mute_button', 'images/background/mute_button.png');
 };
@@ -499,6 +515,13 @@ function create5()
 
     mute_button = game.add.button(105, 90, 'mute_button', toggleMute, this, 2, 1, 0);
     mute_button.scale.setTo(mute_button_scale, mute_button_scale);
+    if (!game.sound.mute) 
+    {
+       mute_button.tint = 16777215;
+    } else 
+    {
+       mute_button.tint = 16700000;
+    }
 
 
         $.ajax({
@@ -538,8 +561,8 @@ function showGameOver()
     astronaut.kill();
     setTimeout(function(){ 
         game.state.start('gameState5');
-        //game.sound.stopAll(); 
     }, 2700); // kill_sound time
+    
 
     game_end_text = game.add.text(game.world.width/2,game.world.height/2,'Game Over',{fontSize: '32px', fill:'#FFF'});
     game_end_text.anchor.setTo(0.5,0.5); 
@@ -574,7 +597,7 @@ function goFull() {
 
  function preload2() 
  {
-    game.load.image('w1', 'images/background/w3.jpg'); // space image
+    game.load.image('w1', 'images/background/w33.jpg'); // space image (w33)
     game.load.spritesheet('quitButton', 'images/background/quitButton.png', 125,100);
     game.load.spritesheet('fullButton', 'images/background/fullButton.png', 125, 100);
     game.load.image('c', 'images/background/sc1.png'); // crystals
@@ -846,6 +869,13 @@ function goFull() {
     
     mute_button = game.add.button(105, 90, 'mute_button', toggleMute, this, 2, 1, 0);
     mute_button.scale.setTo(mute_button_scale, mute_button_scale);
+    if (!game.sound.mute) 
+    {
+       mute_button.tint = 16777215;
+    } else 
+    {
+       mute_button.tint = 16700000;
+    }
 
 
     pause_button = game.add.button(60, 90, 'pause_button', pauseGame, this, 2, 1, 0);
@@ -906,32 +936,23 @@ function mburn()
 
  function burst()
  {
-    setTimeout(function(){ temp(); }, 250); // RUNNING INTO FLAMES 
+    setTimeout(function(){ blastf(); }, 250); // RUNNING INTO FLAMES 
  }
 
 function mburst()
  {
-    setTimeout(function(){ mtemp(); }, 250); // RUNNING INTO FLAMES
+    setTimeout(function(){ mblastf();}, 250); // RUNNING INTO FLAMES
  }
 
- function temp()
- {
-    astronaut.kill();
-    blastf();
- }
 
-function mtemp()
- {
-    astronaut.kill();
-    mblastf();
- }
 
 function blastf()
 {
     blast = game.add.sprite(520,360,'blast');
     blast.scale.setTo(0.1,0.1);
-    blast.animations.add('blastHim',[0,1,2,3,4,5,6,7,8],10,true);
-    setTimeout(function(){ blast.animations.play('blastHim'); },0); //PAUSE BEFORE BLASTING ANIMATION STARTS. (KEEP 0)
+    blast.animations.add('blastHim',[0,1,2,3,4,5,6,7,8],10,false);
+    blast.animations.play('blastHim');
+    setTimeout(function(){ blast.visible=false; },750);
     showGameOver();
 }
 
@@ -940,7 +961,8 @@ function mblastf()
     blast = game.add.sprite(800,360,'blast');
     blast.scale.setTo(0.1,0.1);
     blast.animations.add('blastHim',[0,1,2,3,4,5,6,7,8],10,false);
-    setTimeout(function(){ blast.animations.play('blastHim'); },0); //PAUSE BEFORE BLASTING ANIMATION STARTS. (KEEP 0)
+    blast.animations.play('blastHim');
+    setTimeout(function(){ blast.visible=false; },750);
     showGameOver();
     
 }
@@ -951,55 +973,34 @@ function mblastf()
 
 function fix()
 {
-    // x=astronaut.x;
-    // y=astronaut.y;
-    
-    console.log(astronaut.x +' , '+astronaut.y);
-
     if ((flagv==0||flagv==1)&&(astronaut.x%40)>20&&flagh==1&&flag1==1) 
     {
-        console.log('fixing x 1');
-
         m=(astronaut.x)/40;
         l=parseInt(m);
-        console.log('l,m :'+l+','+m);
         astronaut.x=astronaut.x+(1-(m-l))*40;
         flag1=0;
     }
     else if ((flagv==0||flagv==1)&&(astronaut.x%40)<25&&(astronaut.x%40)>10&&flagh==0&&flag1==1) 
     {
-        console.log('fixing x 2');
-
         m=(astronaut.x)/40;
         l=parseInt(m);
-        console.log('l,m :'+l+','+m);
         astronaut.x=astronaut.x-(m-l)*40+10;
         flag1=0;
     }
     if ((flagh==0||flagh==1)&&(astronaut.y%40)>20&&(astronaut.y%40)>10&&flagv==1&&flag1==1) 
     {
-        console.log('fixing y 1');
-
         m=(astronaut.y)/40;
         l=parseInt(m);
-        console.log('l,m :'+l+','+m);
         astronaut.y=astronaut.y+(1-(m-l))*40;
         flag1=0;
     }
     else if ((flagh==0||flagh==1)&&(astronaut.y%40)<25&&(astronaut.y%40)>10&&flagv==0&&flag1==1) 
     {
-        console.log('fixing y 2');
-
         m=(astronaut.y)/40;
         l=parseInt(m);
-        console.log('l,m :'+l+','+m);
         astronaut.y=astronaut.y-(m-l)*40+10;
         flag1=0;
     }
-
-    console.log('after fixing '+astronaut.x +' , '+astronaut.y);
-
-
 }
 
 
@@ -1044,7 +1045,6 @@ function fix()
     {
         flag=5;
     }
-    //  Reset the players velocity (movement)
     astronaut.body.velocity.x = 0;
     astronaut.body.velocity.y = 0;
     x=astronaut.x;
@@ -1493,7 +1493,7 @@ if (a1.x>=280&&a1.x<=320&&a1.y>=198&&a1.y<200)
 ///////////////////////////////////////////////////          A2          ///////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-console.log('x2,y2 : '+a2.x+' , '+a2.y);
+//console.log('x2,y2 : '+a2.x+' , '+a2.y);
 
     a2.body.velocity.x=0;
     a2.body.velocity.y=0;
@@ -1719,8 +1719,7 @@ if (decide2==1)
 
 //////////////////////////////////////////////////         A2 Path3        ///////////////////////////////////////////////////////
 
-
-if (decide2==3) 
+ else if (decide2==3) 
     {
         if (a2.x>=1040&&a2.x<=1120&&a2.y>=200&&a2.y<204) 
         {
@@ -1782,6 +1781,8 @@ if (decide2==3)
             a2.frame=0;
         }
     }
+
+
 
 
 
@@ -1895,7 +1896,7 @@ console.log('x3,y3 : '+a3.x+' , '+a3.y);
 //////////////////////////////////////////////////         A3 Path2        ///////////////////////////////////////////////////////
     else if (decide3==2) 
     {
-        if (a3.x>=280&&a3.x<=360&&a3.y>=600&&a3.y<=640&&a3p21==0) 
+        if (a3.x>=275&&a3.x<=360&&a3.y>=600&&a3.y<=640&&a3p21==0) 
         {
             a3.body.velocity.x = 120;
             a3.animations.play('a3right');
@@ -2173,7 +2174,7 @@ console.log('x3,y3 : '+a3.x+' , '+a3.y);
 //////////////////////////////////////////////////         A3 Path4        ///////////////////////////////////////////////////////
     else if (decide3==4) 
     {
-        if (a3.x>=280&&a3.x<=360&&a3.y>=600&&a3.y<=640&&a3p4==0) 
+        if (a3.x>=275&&a3.x<=360&&a3.y>=600&&a3.y<=640&&a3p4==0) 
         {
             a3.body.velocity.x = 120;
             a3.animations.play('a3right');
@@ -2336,9 +2337,167 @@ console.log('x3,y3 : '+a3.x+' , '+a3.y);
 
     }
 
+//////////////////////////////////////////////////         A3 Path5        ///////////////////////////////////////////////////////
 
 
+else if (decide3==5) 
+    {
+        if (a3.x>=205&&a3.x<=280&&a3.y>=600&&a3.y<=640) 
+        {
+            a3.body.velocity.x = -120;
+            a3.animations.play('a3left');
+        }
+        else if (a3.x>=200&&a3.x<=240&&a3.y>=445&&a3.y<=640) 
+        {
+            a3.body.velocity.y = -120;
+            a3.animations.play('a3up');
+        }
+        else if (a3.x>=200&&a3.x<=280&&a3.y>=440&&a3.y<=480&&a3p5==0) 
+        {
+            a3.body.velocity.x = 120;
+            a3.animations.play('a3right');
+        }
+        else if (a3.x>=280&&a3.x<=320&&a3.y>=325&&a3.y<=480&&a3p5==0) 
+        {
+            a3.body.velocity.y = -120;
+            a3.animations.play('a3up');
+        }
+        else if (a3.x>=205&&a3.x<=320&&a3.y>=320&&a3.y<=360) 
+        {
+            a3.body.velocity.x = -120;
+            a3.animations.play('a3left');
+        }
+        else if (a3.x>=200&&a3.x<=240&&a3.y>=320&&a3.y<=360) 
+        {
+            a3.body.velocity.y = 120;
+            a3.animations.play('a3down');
+        }
+        else if (a3.x>=125&&a3.x<=240&&a3.y>=360&&a3.y<=400) 
+        {
+            a3.body.velocity.x = -120;
+            a3.animations.play('a3left');
+        }
+        else if (a3.x>=120&&a3.x<=160&&a3.y>=360&&a3.y<=520) 
+        {
+            a3.body.velocity.y = 120;
+            a3.animations.play('a3down');
+        }
+        else if (a3.x>=45&&a3.x<=160&&a3.y>=520&&a3.y<=560) 
+        {
+            a3.body.velocity.x = -120;
+            a3.animations.play('a3left');
+        }
+        else if (a3.x>=40&&a3.x<=80&&a3.y>=205&&a3.y<=560) 
+        {
+            a3.body.velocity.y = -120;
+            a3.animations.play('a3up');
+        }
+        else if (a3.x>=40&&a3.x<=120&&a3.y>=200&&a3.y<=240) 
+        {
+            a3.body.velocity.x = 120;
+            a3.animations.play('a3right');
+        }
+        else if (a3.x>=120&&a3.x<=160&&a3.y>=200&&a3.y<=280) 
+        {
+            a3.body.velocity.y = 120;
+            a3.animations.play('a3down');
+        }
+        else if (a3.x>=120&&a3.x<=200&&a3.y>=280&&a3.y<=320) 
+        {
+            a3.body.velocity.x = 120;
+            a3.animations.play('a3right');
+        }
+        else if (a3.x>=200&&a3.x<=240&&a3.y>=205&&a3.y<=320) 
+        {
+            a3.body.velocity.y = -120;
+            a3.animations.play('a3up');
+        }
+        else if (a3.x>=200&&a3.x<=280&&a3.y>=200&&a3.y<=240) 
+        {
+            a3.body.velocity.x = 120;
+            a3.animations.play('a3right');
+        }
+        else if (a3.x>=280&&a3.x<=320&&a3.y>=125&&a3.y<=240) 
+        {
+            a3.body.velocity.y = -120;
+            a3.animations.play('a3up');
+        }
+        else if (a3.x>=205&&a3.x<=320&&a3.y>=120&&a3.y<=160) 
+        {
+            a3.body.velocity.x = -120;
+            a3.animations.play('a3left');
+        }
+        else if (a3.x>=200&&a3.x<=240&&a3.y>=45&&a3.y<=160) 
+        {
+            a3.body.velocity.y = -120;
+            a3.animations.play('a3up');
+        }
+        else if (a3.x>=200&&a3.x<=640&&a3.y>=40&&a3.y<=80&&a3p5==0) 
+        {
+            a3.body.velocity.x = 120;
+            a3.animations.play('a3right');
+        }
+        else if (a3.x>=640&&a3.x<=650&&a3.y>=40&&a3.y<=80&&a3p5==0) 
+        {
+            a3p5=1;
+            a3.body.velocity.x = 120;
+            a3.animations.play('a3right');
+            console.log(a3p5);
+        }
+        else if (a3.x>=525&&a3.x<=680&&a3.y>=40&&a3.y<=80&&a3p5==1) 
+        {
+            a3.body.velocity.x = -120;
+            a3.animations.play('a3left');
+        }
+        else if (a3.x>=520&&a3.x<=560&&a3.y>=40&&a3.y<=120&&a3p5==1) 
+        {
+            a3.body.velocity.y = 120;
+            a3.animations.play('a3down');
+        }
+        else if (a3.x>=365&&a3.x<=560&&a3.y>=120&&a3.y<=160) 
+        {
+            a3.body.velocity.x = -120;
+            a3.animations.play('a3left');
+        }
+        else if (a3.x>=365&&a3.x<=560&&a3.y>=120&&a3.y<=160) 
+        {
+            a3.body.velocity.x = -120;
+            a3.animations.play('a3left');
+        }
+        else if (a3.x>=360&&a3.x<=400&&a3.y>=120&&a3.y<=440) 
+        {
+            a3.body.velocity.y = 120;
+            a3.animations.play('a3down');
+        }
+        else if (a3.x>=285&&a3.x<=400&&a3.y>=440&&a3.y<=480&&a3p5==1) 
+        {
+            a3.body.velocity.x = -120;
+            a3.animations.play('a3left');
+        }
+        else if (a3.x>=280&&a3.x<=320&&a3.y>=440&&a3.y<=520&&a3p5==1) 
+        {
+            a3.body.velocity.y = 120;
+            a3.animations.play('a3down');
+        }
+        else if (a3.x>=280&&a3.x<=360&&a3.y>=520&&a3.y<=560) 
+        {
+            a3p5=0;
+            a3.body.velocity.x = 120;
+            a3.animations.play('a3right');
+        }
+        else if (a3.x>=360&&a3.x<=400&&a3.y>=520&&a3.y<=600) 
+        {
+            a3.body.velocity.y = 120;
+            a3.animations.play('a3down');
+        }
+        else if (a3.x>=280&&a3.x<=400&&a3.y>=600&&a3.y<=640) 
+        {
+            a3.body.velocity.x = -120;
+            a3.animations.play('a3left');
+        }
+       
 
+    }
 
 
 
@@ -2468,63 +2627,6 @@ if (decide4==1)
 
 //////////////////////////////////////////////////         A4 Path2        ///////////////////////////////////////////////////////
 
-
-// function gridToPixel(point) {
-//     var p = ((point-4)*40)+20;
-//     return p;
-//}
-
-// function points(spider, spiderName, xTwo, yTwo) {
-   
-//     var x2 = ((xTwo-4)*40)+20;
-//     var y2 = ((yTwo-4)*40)+20;
-
-//     if(spider.x==x2 && spider.y==y2) {
-//          return;
-//     }
-    
-//     if(spider.x==x2 && spider.y>y2) {
-//          move(spider, spiderName, 'up');
-//          return;
-//     }
-
-//     if(spider.x==x2 && spider.y<y2) {
-//          move(spider, spiderName, 'down');
-//          return;
-//     }
-
-//     if(spider.x>x2 && spider.y==y2) {
-//          move(spider, spiderName, 'left');
-//          return;
-//     }
-
-//     if(spider.x<x2 && spider.y==y2) {
-//          move(spider, spiderName, 'right');
-//          return;
-//     }
-    
-
-// }
-
-// function move(spider, spiderName, direction){
-
-//     if(direction=='down') {
-//          spider.body.velocity.y = 120;
-//     }
-//     else if(direction=='up') {
-//         spider.body.velocity.y = -120;
-//     }
-//     else if(direction=='left') {
-//         spider.body.velocity.x = -120;
-//     }
-//     else {
-//         spider.body.velocity.x = 120;
-//     }
-
-    
-//     spider.animations.play(spiderName+direction);    
-    
-// }
 
 //--------------------------------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------------------------------
