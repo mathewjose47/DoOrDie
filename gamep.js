@@ -18,7 +18,7 @@ var score=0;
 var seconds;
 var style;
 var story_text;
-var flag;
+var flag=1;
 var flagv;
 var flagh;
 var flag1;
@@ -97,11 +97,51 @@ map.push(column30);
 map.push(column31);
 map.push(column32);
 map.push(column33);
-
+*/
 
 var j,k;
 
-*/
+var map = [
+
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0],
+    [0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0],
+    [0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0],
+    [0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0],
+    [0,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,1,0],
+    [0,1,0,1,0,1,0,0,1,0,0,1,0,0,0,1,0,1,0],
+    [0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0],
+    [0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,1,0],
+    [0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
+    [0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0],
+    [0,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,0],
+    [0,1,0,1,0,1,0,0,0,0,0,0,0,1,0,1,0,1,0],
+    [0,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,0],
+    [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,1,0],
+    [0,1,0,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,0],
+    [0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0],
+    [0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0],
+    [0,1,0,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,0],
+    [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,1,0],
+    [0,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,0],
+    [0,1,0,1,0,1,0,0,0,0,0,0,0,1,0,1,0,1,0],
+    [0,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,0],
+    [0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0],
+    [0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
+    [0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,1,0],
+    [0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0],
+    [0,1,0,1,0,1,0,0,1,0,0,1,0,0,0,1,0,1,0],
+    [0,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,1,0],
+    [0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0],
+    [0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0],
+    [0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0],
+    [0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+];
+
+
+
+
 
 var button_press;
 var flames_sound;
@@ -124,11 +164,11 @@ var m=0.000000;
 var arrows;
 
 var decide1=1;
-var decide2=4;
+var decide2=1;
 var decide3=1;
-var decide4=4;
-var decide5=2;
-var decide6=2;
+var decide4=1;
+var decide5=1;
+var decide6=1;
 var decide7=1;
 var decide8=1;
 
@@ -142,16 +182,15 @@ var a3p5=0;
 var a5p4=1;
 var a6p1=1;
 var a2p4=1;
+var a6p4=1;
 
-//var a0;
+var a0;
 var a1;
 var a2;
 var a3;
 var a4;
 var a5;
 var a6;
-var a7;
-var a8;
 
 
 var x1;
@@ -322,7 +361,7 @@ function preload0()
     game.load.spritesheet('fullButton', 'images/background/fullButton.png', 125, 100);
     game.load.image('sb', 'images/background/w33.jpg');
     game.load.audio('button_press','audio/blop.mp3');
-    game.load.audio('ghosts','audio/Mission-Impossible.mp3');
+    //game.load.audio('ghosts','audio/Mission-Impossible2.ogg');
 
     game.load.image('mute_button', 'images/background/mute_button.png');
     
@@ -333,9 +372,9 @@ function create0()
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
     button_press=game.add.audio('button_press');
-    ghosts=game.add.audio('ghosts');
-    ghosts.loop=true;
-    ghosts.play();
+    //ghosts=game.add.audio('ghosts');
+    //ghosts.loop=true;
+    //ghosts.play();
     
     
 
@@ -378,7 +417,7 @@ function preload1()
     game.load.spritesheet('quitButton', 'images/background/quitButton.png', 125,100);
     game.load.spritesheet('fullButton', 'images/background/fullButton.png', 125, 100);
     game.load.audio('button_press','audio/blop.mp3');
-    game.load.audio('ghosts','audio/Mission-Impossible.mp3');
+    game.load.audio('ghosts','audio/Mission-Impossible2.ogg');
 
     game.load.image('mute_button', 'images/background/mute_button.png');
 
@@ -496,7 +535,7 @@ function preload4()
     game.load.spritesheet('mflamethrower_flames', 'images/flame/Flames/flamethrower_/mflamethrower_flames.png',512,512);
     game.load.spritesheet('a1', 'images/aliens/spider.png',35,35);
     game.load.audio('button_press','audio/blop.mp3');
-    game.load.audio('ghosts','audio/Mission-Impossible.mp3');
+    //game.load.audio('ghosts','audio/Mission-Impossible2.ogg');
     game.load.image('mute_button', 'images/background/mute_button.png');
 
 };
@@ -509,9 +548,9 @@ function create4()
     sb = game.add.sprite(0, 0, 'sb');
 
     button_press=game.add.audio('button_press');
-    ghosts=game.add.audio('ghosts');
-    ghosts.loop=true;
-    ghosts.play();
+    //ghosts=game.add.audio('ghosts');
+    //ghosts.loop=true;
+    //ghosts.play();
 
     mute_button = game.add.button(105, 90, 'mute_button', toggleMute, this, 2, 1, 0);
     mute_button.scale.setTo(mute_button_scale, mute_button_scale);
@@ -713,14 +752,15 @@ function goFull() {
     game.load.audio('kill_sound','audio/torture-sound.mp3');
     game.load.audio('flames_sound','audio/flames1.mp3');
     game.load.audio('score_increase_sound','audio/score_increase.mp3');
-    game.load.audio('pirates','audio/pirates.mp3');
+    game.load.audio('pirates','audio/piratesogg.ogg');
 
 
  }
 
  function create2(){
 
-
+    bot5=0;
+    bot6=0;
 
     button_press=game.add.audio('button_press');
     kill_sound=game.add.audio('kill_sound');
@@ -785,10 +825,10 @@ function goFull() {
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
 
-    // a0=game.add.sprite(280,200,'a1');
-    // a0.scale.setTo(0.75,0.75);
-    // game.physics.arcade.enable(a0);
-    // a0.enableBody=true;
+    a0=game.add.sprite(680,360,'a1');
+    a0.scale.setTo(0.75,0.75);
+    game.physics.arcade.enable(a0);
+    a0.enableBody=true;
 
     a1=game.add.sprite(280,200,'a1');
     a1.scale.setTo(0.75,0.75);
@@ -820,20 +860,10 @@ function goFull() {
     game.physics.arcade.enable(a6);
     a6.enableBody=true;
 
-    // a7=game.add.sprite(280,600,'a1');
-    // a7.scale.setTo(0.75,0.75);
-    // game.physics.arcade.enable(a7);
-    // a7.enableBody=true;
-
-    // a8=game.add.sprite(1040,600,'a1');
-    // a8.scale.setTo(0.75,0.75);
-    // game.physics.arcade.enable(a8);
-    // a8.enableBody=true;
-
-    // a0.animations.add('a0left', [7,8,9,10,11,12], 10, true);
-    // a0.animations.add('a0right', [21,22,23,24,25,26], 10, true);
-    // a0.animations.add('a0up', [14,15,16,17,18,19], 10, true);
-    // a0.animations.add('a0down', [0,1,2,3,4,5], 10, true);
+    a0.animations.add('a0left', [7,8,9,10,11,12], 10, true);
+    a0.animations.add('a0right', [21,22,23,24,25,26], 10, true);
+    a0.animations.add('a0up', [14,15,16,17,18,19], 10, true);
+    a0.animations.add('a0down', [0,1,2,3,4,5], 10, true);
 
     a1.animations.add('a1left', [7,8,9,10,11,12], 10, true);
     a1.animations.add('a1right', [21,22,23,24,25,26], 10, true);
@@ -865,15 +895,6 @@ function goFull() {
     a6.animations.add('a6up', [14,15,16,17,18,19], 10, true);
     a6.animations.add('a6down', [0,1,2,3,4,5], 10, true);
 
-    // a7.animations.add('a4left', [7,8,9,10,11,12], 10, true);
-    // a7.animations.add('a4right', [21,22,23,24,25,26], 10, true);
-    // a7.animations.add('a4up', [14,15,16,17,18,19], 10, true);
-    // a7.animations.add('a4down', [0,1,2,3,4,5], 10, true);
-
-    // a8.animations.add('a4left', [7,8,9,10,11,12], 10, true);
-    // a8.animations.add('a4right', [21,22,23,24,25,26], 10, true);
-    // a8.animations.add('a4up', [14,15,16,17,18,19], 10, true);
-    // a8.animations.add('a4down', [0,1,2,3,4,5], 10, true);
 
 
     // UP COUNTER
@@ -1033,6 +1054,9 @@ function goFull() {
         game.physics.arcade.enable(c);
         c.body.immovable=true;
     });
+
+
+
  }
 
 
@@ -1161,6 +1185,7 @@ function fix()
     game.physics.arcade.collide(astronaut,flamethrower);
     game.physics.arcade.collide(astronaut,mflamethrower);
 
+    game.physics.arcade.collide(a0,walls);
     game.physics.arcade.collide(a1,walls);
     game.physics.arcade.collide(a2,walls);
     game.physics.arcade.collide(a3,walls);
@@ -1168,6 +1193,7 @@ function fix()
     game.physics.arcade.collide(a5,walls);
     game.physics.arcade.collide(a6,walls);
 
+    game.physics.arcade.overlap(astronaut, a0, showGameOver, null, this);
     game.physics.arcade.overlap(astronaut, a1, showGameOver, null, this);
     game.physics.arcade.overlap(astronaut, a2, showGameOver, null, this);
     game.physics.arcade.overlap(astronaut, a3, showGameOver, null, this);
@@ -1219,7 +1245,7 @@ function fix()
         }
     }
 
-    if (score>=45) 
+    if (score>=20) 
     {
         if (!(astronaut.x>=840&&astronaut.x<=1160&&astronaut.y>=40&&astronaut.y<=400)) 
         {
@@ -1230,14 +1256,14 @@ function fix()
 //--------------------------------------------------------------------------------------------------------------------------
 
 
-    if (astronaut.x==x&&astronaut.y==y) 
-    {
-        flag=5;
-    }
+    // if (astronaut.x==x&&astronaut.y==y) 
+    // {
+    //     flag=5;
+    // }
     astronaut.body.velocity.x = 0;
     astronaut.body.velocity.y = 0;
-    x=astronaut.x;
-    y=astronaut.y;
+    // x=astronaut.x;
+    // y=astronaut.y;
     if (cursors.left.isDown)
     {
         astronaut.body.velocity.x = -150;
@@ -1310,64 +1336,103 @@ function fix()
 
     // ALIENS MOVEMENT
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////          A0          ///////////////////////////////////////////////////////
+///////////////////////////////////////////////////          A0 - The Chaser       /////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//console.log('x0,y0 : '+a0.x+' , '+a0.y);
 
-// if (astronaut.x>a0.x&&(map[parseInt(a0.x/40+1)][parseInt(a0.y/40)]==1)) 
-// {
-//     a0.body.velocity.x = 120;
-//     a0.animations.play('a0right');
-// }
-// else if (astronaut.x<a0.x&&(map[parseInt(a0.x/40-1)][parseInt(a0.y/40)]==1)) 
-// {
-//     a0.body.velocity.x = -120;
-//     a0.animations.play('a0left');
-// }
-// else if (astronaut.y<a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)-1]==1)) 
-// {
-//     a0.body.velocity.y = -120;
-//     a0.animations.play('a0up');
-// }
-// else if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)+1]==1)) 
-// {
-//     a0.body.velocity.y = 120;
-//     a0.animations.play('a0down');
-// }
-// // else if (astronaut.x==a0.x) 
-// // {
-// //     if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)+1]==1)) 
-// //     {
-// //         a0.body.velocity.y = 120;
-// //         a0.animations.play('a0down');
-// //     }
-// //     else if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)-1][parseInt(a0.y/40)]==1)) 
-// //     {
-// //         a0.body.velocity.y = -120;
-// //         a0.animations.play('a0up');
-// //     }
-// // }
-// // else if (astronaut.y==a0.y) 
-// // {
-// //     if (astronaut.x>a0.x&&(map[parseInt(a0.x/40)+1][parseInt(a0.y/40)]==1)) 
-// //     {
-// //         a0.body.velocity.x = 120;
-// //         a0.animations.play('a0right');
-// //     }
-// //     else if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)+1]==1)) 
-// //     {
-// //         a0.body.velocity.x = -120;
-// //         a0.animations.play('a0left');
-// //     }
-// // }
+if (seconds>5) 
+{
+    if (a0.x==x0&&a0.y==y0) 
+    {
+        a0.body.velocity.x = 0;
+        a0.body.velocity.y = 0;
+        a0.animations.stop();
+    }
+}
 
 
+x0=a0.x;
+y0=a0.y;
+
+if (astronaut.x>a0.x&&(map[parseInt(a0.x/40+1)][parseInt(a0.y/40)]==1)&&((astronaut.x-a0.x)>30)) 
+{
+
+    console.log('in right map['+parseInt(a0.x/40+1)+']['+parseInt(a0.y/40)+'] = '+ map[parseInt(a0.x/40+1)][parseInt(a0.y/40)]);
+    if (a0.x<(a0.x+40)) 
+    {
+        a0.body.velocity.x = 130;
+        a0.animations.play('a0right');
+    }    
+}
+else if (astronaut.x<a0.x&&(map[parseInt(a0.x/40-1)][parseInt(a0.y/40)]==1)&&((a0.x-astronaut.x)>30)) 
+{
+    console.log('in left map['+parseInt(a0.x/40-1)+']['+parseInt(a0.y/40)+'] = '+ map[parseInt(a0.x/40-1)][parseInt(a0.y/40)]);
+    if (a0.x>(a0.x-40)) 
+    {
+        a0.body.velocity.x = -130;
+        a0.animations.play('a0left');
+    }
+}
+else if (astronaut.y<a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)-1]==1)&&((a0.y-astronaut.y)>30)) 
+{
+    console.log('in up map['+parseInt(a0.x/40)+']['+parseInt(a0.y/40-1)+'] = '+ map[parseInt(a0.x/40)][parseInt(a0.y/40-1)]);
+    if (a0.y>(a0.y-40)) 
+    {
+        a0.body.velocity.y = -130;
+        a0.animations.play('a0up');
+    }
+}
+else if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)+1]==1)&&((astronaut.y-a0.y)>30)) 
+{
+    console.log('in down map['+parseInt(a0.x/40)+']['+parseInt(a0.y/40+1)+'] = '+ map[parseInt(a0.x/40)][parseInt(a0.y/40+1)]);
+    if (a0.y<(a0.y+40)) 
+    {
+        a0.body.velocity.y = 130;
+        a0.animations.play('a0down');
+    }   
+}
 
 
 
-
-
-
+else if (astronaut.x==a0.x) 
+{
+    if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)+1]==1)) 
+    {
+        if (a0.y<(a0.y+40)) 
+        {
+            a0.body.velocity.y = 130;
+            a0.animations.play('a0down');
+        }
+    }
+    else if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)-1]==1)) 
+    {
+        if (a0.y>(a0.y-40)) 
+        {
+            a0.body.velocity.y = -130;
+            a0.animations.play('a0up');
+        }
+    }
+}
+else if (astronaut.y==a0.y) 
+{
+    if (astronaut.x>a0.x&&(map[parseInt(a0.x/40)+1][parseInt(a0.y/40)]==1)) 
+    {
+        if (a0.x<(a0.x+40)) 
+        {
+            a0.body.velocity.x = 130;
+            a0.animations.play('a0right');
+        }
+    }
+    else if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)-1][parseInt(a0.y/40)+1]==1)) 
+    {
+        if (a0.x>(a0.x-40)) 
+        {
+            a0.body.velocity.x = -130;
+            a0.animations.play('a0left');
+        }
+    }
+}
 
 
 
@@ -1402,7 +1467,7 @@ a1.body.velocity.x=0;
 a1.body.velocity.y=0;
 if (a1.x>=280&&a1.x<=320&&a1.y>=198&&a1.y<200) 
     {
-        //decide1=game.rnd.integerInRange(1,5);
+        decide1=game.rnd.integerInRange(1,5);
         console.log(decide1);
     }
 
@@ -1771,7 +1836,7 @@ if (a1.x>=280&&a1.x<=320&&a1.y>=198&&a1.y<200)
 
     if (a2.x>=1040&&a2.x<=1080&&a2.y==220) 
     {
-        //decide2=game.rnd.integerInRange(1,3);
+        decide2=game.rnd.integerInRange(1,4);
         console.log(decide2);
     }
 
@@ -2142,7 +2207,7 @@ if (decide2==1)
 
     if (a3.x==282&&a3.y>=600&&a3.y<640) 
     {
-        //decide3=game.rnd.integerInRange(1,4);
+        decide3=game.rnd.integerInRange(1,4);
         //console.log(decide3);
     }
 
@@ -2850,14 +2915,14 @@ else if (decide3==5)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-console.log('x4,y4 : '+a4.x+' , '+a4.y);
+//console.log('x4,y4 : '+a4.x+' , '+a4.y);
 
     a4.body.velocity.x=0;
     a4.body.velocity.y=0;
 
     if (a4.x==1038&&a4.y>=600&&a4.y<640) 
     {
-        //decide4=game.rnd.integerInRange(1);
+        decide4=game.rnd.integerInRange(1);
         console.log(decide4);
     }
 
@@ -2969,6 +3034,7 @@ if (decide4==1)
     }
 
 //////////////////////////////////////////////////         A4 Path2        ///////////////////////////////////////////////////////
+
 else if (decide4==2) 
     {
         if (a4.x>=1040&&a4.x<=1120&&a4.y>=600&&a4.y<=640) 
@@ -3151,7 +3217,7 @@ else if (decide4==3)
 
  //////////////////////////////////////////////////         A4 Path4        ///////////////////////////////////////////////////////
 
-if (decide4==4) 
+else if (decide4==4) 
     {
         if (a4.x>=1040&&a4.x<=1080&&a4.y>=125&&a4.y<=640) 
         {
@@ -3225,6 +3291,11 @@ if (decide4==4)
         }
     }
 
+
+//--------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------
+ 
+
  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////          A5          ///////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3239,7 +3310,7 @@ a5.body.velocity.x=0;
 a5.body.velocity.y=0;
 if (a5.x>=280&&a5.x<=320&&a5.y>=198&&a5.y<200) 
     {
-        //decide5=game.rnd.integerInRange(1,5);
+        decide5=game.rnd.integerInRange(1,5);
         //console.log(decide5);
     }
 
@@ -3610,7 +3681,7 @@ if (bot6==1)
 
     if (a6.x>=1040&&a6.x<=1080&&a6.y==220) 
     {
-        //decide6=game.rnd.integerInRange(1,3);
+        decide6=game.rnd.integerInRange(1,4);
         console.log(decide6);
     }
 
@@ -3826,7 +3897,7 @@ if (decide6==1)
 
 
 
-//////////////////////////////////////////////////         A2 Path3        ///////////////////////////////////////////////////////
+//////////////////////////////////////////////////         A6 Path3        ///////////////////////////////////////////////////////
 
  else if (decide6==3) 
     {
@@ -3890,6 +3961,84 @@ if (decide6==1)
             a6.frame=0;
         }
     }
+
+//////////////////////////////////////////////////         A6 Path4        ///////////////////////////////////////////////////////
+
+
+else if (decide6==4) 
+    {
+        if (a6.x>=1040&&a6.x<=1080&&a6.y>=125&&a6.y<=240) 
+        {
+            a6.body.velocity.y = -120;
+            a6.animations.play('a6up');
+        }
+        else if (a6.x>=725&&a2.x<=1080&&a6.y>=120&&a6.y<=160) 
+        {
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+        }
+        else if (a6.x>=720&&a6.x<=760&&a6.y>=120&&a6.y<=280) 
+        {
+            a6.body.velocity.y = 120;
+            a6.animations.play('a6down');
+        }
+        else if (a6.x>=720&&a6.x<=800&&a6.y>=280&&a6.y<=320) 
+        {
+            a6.body.velocity.x = 120;
+            a6.animations.play('a6right');
+        }
+        else if (a6.x>=800&&a6.x<=840&&a6.y>280&&a6.y<=680) 
+        {
+            a6.body.velocity.y = 120;
+            a6.animations.play('a6down');
+        }
+        else if (a6.x>=240&&a6.x<=840&&a6.y>=680&&a6.y<=720&&a6p4==1) 
+        {
+            
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+        }
+
+        else if(a6.x>=220&&a6.x<=240&&a6p4==1)
+        {
+            a6p4=0;
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+            console.log(a6p4);
+        }
+        else if (a6.x>=200&&a6.x<=880&&a6.y>=680&&a6.y<=720&&a6p4==0) 
+        {
+            
+            a6.body.velocity.x = 120;
+            a6.animations.play('a2right');
+        }
+        else if (a6.x>=880&&a6.x<=920&&a6.y>=445&&a6.y<=880) 
+        {   
+            a6p4=1;
+            a6.body.velocity.y = -120;
+            a6.animations.play('a6up');
+        }
+        else if (a6.x>=880&&a6.x<=1040&&a6.y>=440&&a6.y<=480) 
+        {
+            a6.body.velocity.x = 120;
+            a6.animations.play('a6right');
+        }
+        else if (a6.x>=1040&&a6.x<=1080&&a6.y>=205&&a6.y<=480) 
+        {
+            a6.body.velocity.y = -120;
+            a6.animations.play('a6up');
+        }
+        
+        else
+        {
+            a6.body.velocity.y=0;
+            a6.body.velocity.x=0;
+            a6.animations.stop();
+            a6.frame=0;
+        }
+    }
+
+
 
 } // END OF BOT6 ka if
 
