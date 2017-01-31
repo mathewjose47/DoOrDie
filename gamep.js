@@ -25,6 +25,84 @@ var flag1;
 var bot5=0;
 var bot6=0;
 
+
+var map [];
+var column0[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+var column1[0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0];
+var column2[0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0];
+var column3[0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0];
+var column4[0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0,0];
+var column5[0,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,1,0];
+var column6[0,1,0,1,0,1,0,0,1,0,0,1,0,0,0,1,0,1,0];
+var column7[0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0];
+var column8[0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,1,0];
+var column9[0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0];
+var column10[0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0];
+var column11[0,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,0];
+var column12[0,1,0,1,0,1,0,0,0,0,0,0,0,1,0,1,0,1,0];
+var column13[0,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,0];
+var column14[0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,1,0];
+var column15[0,1,0,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,0];
+var column16[0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0];
+
+var column33[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+var column32[0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0];
+var column31[0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0];
+var column30[0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0];
+var column29[0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0,0];
+var column28[0,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,1,0];
+var column27[0,1,0,1,0,1,0,0,1,0,0,1,0,0,0,1,0,1,0];
+var column26[0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0];
+var column25[0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,1,0];
+var column24[0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0];
+var column23[0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0];
+var column22[0,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,0];
+var column21[0,1,0,1,0,1,0,0,0,0,0,0,0,1,0,1,0,1,0];
+var column20[0,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,0];
+var column19[0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,1,0];
+var column18[0,1,0,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,0];
+var column17[0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0];
+
+map.push(column0);
+map.push(column1);
+map.push(column2);
+map.push(column3);
+map.push(column4);
+map.push(column5);
+map.push(column6);
+map.push(column7);
+map.push(column8);
+map.push(column9);
+map.push(column10);
+map.push(column11);
+map.push(column12);
+map.push(column13);
+map.push(column14);
+map.push(column15);
+map.push(column16);
+map.push(column17);
+map.push(column18);
+map.push(column19);
+map.push(column20);
+map.push(column21);
+map.push(column22);
+map.push(column23);
+map.push(column24);
+map.push(column25);
+map.push(column26);
+map.push(column27);
+map.push(column28);
+map.push(column29);
+map.push(column30);
+map.push(column31);
+map.push(column32);
+map.push(column33);
+
+
+var j,k;
+
+
+
 var button_press;
 var flames_sound;
 var kill_sound;
@@ -46,7 +124,7 @@ var m=0.000000;
 var arrows;
 
 var decide1=1;
-var decide2=1;
+var decide2=4;
 var decide3=1;
 var decide4=1;
 var decide5=2;
@@ -63,7 +141,9 @@ var a3p4=0;
 var a3p5=0;
 var a5p4=1;
 var a6p1=1;
+var a2p4=1;
 
+var a0;
 var a1;
 var a2;
 var a3;
@@ -82,6 +162,8 @@ var x3;
 var y3;
 var x4;
 var y4;
+var x0;
+var y0;
 
 var x;
 var y;
@@ -350,13 +432,13 @@ function update1()
         }
         else if (x>970&&x<1260&&y>435&&y<490) 
         {
-            game.sound.stopAll();
+            //game.sound.stopAll();
             button_press.play();
             game.state.start('gameState0');//story
         }
          else if (x>970&&x<1260&&y>505&&y<560) 
         {
-            game.sound.stopAll();
+            //game.sound.stopAll();
             button_press.play();
            game.state.start('gameState4');//instructions           
         }
@@ -536,6 +618,16 @@ function create5()
        mute_button.tint = 16700000;
     }
 
+score_text = game.add.text(game.world.width/2,game.world.height/2+75,score,{fontSize: '32px', fill:'#000'});
+    score_text.anchor.setTo(0.5,0.5);
+
+    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+
+    fullButton = game.add.button(1220, 90, 'fullButton', goFull, this, 2, 1, 0);
+    quitButton = game.add.button(1270, 90, 'quitButton', quit, this, 2, 1, 0);
+    quitButton.scale.setTo(quitButton_scale, quitButton_scale);
+    fullButton.scale.setTo(fullButton_scale, fullButton_scale);
 
         $.ajax({
         type: 'POST',
@@ -556,16 +648,7 @@ function create5()
     
 
     
-    score_text = game.add.text(game.world.width/2,game.world.height/2+75,score,{fontSize: '32px', fill:'#000'});
-    score_text.anchor.setTo(0.5,0.5);
-
-    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-    game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
-
-    fullButton = game.add.button(1220, 90, 'fullButton', goFull, this, 2, 1, 0);
-    quitButton = game.add.button(1270, 90, 'quitButton', quit, this, 2, 1, 0);
-    quitButton.scale.setTo(quitButton_scale, quitButton_scale);
-    fullButton.scale.setTo(fullButton_scale, fullButton_scale);
+    
 };
 
 function showGameOver()
@@ -647,7 +730,9 @@ function goFull() {
     pirates.loop=true;
     pirates.play();
         
-    
+    // for(j=0;j<=33;j++)
+    //     for(k=0;k<=33;k++)
+    //         console.log(map[column1[i]]);
 
     game.time.desiredFps = 60;
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -700,6 +785,10 @@ function goFull() {
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
 
+    a0=game.add.sprite(280,200,'a1');
+    a0.scale.setTo(0.75,0.75);
+    game.physics.arcade.enable(a0);
+    a0.enableBody=true;
 
     a1=game.add.sprite(280,200,'a1');
     a1.scale.setTo(0.75,0.75);
@@ -740,6 +829,11 @@ function goFull() {
     // a8.scale.setTo(0.75,0.75);
     // game.physics.arcade.enable(a8);
     // a8.enableBody=true;
+
+    a0.animations.add('a0left', [7,8,9,10,11,12], 10, true);
+    a0.animations.add('a0right', [21,22,23,24,25,26], 10, true);
+    a0.animations.add('a0up', [14,15,16,17,18,19], 10, true);
+    a0.animations.add('a0down', [0,1,2,3,4,5], 10, true);
 
     a1.animations.add('a1left', [7,8,9,10,11,12], 10, true);
     a1.animations.add('a1right', [21,22,23,24,25,26], 10, true);
@@ -1095,6 +1189,12 @@ function fix()
     else
     {
         a6.visible=false;
+        a1.visible=false;
+        a2.visible=false;
+        a3.visible=false;
+        a4.visible=false;
+        a5.visible=false;
+
     }
     
 
@@ -1125,9 +1225,9 @@ function fix()
         }
     }
 
-    if (score>=20) 
+    if (score>=500) 
     {
-        if (!(astronaut.x>=40&&astronaut.x<=480&&astronaut.y>=360&&astronaut.y<=680)) 
+        if (!(astronaut.x>=840&&astronaut.x<=1160&&astronaut.y>=40&&astronaut.y<=400)) 
         {
             bot6=1;
         }
@@ -1215,6 +1315,88 @@ function fix()
 
 
     // ALIENS MOVEMENT
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////          A0          ///////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+if (astronaut.x>a0.x&&(map[parseInt(a0.x/40+1)][parseInt(a0.y/40)]==1)) 
+{
+    a0.body.velocity.x = 120;
+    a0.animations.play('a0right');
+}
+else if (astronaut.x<a0.x&&(map[parseInt(a0.x/40-1)][parseInt(a0.y/40)]==1)) 
+{
+    a0.body.velocity.x = -120;
+    a0.animations.play('a0left');
+}
+else if (astronaut.y<a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)-1]==1)) 
+{
+    a0.body.velocity.y = -120;
+    a0.animations.play('a0up');
+}
+else if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)+1]==1)) 
+{
+    a0.body.velocity.y = 120;
+    a0.animations.play('a0down');
+}
+// else if (astronaut.x==a0.x) 
+// {
+//     if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)+1]==1)) 
+//     {
+//         a0.body.velocity.y = 120;
+//         a0.animations.play('a0down');
+//     }
+//     else if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)-1][parseInt(a0.y/40)]==1)) 
+//     {
+//         a0.body.velocity.y = -120;
+//         a0.animations.play('a0up');
+//     }
+// }
+// else if (astronaut.y==a0.y) 
+// {
+//     if (astronaut.x>a0.x&&(map[parseInt(a0.x/40)+1][parseInt(a0.y/40)]==1)) 
+//     {
+//         a0.body.velocity.x = 120;
+//         a0.animations.play('a0right');
+//     }
+//     else if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)+1]==1)) 
+//     {
+//         a0.body.velocity.x = -120;
+//         a0.animations.play('a0left');
+//     }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1588,7 +1770,7 @@ if (a1.x>=280&&a1.x<=320&&a1.y>=198&&a1.y<200)
 ///////////////////////////////////////////////////          A2          ///////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//console.log('x2,y2 : '+a2.x+' , '+a2.y);
+console.log('x2,y2 : '+a2.x+' , '+a2.y);
 
     a2.body.velocity.x=0;
     a2.body.velocity.y=0;
@@ -1877,7 +2059,80 @@ if (decide2==1)
     }
 
 
+//////////////////////////////////////////////////         A2 Path4        ///////////////////////////////////////////////////////
 
+ else if (decide2==4) 
+    {
+        if (a2.x>=1040&&a2.x<=1080&&a2.y>=125&&a2.y<=240) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else if (a2.x>=725&&a2.x<=1080&&a2.y>=120&&a2.y<=160) 
+        {
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+        }
+        else if (a2.x>=720&&a2.x<=760&&a2.y>=120&&a2.y<=280) 
+        {
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=720&&a2.x<=800&&a2.y>=280&&a2.y<=320) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+        else if (a2.x>=800&&a2.x<=840&&a2.y>280&&a2.y<=680) 
+        {
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=240&&a2.x<=840&&a2.y>=680&&a2.y<=720&&a2p4==1) 
+        {
+            
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+        }
+
+        else if(a2.x>=220&&a2.x<=240&&a2p4==1)
+        {
+            a2p4=0;
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+            console.log(a2p4);
+        }
+        else if (a2.x>=200&&a2.x<=880&&a2.y>=680&&a2.y<=720&&a2p4==0) 
+        {
+            
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+        else if (a2.x>=880&&a2.x<=920&&a2.y>=445&&a2.y<=880) 
+        {   
+            a2p4=1;
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else if (a2.x>=880&&a2.x<=1040&&a2.y>=440&&a2.y<=480) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+        else if (a2.x>=1040&&a2.x<=1080&&a2.y>=205&&a2.y<=480) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        
+        else
+        {
+            a2.body.velocity.y=0;
+            a2.body.velocity.x=0;
+            a2.animations.stop();
+            a2.frame=0;
+        }
+    }
 
 
 
