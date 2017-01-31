@@ -25,7 +25,7 @@ var flag1;
 var bot5=0;
 var bot6=0;
 
-
+/*
 var map [];
 var column0[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 var column1[0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0];
@@ -101,7 +101,7 @@ map.push(column33);
 
 var j,k;
 
-
+*/
 
 var button_press;
 var flames_sound;
@@ -143,7 +143,7 @@ var a5p4=1;
 var a6p1=1;
 var a2p4=1;
 
-var a0;
+//var a0;
 var a1;
 var a2;
 var a3;
@@ -785,10 +785,10 @@ function goFull() {
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
 
-    a0=game.add.sprite(280,200,'a1');
-    a0.scale.setTo(0.75,0.75);
-    game.physics.arcade.enable(a0);
-    a0.enableBody=true;
+    // a0=game.add.sprite(280,200,'a1');
+    // a0.scale.setTo(0.75,0.75);
+    // game.physics.arcade.enable(a0);
+    // a0.enableBody=true;
 
     a1=game.add.sprite(280,200,'a1');
     a1.scale.setTo(0.75,0.75);
@@ -830,10 +830,10 @@ function goFull() {
     // game.physics.arcade.enable(a8);
     // a8.enableBody=true;
 
-    a0.animations.add('a0left', [7,8,9,10,11,12], 10, true);
-    a0.animations.add('a0right', [21,22,23,24,25,26], 10, true);
-    a0.animations.add('a0up', [14,15,16,17,18,19], 10, true);
-    a0.animations.add('a0down', [0,1,2,3,4,5], 10, true);
+    // a0.animations.add('a0left', [7,8,9,10,11,12], 10, true);
+    // a0.animations.add('a0right', [21,22,23,24,25,26], 10, true);
+    // a0.animations.add('a0up', [14,15,16,17,18,19], 10, true);
+    // a0.animations.add('a0down', [0,1,2,3,4,5], 10, true);
 
     a1.animations.add('a1left', [7,8,9,10,11,12], 10, true);
     a1.animations.add('a1right', [21,22,23,24,25,26], 10, true);
@@ -1189,12 +1189,6 @@ function fix()
     else
     {
         a6.visible=false;
-        a1.visible=false;
-        a2.visible=false;
-        a3.visible=false;
-        a4.visible=false;
-        a5.visible=false;
-
     }
     
 
@@ -1225,7 +1219,7 @@ function fix()
         }
     }
 
-    if (score>=500) 
+    if (score>=45) 
     {
         if (!(astronaut.x>=840&&astronaut.x<=1160&&astronaut.y>=40&&astronaut.y<=400)) 
         {
@@ -1320,52 +1314,52 @@ function fix()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-if (astronaut.x>a0.x&&(map[parseInt(a0.x/40+1)][parseInt(a0.y/40)]==1)) 
-{
-    a0.body.velocity.x = 120;
-    a0.animations.play('a0right');
-}
-else if (astronaut.x<a0.x&&(map[parseInt(a0.x/40-1)][parseInt(a0.y/40)]==1)) 
-{
-    a0.body.velocity.x = -120;
-    a0.animations.play('a0left');
-}
-else if (astronaut.y<a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)-1]==1)) 
-{
-    a0.body.velocity.y = -120;
-    a0.animations.play('a0up');
-}
-else if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)+1]==1)) 
-{
-    a0.body.velocity.y = 120;
-    a0.animations.play('a0down');
-}
-// else if (astronaut.x==a0.x) 
+// if (astronaut.x>a0.x&&(map[parseInt(a0.x/40+1)][parseInt(a0.y/40)]==1)) 
 // {
-//     if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)+1]==1)) 
-//     {
-//         a0.body.velocity.y = 120;
-//         a0.animations.play('a0down');
-//     }
-//     else if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)-1][parseInt(a0.y/40)]==1)) 
-//     {
-//         a0.body.velocity.y = -120;
-//         a0.animations.play('a0up');
-//     }
+//     a0.body.velocity.x = 120;
+//     a0.animations.play('a0right');
 // }
-// else if (astronaut.y==a0.y) 
+// else if (astronaut.x<a0.x&&(map[parseInt(a0.x/40-1)][parseInt(a0.y/40)]==1)) 
 // {
-//     if (astronaut.x>a0.x&&(map[parseInt(a0.x/40)+1][parseInt(a0.y/40)]==1)) 
-//     {
-//         a0.body.velocity.x = 120;
-//         a0.animations.play('a0right');
-//     }
-//     else if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)+1]==1)) 
-//     {
-//         a0.body.velocity.x = -120;
-//         a0.animations.play('a0left');
-//     }
+//     a0.body.velocity.x = -120;
+//     a0.animations.play('a0left');
 // }
+// else if (astronaut.y<a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)-1]==1)) 
+// {
+//     a0.body.velocity.y = -120;
+//     a0.animations.play('a0up');
+// }
+// else if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)+1]==1)) 
+// {
+//     a0.body.velocity.y = 120;
+//     a0.animations.play('a0down');
+// }
+// // else if (astronaut.x==a0.x) 
+// // {
+// //     if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)+1]==1)) 
+// //     {
+// //         a0.body.velocity.y = 120;
+// //         a0.animations.play('a0down');
+// //     }
+// //     else if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)-1][parseInt(a0.y/40)]==1)) 
+// //     {
+// //         a0.body.velocity.y = -120;
+// //         a0.animations.play('a0up');
+// //     }
+// // }
+// // else if (astronaut.y==a0.y) 
+// // {
+// //     if (astronaut.x>a0.x&&(map[parseInt(a0.x/40)+1][parseInt(a0.y/40)]==1)) 
+// //     {
+// //         a0.body.velocity.x = 120;
+// //         a0.animations.play('a0right');
+// //     }
+// //     else if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)+1]==1)) 
+// //     {
+// //         a0.body.velocity.x = -120;
+// //         a0.animations.play('a0left');
+// //     }
+// // }
 
 
 
@@ -1770,7 +1764,7 @@ if (a1.x>=280&&a1.x<=320&&a1.y>=198&&a1.y<200)
 ///////////////////////////////////////////////////          A2          ///////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-console.log('x2,y2 : '+a2.x+' , '+a2.y);
+//console.log('x2,y2 : '+a2.x+' , '+a2.y);
 
     a2.body.velocity.x=0;
     a2.body.velocity.y=0;
@@ -2856,7 +2850,7 @@ else if (decide3==5)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-//console.log('x4,y4 : '+a4.x+' , '+a4.y);
+console.log('x4,y4 : '+a4.x+' , '+a4.y);
 
     a4.body.velocity.x=0;
     a4.body.velocity.y=0;
