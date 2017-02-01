@@ -1468,7 +1468,7 @@ a1.body.velocity.y=0;
 if (a1.x>=280&&a1.x<=320&&a1.y>=198&&a1.y<200) 
     {
         decide1=game.rnd.integerInRange(1,5);
-        console.log(decide1);
+        //console.log(decide1);
     }
 
 //////////////////////////////////////////////////        A1 Path1        ///////////////////////////////////////////////////////
@@ -1836,8 +1836,8 @@ if (a1.x>=280&&a1.x<=320&&a1.y>=198&&a1.y<200)
 
     if (a2.x>=1040&&a2.x<=1080&&a2.y==220) 
     {
-        decide2=game.rnd.integerInRange(1,4);
-        console.log(decide2);
+        decide2=game.rnd.integerInRange(1,5);
+        //console.log(decide2);
     }
 
 //////////////////////////////////////////////////         A2 Path1        ///////////////////////////////////////////////////////
@@ -2193,8 +2193,160 @@ if (decide2==1)
         }
     }
 
+//////////////////////////////////////////////////         A2 Path5        ///////////////////////////////////////////////////////
 
-
+if (decide2==5) 
+    {
+        if (a2.x>=1040&&a2.x<=1120&&a2.y>=200&&a2.y<=205) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+        else if (a2.x>=1120&&a2.x<=1160&&a2.y>=200&&a2.y<=280) 
+        {
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=1120&&a2.x<=1200&&a2.y>=280&&a2.y<=320) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+        else if (a2.x>=1200&&a2.x<=1240&&a2.y>=205&&a2.y<=320) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else if (a2.x>=1200&&a2.x<=1280&&a2.y>200&&a2.y<=240) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+        else if (a2.x>=1280&&a2.x<=1320&&a2.y>=200&&a2.y<=520) 
+        {
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=1125&&a2.x<=1320&&a2.y>=520&&a2.y<=560) 
+        {
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+        }
+        else if (a2.x>=1120&&a2.x<=1160&&a2.y>=520&&a2.y<=600) 
+        {
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=965&&a2.x<=1160&&a2.y>=600&&a2.y<=640) 
+        {
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+        }
+        else if (a2.x>=960&&a2.x<=1000&&a2.y>=600&&a2.y<=680) 
+        {
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=605&&a2.x<=1000&&a2.y>=680&&a2.y<=720) 
+        {
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+            
+        }
+        else if (a2.x>=600&&a2.x<=640&&a2.y>=525&&a2.y<=720) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else if (a2.x>=445&&a2.x<=640&&a2.y>=520&&a2.y<=560) 
+        {
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+        }
+        else if (a2.x>=440&&a2.x<=480&&a2.y>=445&&a2.y<=560) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else if (a2.x>=205&&a2.x<=480&&a2.y>=440&&a2.y<=480) 
+        {
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+        }
+        else if (a2.x>=200&&a2.x<=240&&a2.y>=440&&a2.y<=520) 
+        {
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=45&&a2.x<=240&&a2.y>=520&&a2.y<=560) 
+        {
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+        }
+        else if (a2.x>=40&&a2.x<=80&&a2.y>=205&&a2.y<=560) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else if (a2.x>=40&&a2.x<=120&&a2.y>=200&&a2.y<=240) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+        else if (a2.x>=120&&a2.x<=160&&a2.y>=200&&a2.y<=280) 
+        {
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=120&&a2.x<=200&&a2.y>=280&&a2.y<=320) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+        else if (a2.x>=200&&a2.x<=240&&a2.y>=205&&a2.y<=320) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else if (a2.x>=200&&a2.x<=280&&a2.y>=200&&a2.y<=240) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+            
+        }
+        else if (a2.x>=280&&a2.x<=320&&a2.y>=125&&a2.y<=240) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else if (a2.x>=280&&a2.x<=880&&a2.y>=120&&a2.y<=160) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+        else if (a2.x>=880&&a2.x<=920&&a2.y>=120&&a2.y<=280) 
+        {
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=880&&a2.x<=1040&&a2.y>=280&&a2.y<=320) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+        else if (a2.x>=1040&&a2.x<=1080&&a2.y>=205&&a2.y<=480) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else
+        {
+            a2.body.velocity.y=0;
+            a2.body.velocity.x=0;
+            a2.animations.stop();
+            a2.frame=0;
+        }
+    }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////          A3          ///////////////////////////////////////////////////////
@@ -2207,7 +2359,7 @@ if (decide2==1)
 
     if (a3.x==282&&a3.y>=600&&a3.y<640) 
     {
-        decide3=game.rnd.integerInRange(1,4);
+        decide3=game.rnd.integerInRange(1,5);
         //console.log(decide3);
     }
 
@@ -2922,8 +3074,8 @@ else if (decide3==5)
 
     if (a4.x==1038&&a4.y>=600&&a4.y<640) 
     {
-        decide4=game.rnd.integerInRange(1);
-        console.log(decide4);
+        decide4=game.rnd.integerInRange(1,5);
+        //console.log(decide4);
     }
 
 //////////////////////////////////////////////////         A4 Path1        ///////////////////////////////////////////////////////
@@ -3291,9 +3443,122 @@ else if (decide4==4)
         }
     }
 
+//////////////////////////////////////////////////         A4 Path5        ///////////////////////////////////////////////////////
 
-//--------------------------------------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------------------------------------
+if (decide4==5) 
+    {
+        if (a4.x>=1040&&a4.x<=1080&&a4.y>=445&&a4.y<=640) 
+        {
+            
+            a4.body.velocity.y = -120;
+            a4.animations.play('a4up');
+        }
+        else if (a4.x>=885&&a4.x<=1080&&a4.y>=440&&a4.y<=480) 
+        {
+            a4.body.velocity.x = -120;
+            a4.animations.play('a4left');
+        }
+        else if (a4.x>=880&&a4.x<=920&&a4.y>=440&&a4.y<=520) 
+        {
+            a4.body.velocity.y = 120;
+            a4.animations.play('a4down');
+        }
+        else if (a4.x>=805&&a4.x<=920&&a4.y>=520&&a4.y<=560) 
+        {
+            a4.body.velocity.x = -120;
+            a4.animations.play('a4left');
+        }
+        else if (a4.x>=800&&a4.x<=840&&a4.y>=365&&a4.y<=560) 
+        {
+            a4.body.velocity.y = -120;
+            a4.animations.play('a4up');
+        }
+        else if (a4.x>=525&&a4.x<=840&&a4.y>=360&&a4.y<=400) 
+        {
+            
+            a4.body.velocity.x = -120;
+            a4.animations.play('a4left');
+        }
+        else if (a4.x>=520&&a4.x<=560&&a4.y>=285&&a4.y<=400) 
+        {
+            a4.body.velocity.y = -120;
+            a4.animations.play('a4up');
+        }
+        else if (a4.x>=520&&a4.x<=600&&a4.y>=280&&a4.y<=320) 
+        {
+            a4.body.velocity.x = 120;
+            a4.animations.play('a4right');
+        }
+        else if (a4.x>=600&&a4.x<=640&&a4.y>=205&&a4.y<=320) 
+        {
+            a4.body.velocity.y = -120;
+            a4.animations.play('a4up');
+        }
+        else if (a4.x>=445&&a4.x<=640&&a4.y>=200&&a4.y<=240) 
+        {
+            
+            a4.body.velocity.x = -120;
+            a4.animations.play('a4left');
+        }
+        else if (a4.x>=440&&a4.x<=480&&a4.y>=200&&a4.y<=280) 
+        {
+            a4.body.velocity.y = 120;
+            a4.animations.play('a4down');
+        }
+        else if (a4.x>=365&&a4.x<=480&&a4.y>=280&&a4.y<=320) 
+        {
+            a4.body.velocity.x = -120;
+            a4.animations.play('a4left');
+        }
+        else if (a4.x>=360&&a4.x<=400&&a4.y>=280&&a4.y<=680) 
+        {
+            a4.body.velocity.y = 120;
+            a4.animations.play('a4down');
+        }
+        else if (a4.x>=360&&a4.x<=600&&a4.y>=680&&a4.y<=720) 
+        {
+            a4.body.velocity.x = 120;
+            a4.animations.play('a4right');
+        }
+        else if (a4.x>=600&&a4.x<=640&&a4.y>=605&&a4.y<=720) 
+        {
+            a4.body.velocity.y = -120;
+            a4.animations.play('a4up');
+        }
+        else if (a4.x>=600&&a4.x<=720&&a4.y>=600&&a4.y<=640) 
+        {
+            
+            a4.body.velocity.x = 120;
+            a4.animations.play('a4right');
+        }
+        else if (a4.x>=720&&a4.x<=760&&a4.y>=600&&a4.y<=680) 
+        {
+            a4.body.velocity.y = 120;
+            a4.animations.play('a4down');
+        }
+        else if (a4.x>=720&&a4.x<=960&&a4.y>=680&&a4.y<=720) 
+        {
+            a4.body.velocity.x = 120;
+            a4.animations.play('a4right');
+        }
+        else if (a4.x>=960&&a4.x<=1000&&a4.y>=605&&a4.y<=720) 
+        {
+            a4.body.velocity.y = -120;
+            a4.animations.play('a4up');
+        }
+        else if (a4.x>=960&&a4.x<=1040&&a4.y>=600&&a4.y<=640) 
+        {
+            a4.body.velocity.x = 120;
+            a4.animations.play('a4right');
+        }
+        else
+        {
+            a4.body.velocity.y=0;
+            a4.body.velocity.x=0;
+            a4.animations.stop();
+            a4.frame=0;
+        }
+    }
  
 
  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3682,7 +3947,7 @@ if (bot6==1)
     if (a6.x>=1040&&a6.x<=1080&&a6.y==220) 
     {
         decide6=game.rnd.integerInRange(1,4);
-        console.log(decide6);
+        //console.log(decide6);
     }
 
 //////////////////////////////////////////////////         A6 Path1        ///////////////////////////////////////////////////////
