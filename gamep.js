@@ -25,79 +25,6 @@ var flag1;
 var bot5=0;
 var bot6=0;
 
-/*
-var map [];
-var column0[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-var column1[0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0];
-var column2[0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0];
-var column3[0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0];
-var column4[0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0,0];
-var column5[0,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,1,0];
-var column6[0,1,0,1,0,1,0,0,1,0,0,1,0,0,0,1,0,1,0];
-var column7[0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0];
-var column8[0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,1,0];
-var column9[0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0];
-var column10[0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0];
-var column11[0,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,0];
-var column12[0,1,0,1,0,1,0,0,0,0,0,0,0,1,0,1,0,1,0];
-var column13[0,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,0];
-var column14[0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,1,0];
-var column15[0,1,0,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,0];
-var column16[0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0];
-
-var column33[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-var column32[0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0];
-var column31[0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0];
-var column30[0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0];
-var column29[0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0,0];
-var column28[0,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,1,0];
-var column27[0,1,0,1,0,1,0,0,1,0,0,1,0,0,0,1,0,1,0];
-var column26[0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0];
-var column25[0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,1,0];
-var column24[0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0];
-var column23[0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0];
-var column22[0,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,0];
-var column21[0,1,0,1,0,1,0,0,0,0,0,0,0,1,0,1,0,1,0];
-var column20[0,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,0];
-var column19[0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,1,0];
-var column18[0,1,0,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,0];
-var column17[0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0];
-
-map.push(column0);
-map.push(column1);
-map.push(column2);
-map.push(column3);
-map.push(column4);
-map.push(column5);
-map.push(column6);
-map.push(column7);
-map.push(column8);
-map.push(column9);
-map.push(column10);
-map.push(column11);
-map.push(column12);
-map.push(column13);
-map.push(column14);
-map.push(column15);
-map.push(column16);
-map.push(column17);
-map.push(column18);
-map.push(column19);
-map.push(column20);
-map.push(column21);
-map.push(column22);
-map.push(column23);
-map.push(column24);
-map.push(column25);
-map.push(column26);
-map.push(column27);
-map.push(column28);
-map.push(column29);
-map.push(column30);
-map.push(column31);
-map.push(column32);
-map.push(column33);
-*/
 
 var j,k;
 
@@ -155,6 +82,10 @@ var pause_button;
 var mute_button;
 var pause_button_scale=0.12;
 var mute_button_scale=0.15;
+var play_button;
+var story_button;
+var instructions_button;
+var leaderboard_button;
 
 
 var l=0;
@@ -165,7 +96,9 @@ var arrows;
 
 var decide1=1;
 var decide2=1;
+
 var decide3=1;
+
 var decide4=1;
 var decide5=1;
 var decide6=1;
@@ -183,6 +116,10 @@ var a5p4=1;
 var a6p1=1;
 var a2p4=1;
 var a6p4=1;
+var a1p6=1;
+var a1p7=1;
+var a2p6=1;
+var a1p71=0;
 
 var a0;
 var a1;
@@ -364,6 +301,7 @@ function preload0()
     //game.load.audio('ghosts','audio/Mission-Impossible2.ogg');
 
     game.load.image('mute_button', 'images/background/mute_button.png');
+
     
 };
 
@@ -420,12 +358,51 @@ function preload1()
     game.load.audio('ghosts','audio/Mission-Impossible2.ogg');
 
     game.load.image('mute_button', 'images/background/mute_button.png');
+    game.load.image('play_button', 'images/background/play_button.jpg');
+    game.load.image('story_button', 'images/background/story_button.png');
+    game.load.image('instructions_button', 'images/background/instructions_button.png');
+    game.load.image('leaderboard_button', 'images/background/leaderboard_button.png');
+
 
 
 };
 
+
+function playState() 
+{
+    setTimeout(function(){ 
+        game.state.start('gameState2');
+    }, 100);
+
+    game.sound.stopAll();
+    button_press.play();
+    //goFull();
+
+    game.scale.startFullScreen(false);
+
+}
+
+function storyState()
+{
+    button_press.play();
+    game.state.start('gameState0');//story
+}
+
+function instructionsState()
+{
+    button_press.play();
+    game.state.start('gameState4');
+}
+
+function leaderboardState()
+{
+    button_press.play();
+    game.state.start('gameState5');
+}
+
 function create1()
 {
+
     lp = game.add.sprite(0, 0, 'lp');
     fullButton = game.add.button(1220, 90, 'fullButton', goFull, this, 2, 1, 0);
     quitButton = game.add.button(1270, 90, 'quitButton', quit, this, 2, 1, 0);
@@ -433,6 +410,11 @@ function create1()
     fullButton.scale.setTo(fullButton_scale, fullButton_scale);
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+
+    play_button = game.add.button(967, 575, 'play_button', playState, this, 2, 1, 0);
+    story_button = game.add.button(967, 435, 'story_button', storyState, this, 2, 1, 0);
+    leaderboard_button = game.add.button(967, 649, 'leaderboard_button', leaderboardState, this, 2, 1, 0);
+    instructions_button = game.add.button(967, 506, 'instructions_button', instructionsState, this, 2, 1, 0);
 
     mute_button = game.add.button(50, 90, 'mute_button', toggleMute, this, 2, 1, 0);
     mute_button.scale.setTo(mute_button_scale, mute_button_scale);
@@ -458,36 +440,6 @@ function create1()
 function update1()
 {
     astronaut.animations.play('spin');
-    x = game.input.mousePointer.x;
-    y = game.input.mousePointer.y;
-    //console.log(x,y);
-    if (game.input.activePointer.isDown) 
-    {
-        if (x>970&&x<1260&&y>575&&y<630) 
-        {
-            game.sound.stopAll();
-            button_press.play();
-            game.state.start('gameState2'); //play button
-        }
-        else if (x>970&&x<1260&&y>435&&y<490) 
-        {
-            //game.sound.stopAll();
-            button_press.play();
-            game.state.start('gameState0');//story
-        }
-         else if (x>970&&x<1260&&y>505&&y<560) 
-        {
-            //game.sound.stopAll();
-            button_press.play();
-           game.state.start('gameState4');//instructions           
-        }
-         else if (x>970&&x<1260&&y>650&&y<700) 
-        {
-            game.sound.stopAll();
-            button_press.play();
-            game.state.start('gameState5');//leaderboard
-        }
-    } 
 };
 
 
@@ -572,8 +524,6 @@ function create4()
 
     style = { font: '18pt Hobo Std', fill: 'white', align: 'justified', wordWrap: true, wordWrapWidth: 1135 };
 
-    // setTimeout(function()
-    // { 
         arrows=game.add.sprite(175, 175, 'arrows');
         arrows.scale.setTo(0.55,0.55);
         game.add.text(415, 240, "Use arrow keys to move the astronaut around the maze", style);
@@ -582,10 +532,9 @@ function create4()
         game.physics.arcade.enable(astronaut);
         astronaut.animations.add('spin', [0,1,2,0,1,2,0,1,2,3,4,5,3,4,5,3,4,5,6,7,8,6,7,8,6,7,8,9,10,11,9,10,11,9,10,11], 7, true);
         astronaut.animations.play('spin');
-    // }, 1000);
 
-    // setTimeout(function()
-    // { 
+
+
         game.add.text(590, 390, "Avoid the aliens!! ", style);
         a1=game.add.sprite(335,375,'a1');
         a1.scale.setTo(2,2);
@@ -596,10 +545,9 @@ function create4()
         a2.animations.add('spin',[0,1,2,3,4,5,21,22,23,24,25,26,14,15,16,17,18,19,7,8,9,10,11,12],7,true);
         a1.animations.play('spin');
         a2.animations.play('spin');
-    // }, 4000);
 
-    // setTimeout(function()
-    // { 
+
+
         game.add.text(455, 555, "And stay away from their Flamethrowers ", style);
         flamethrower = game.add.sprite(150,545,'flamethrower');
         flamethrower.scale.setTo(0.5,0.5);
@@ -622,7 +570,7 @@ function create4()
         flamethrower_flames.animations.play('burn');
         mflamethrower_flames.animations.play('mburn');
 
-    // }, 7000);
+
 
 
 };
@@ -743,7 +691,7 @@ function goFull() {
     game.load.spritesheet('mflamethrower_flames', 'images/flame/Flames/flamethrower_/mflamethrower_flames.png',512,512);
     game.load.spritesheet('blast', 'images/flame/Flames/fireball_hit_/flame_hit.png',512,512);
 
-    game.load.spritesheet('a1', 'images/aliens/spider.png',35,35);
+    game.load.spritesheet('a1', 'images/aliens/spider2.png',35,35);
 
     game.load.image('pause_button', 'images/background/pause_button.png');
     game.load.image('mute_button', 'images/background/mute_button.png');
@@ -755,12 +703,17 @@ function goFull() {
     game.load.audio('pirates','audio/piratesogg.ogg');
 
 
+
+
+
  }
 
  function create2(){
 
     bot5=0;
     bot6=0;
+
+
 
     button_press=game.add.audio('button_press');
     kill_sound=game.add.audio('kill_sound');
@@ -825,7 +778,7 @@ function goFull() {
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
 
-    a0=game.add.sprite(680,360,'a1');
+    a0=game.add.sprite(720,280,'a1');
     a0.scale.setTo(0.75,0.75);
     game.physics.arcade.enable(a0);
     a0.enableBody=true;
@@ -1178,6 +1131,8 @@ function fix()
  function update2()
  {
 
+    
+
 
     game.physics.arcade.overlap(astronaut, walls, fix, null, this);
 
@@ -1214,7 +1169,12 @@ function fix()
     }
     else
     {
-        a6.visible=false;
+         a6.visible=false;
+        // a0.visible=false;
+        // a1.visible=false;
+        // a2.visible=false;
+        // a4.visible=false;
+        // a5.visible=false;
     }
     
 
@@ -1256,14 +1216,14 @@ function fix()
 //--------------------------------------------------------------------------------------------------------------------------
 
 
-    // if (astronaut.x==x&&astronaut.y==y) 
-    // {
-    //     flag=5;
-    // }
+    if (astronaut.x==x&&astronaut.y==y) 
+    {
+        flag=5;
+    }
     astronaut.body.velocity.x = 0;
     astronaut.body.velocity.y = 0;
-    // x=astronaut.x;
-    // y=astronaut.y;
+    x=astronaut.x;
+    y=astronaut.y;
     if (cursors.left.isDown)
     {
         astronaut.body.velocity.x = -150;
@@ -1467,8 +1427,8 @@ a1.body.velocity.x=0;
 a1.body.velocity.y=0;
 if (a1.x>=280&&a1.x<=320&&a1.y>=198&&a1.y<200) 
     {
-        decide1=game.rnd.integerInRange(1,5);
-        //console.log(decide1);
+        decide1=game.rnd.integerInRange(1,7);
+        console.log(decide1);
     }
 
 //////////////////////////////////////////////////        A1 Path1        ///////////////////////////////////////////////////////
@@ -1825,6 +1785,220 @@ if (a1.x>=280&&a1.x<=320&&a1.y>=198&&a1.y<200)
     }
 
 
+//////////////////////////////////////////////////         A1 Path6        ///////////////////////////////////////////////////////
+
+    else if (decide1==6) 
+    {
+        if (a1.x>=280&&a1.x<=360&&a1.y>=200&&a1.y<=240) 
+        {
+            a1.body.velocity.x = 120;
+            a1.animations.play('a1right');
+        }
+        else if (a1.x>=360&&a1.x<=400&&a1.y>=125&&a1.y<=240) 
+        {
+            a1.body.velocity.y = -120;
+            a1.animations.play('a1up');
+        }
+        else if (a1.x>=360&&a1.x<=880&&a1.y>=120&&a1.y<=160) 
+        {
+            a1.body.velocity.x = 120;
+            a1.animations.play('a1right');
+        }
+        else if (a1.x>=880&&a1.x<=920&&a1.y>=45&&a1.y<=160&&a1p6==1) 
+        {
+            a1.body.velocity.y = -120;
+            a1.animations.play('a1up');
+        }
+        else if (a1.x>=880&&a1.x<=1080&&a1.y>=40&&a1.y<=80&&a1p6==1) 
+        {
+            a1.body.velocity.x = 120;
+            a1.animations.play('a1right');
+        }
+        else if (a1.x>=1080&&a1.x<=1110&&a1.y>=40&&a1.y<=80&&a1p6==1) 
+        {
+            a1p6=0;
+            a1.body.velocity.x = 120;
+            a1.animations.play('a1right');
+        }
+        
+        else if (a1.x>=205&&a1.x<=1160&&a1.y>=40&&a1.y<=80&&a1p6==0) 
+        {
+            a1.body.velocity.x = -120;
+            a1.animations.play('a1left');
+        }
+        else if (a1.x>=200&&a1.x<=240&&a1.y>=40&&a1.y<=120) 
+        {
+            a1p6=1;
+            a1.body.velocity.y = 120;
+            a1.animations.play('a1down');
+        }
+        else if (a1.x>=200&&a1.x<=280&&a1.y>=120&&a1.y<=160) 
+        {
+            a1.body.velocity.x = 120;
+            a1.animations.play('a1right');
+        }
+        else if (a1.x>=280&&a1.x<=320&&a1.y>=120&&a1.y<=200) 
+        {
+            a1.body.velocity.y = 120;
+            a1.animations.play('a1down');
+        }
+        
+        else
+        {
+            a1.body.velocity.y=0;
+            a1.body.velocity.x=0;
+            a1.animations.stop();
+            a1.frame=0;
+        }
+
+
+    }
+
+
+
+//////////////////////////////////////////////////         A1 Path7        ///////////////////////////////////////////////////////
+
+
+    else if (decide1==7) 
+    {
+        if (a1.x>=205&&a1.x<=320&&a1.y>=200&&a1.y<=240) 
+        {
+            a1.body.velocity.x = -120;
+            a1.animations.play('a1left');
+            
+        }
+        else if (a1.x>=200&&a1.x<=240&&a1.y>=200&&a1.y<=280) 
+        {
+            a1.body.velocity.y = 120;
+            a1.animations.play('a1down');
+        }
+        else if (a1.x>=125&&a1.x<=240&&a1.y>=280&&a1.y<=320&&a1p7==1&&a1p71==0) 
+        {
+            a1.body.velocity.x = -120;
+            a1.animations.play('a1left');
+            console.log(a1p7);
+            
+        }
+        else if (a1.x>=120&&a1.x<=160&&a1.y>=240&&a1.y<=320&&a1p7==1&&a1p71==0) 
+        {
+            a1.body.velocity.y = -120;
+            a1.animations.play('a1up');
+            console.log(a1p7);
+        }
+       
+        else if (a1.x>=120&&a1.x<=160&&a1.y>=220&&a1.y<=240&&a1p7==1&&a1p71==0) 
+        {
+            a1p7=0;
+            a1.body.velocity.y = -120;
+            a1.animations.play('a1up');
+            console.log(a1p7);
+        }
+        
+        else if (a1.x>=120&&a1.x<=160&&a1.y>=200&&a1.y<=520&&a1p7==0&&a1p71==0) 
+        {
+            a1.body.velocity.y = 120;
+            a1.animations.play('a1down');
+            console.log(a1p7);
+        }
+        else if (a1.x>=45&&a1.x<=160&&a1.y>=520&&a1.y<=560) 
+        {
+            a1p71=1;
+            a1.body.velocity.x = -120;
+            a1.animations.play('a1left');
+            
+        }   
+        else if (a1.x>=40&&a1.x<=80&&a1.y>=205&&a1.y<=560) 
+        {
+            a1p7=1;
+            a1.body.velocity.y = -120;
+            a1.animations.play('a1up');
+        }
+        else if (a1.x>=40&&a1.x<=120&&a1.y>=200&&a1.y<=240&&a1p71==1) 
+        {
+            
+            a1.body.velocity.x = 120;
+            console.log(a1p7);
+            a1.animations.play('a1right');
+        }
+        else if (a1.x>=120&&a1.x<=160&&a1.y>=200&&a1.y<=360&&a1p71==1) 
+        {
+            
+            a1.body.velocity.y = 120;
+            a1.animations.play('a1down');
+            console.log(a1p7);
+        }
+        // else if (a1.x>=120&&a1.x<=160&&a1.y>=340&&a1.y<=360&&a1p7==1) 
+        // {
+        //     a1p7=0; 
+        //     a1.body.velocity.y = 120;
+        //     a1.animations.play('a1down');
+        // }
+        else if (a1.x>=120&&a1.x<=200&&a1.y>=360&&a1.y<=400&&a1p71==1) 
+        {
+            a1.body.velocity.x = 120;
+            a1.animations.play('a1right');
+        }
+        else if (a1.x>=200&&a1.x<=240&&a1.y>=325&&a1.y<=400) 
+        {
+            a1p71=0;
+            a1.body.velocity.y = -120;
+            a1.animations.play('a1up');
+        }
+        else if (a1.x>=200&&a1.x<=285&&a1.y>=320&&a1.y<=360) 
+        {
+            
+            a1.body.velocity.x = 120;
+            a1.animations.play('a1right');
+        }
+        else if (a1.x>=280&&a1.x<=320&&a1.y>=285&&a1.y<=360) 
+        {
+            a1.body.velocity.y = -120;
+            a1.animations.play('a1up');
+        }
+        else if (a1.x>=280&&a1.x<=440&&a1.y>=280&&a1.y<=320) 
+        {
+            a1.body.velocity.x = 120;
+            a1.animations.play('a1right');
+        }
+        else if (a1.x>=440&&a1.x<=480&&a1.y>=45&&a1.y<=320) 
+        {
+            a1.body.velocity.y = -120;
+            a1.animations.play('a1up');
+        }
+        else if (a1.x>=205&&a1.x<=480&&a1.y>=40&&a1.y<=80) 
+        {
+            a1.body.velocity.x = -120;
+            a1.animations.play('a1left');
+            
+        }
+        else if (a1.x>=200&&a1.x<=240&&a1.y>=40&&a1.y<=120) 
+        {
+            a1.body.velocity.y = 120;
+            a1.animations.play('a1down');
+        }
+        else if (a1.x>=200&&a1.x<=280&&a1.y>=120&&a1.y<=160) 
+        {
+            a1.body.velocity.x = 120;
+            a1.animations.play('a1right');
+        }
+        else if (a1.x>=280&&a1.x<=320&&a1.y>=120&&a1.y<=200) 
+        {
+            a1.body.velocity.y = 120;
+            a1.animations.play('a1down');
+        }
+        
+        else
+        {
+            a1.body.velocity.y=0;
+            a1.body.velocity.x=0;
+            a1.animations.stop();
+            a1.frame=0;
+        }
+
+
+    }
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////          A2          ///////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1836,8 +2010,8 @@ if (a1.x>=280&&a1.x<=320&&a1.y>=198&&a1.y<200)
 
     if (a2.x>=1040&&a2.x<=1080&&a2.y==220) 
     {
-        decide2=game.rnd.integerInRange(1,5);
-        //console.log(decide2);
+        decide2=game.rnd.integerInRange(1,7);
+        console.log(decide2);
     }
 
 //////////////////////////////////////////////////         A2 Path1        ///////////////////////////////////////////////////////
@@ -2193,9 +2367,11 @@ if (decide2==1)
         }
     }
 
+
+
 //////////////////////////////////////////////////         A2 Path5        ///////////////////////////////////////////////////////
 
-if (decide2==5) 
+else if (decide2==5) 
     {
         if (a2.x>=1040&&a2.x<=1120&&a2.y>=200&&a2.y<=205) 
         {
@@ -2339,6 +2515,176 @@ if (decide2==5)
             a2.body.velocity.y = -120;
             a2.animations.play('a2up');
         }
+        else
+        {
+            a2.body.velocity.y=0;
+            a2.body.velocity.x=0;
+            a2.animations.stop();
+            a2.frame=0;
+        }
+    }
+
+
+
+//////////////////////////////////////////////////         A2 Path6        ///////////////////////////////////////////////////////
+
+ else if (decide2==6) 
+    {
+        if (a2.x>=1040&&a2.x<=1080&&a2.y>=125&&a2.y<=240) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else if (a2.x>=1040&&a2.x<=1120&&a2.y>=120&&a2.y<=160) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+        else if (a2.x>=1120&&a2.x<=1160&&a2.y>=45&&a2.y<=160) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else if (a2.x>=885&&a2.x<=1160&&a2.y>=40&&a2.y<=80) 
+        {
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+        }
+        else if (a2.x>=880&&a2.x<=920&&a2.y>40&&a2.y<=120&&a2p6==1) 
+        {
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=805&&a2.x<=920&&a2.y>=120&&a2.y<=160&&a2p6==1) 
+        {
+            
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+        }
+
+        else if (a2.x>=800&&a2.x<=840&&a2.y>=45&&a2.y<=160&&a2p6==1) 
+        {   
+            
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else if (a2.x>=205&&a2.x<=840&&a2.y>=40&&a2.y<=80) 
+        {
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+        }
+        else if (a2.x>=200&&a2.x<=240&&a2.y>=40&&a2.y<=120) 
+        {
+            a2p6=0;
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=200&&a2.x<=960&&a2.y>=120&&a2.y<=160&&a2p6==0) 
+        {
+            
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+
+        else if (a2.x>=960&&a2.x<=1000&&a2.y>=120&&a2.y<=280) 
+        {   
+            
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=960&&a2.x<=1040&&a2.y>=280&&a2.y<=320) 
+        {
+            a2p6=1;
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+        else if (a2.x>=1040&&a2.x<=1080&&a2.y>=205&&a2.y<=320) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        
+        else
+        {
+            a2.body.velocity.y=0;
+            a2.body.velocity.x=0;
+            a2.animations.stop();
+            a2.frame=0;
+        }
+    }
+
+
+//////////////////////////////////////////////////         A2 Path7        ///////////////////////////////////////////////////////
+
+else if (decide2==7) 
+    {
+        if (a2.x>=1040&&a2.x<=1080&&a2.y>=125&&a2.y<=240) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else if (a2.x>=1040&&a2.x<=1120&&a2.y>=120&&a2.y<=160) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+        else if (a2.x>=1120&&a2.x<=1160&&a2.y>=45&&a2.y<=160) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else if (a2.x>=205&&a2.x<=1160&&a2.y>40&&a2.y<=80) 
+        {
+            a2.body.velocity.x = -120;
+            a2.animations.play('a2left');
+        }
+        else if (a2.x>=200&&a2.x<=240&&a2.y>=40&&a2.y<=120) 
+        {
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=200&&a2.x<=600&&a2.y>=120&&a2.y<=160) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+        else if (a2.x>=600&&a2.x<=640&&a2.y>=120&&a2.y<=280) 
+        {
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=600&&a2.x<=800&&a2.y>=280&&a2.y<=320) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+        else if (a2.x>=800&&a2.x<=840&&a2.y>=280&&a2.y<=520) 
+        {
+            a2.body.velocity.y = 120;
+            a2.animations.play('a2down');
+        }
+        else if (a2.x>=800&&a2.x<=880&&a2.y>=520&&a2.y<=560) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+            
+        }
+        else if (a2.x>=880&&a2.x<=920&&a2.y>=445&&a2.y<=560) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        else if (a2.x>=880&&a2.x<=1040&&a2.y>=440&&a2.y<=480) 
+        {
+            a2.body.velocity.x = 120;
+            a2.animations.play('a2right');
+        }
+        else if (a2.x>=1040&&a2.x<=1080&&a2.y>=205&&a2.y<=480) 
+        {
+            a2.body.velocity.y = -120;
+            a2.animations.play('a2up');
+        }
+        
         else
         {
             a2.body.velocity.y=0;
@@ -3075,7 +3421,7 @@ else if (decide3==5)
     if (a4.x==1038&&a4.y>=600&&a4.y<640) 
     {
         decide4=game.rnd.integerInRange(1,5);
-        //console.log(decide4);
+        console.log(decide4);
     }
 
 //////////////////////////////////////////////////         A4 Path1        ///////////////////////////////////////////////////////
@@ -3443,7 +3789,10 @@ else if (decide4==4)
         }
     }
 
-//////////////////////////////////////////////////         A4 Path5        ///////////////////////////////////////////////////////
+ //////////////////////////////////////////////////         A4 Path5        ///////////////////////////////////////////////////////
+
+
+
 
 if (decide4==5) 
     {
@@ -3559,6 +3908,10 @@ if (decide4==5)
             a4.frame=0;
         }
     }
+ 
+
+//--------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------
  
 
  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3946,8 +4299,8 @@ if (bot6==1)
 
     if (a6.x>=1040&&a6.x<=1080&&a6.y==220) 
     {
-        decide6=game.rnd.integerInRange(1,4);
-        //console.log(decide6);
+        decide6=game.rnd.integerInRange(1,5);
+        console.log(decide6);
     }
 
 //////////////////////////////////////////////////         A6 Path1        ///////////////////////////////////////////////////////
@@ -4303,7 +4656,160 @@ else if (decide6==4)
         }
     }
 
+//////////////////////////////////////////////////         A6 Path5        ///////////////////////////////////////////////////////
 
+else if (decide6==5) 
+    {
+        if (a6.x>=1040&&a6.x<=1120&&a6.y>=200&&a6.y<=205) 
+        {
+            a6.body.velocity.x = 120;
+            a6.animations.play('a6right');
+        }
+        else if (a6.x>=1120&&a6.x<=1160&&a6.y>=200&&a6.y<=280) 
+        {
+            a6.body.velocity.y = 120;
+            a6.animations.play('a6down');
+        }
+        else if (a6.x>=1120&&a6.x<=1200&&a6.y>=280&&a6.y<=320) 
+        {
+            a6.body.velocity.x = 120;
+            a6.animations.play('a6right');
+        }
+        else if (a6.x>=1200&&a6.x<=1240&&a6.y>=205&&a6.y<=320) 
+        {
+            a6.body.velocity.y = -120;
+            a6.animations.play('a6up');
+        }
+        else if (a6.x>=1200&&a6.x<=1280&&a6.y>200&&a6.y<=240) 
+        {
+            a6.body.velocity.x = 120;
+            a6.animations.play('a6right');
+        }
+        else if (a6.x>=1280&&a6.x<=1320&&a6.y>=200&&a6.y<=520) 
+        {
+            a6.body.velocity.y = 120;
+            a6.animations.play('a6down');
+        }
+        else if (a6.x>=1125&&a6.x<=1320&&a6.y>=520&&a6.y<=560) 
+        {
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+        }
+        else if (a6.x>=1120&&a6.x<=1160&&a6.y>=520&&a6.y<=600) 
+        {
+            a6.body.velocity.y = 120;
+            a6.animations.play('a6down');
+        }
+        else if (a6.x>=965&&a6.x<=1160&&a6.y>=600&&a6.y<=640) 
+        {
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+        }
+        else if (a6.x>=960&&a6.x<=1000&&a6.y>=600&&a6.y<=680) 
+        {
+            a6.body.velocity.y = 120;
+            a6.animations.play('a6down');
+        }
+        else if (a6.x>=605&&a6.x<=1000&&a6.y>=680&&a6.y<=720) 
+        {
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+            
+        }
+        else if (a6.x>=600&&a6.x<=640&&a6.y>=525&&a6.y<=720) 
+        {
+            a6.body.velocity.y = -120;
+            a6.animations.play('a6up');
+        }
+        else if (a6.x>=445&&a6.x<=640&&a6.y>=520&&a6.y<=560) 
+        {
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+        }
+        else if (a6.x>=440&&a6.x<=480&&a6.y>=445&&a6.y<=560) 
+        {
+            a6.body.velocity.y = -120;
+            a6.animations.play('a6up');
+        }
+        else if (a6.x>=205&&a6.x<=480&&a6.y>=440&&a6.y<=480) 
+        {
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+        }
+        else if (a6.x>=200&&a6.x<=240&&a6.y>=440&&a6.y<=520) 
+        {
+            a6.body.velocity.y = 120;
+            a6.animations.play('a6down');
+        }
+        else if (a6.x>=45&&a6.x<=240&&a6.y>=520&&a6.y<=560) 
+        {
+            a6.body.velocity.x = -120;
+            a6.animations.play('a6left');
+        }
+        else if (a6.x>=40&&a6.x<=80&&a6.y>=205&&a6.y<=560) 
+        {
+            a6.body.velocity.y = -120;
+            a6.animations.play('a6up');
+        }
+        else if (a6.x>=40&&a6.x<=120&&a6.y>=200&&a6.y<=240) 
+        {
+            a6.body.velocity.x = 120;
+            a6.animations.play('a6right');
+        }
+        else if (a6.x>=120&&a6.x<=160&&a6.y>=200&&a6.y<=280) 
+        {
+            a6.body.velocity.y = 120;
+            a6.animations.play('a6down');
+        }
+        else if (a6.x>=120&&a6.x<=200&&a6.y>=280&&a6.y<=320) 
+        {
+            a6.body.velocity.x = 120;
+            a6.animations.play('a6right');
+        }
+        else if (a6.x>=200&&a6.x<=240&&a6.y>=205&&a6.y<=320) 
+        {
+            a6.body.velocity.y = -120;
+            a6.animations.play('a6up');
+        }
+        else if (a6.x>=200&&a6.x<=280&&a6.y>=200&&a6.y<=240) 
+        {
+            a6.body.velocity.x = 120;
+            a6.animations.play('a6right');
+            
+        }
+        else if (a6.x>=280&&a6.x<=320&&a6.y>=125&&a6.y<=240) 
+        {
+            a6.body.velocity.y = -120;
+            a6.animations.play('a6up');
+        }
+        else if (a6.x>=280&&a6.x<=880&&a6.y>=120&&a6.y<=160) 
+        {
+            a6.body.velocity.x = 120;
+            a6.animations.play('a6right');
+        }
+        else if (a6.x>=880&&a6.x<=920&&a6.y>=120&&a6.y<=280) 
+        {
+            a6.body.velocity.y = 120;
+            a6.animations.play('a6down');
+        }
+        else if (a6.x>=880&&a6.x<=1040&&a6.y>=280&&a6.y<=320) 
+        {
+            a6.body.velocity.x = 120;
+            a6.animations.play('a6right');
+        }
+        else if (a6.x>=1040&&a6.x<=1080&&a6.y>=205&&a6.y<=480) 
+        {
+            a6.body.velocity.y = -120;
+            a6.animations.play('a6up');
+        }
+        else
+        {
+            a6.body.velocity.y=0;
+            a6.body.velocity.x=0;
+            a6.animations.stop();
+            a6.frame=0;
+        }
+    }
 
 } // END OF BOT6 ka if
 
@@ -4325,6 +4831,5 @@ else if (decide6==4)
 
 
 } //END OF UPDATE2 FUNCTION
-
 
 
