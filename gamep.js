@@ -313,8 +313,9 @@ function preload0()
 
     game.load.image('mute_button', 'images/background/mute_button.png');
 
-    
+    game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
 };
+
 
 function create0()
 {
@@ -346,9 +347,9 @@ function create0()
     story_text = game.add.text(game.world.width/2,120,'STORY',{font: "Algerian" ,fontSize: '45px', fill:'#FFF'});
     story_text.anchor.setTo(0.5,0.5);
 
-    style = { font: '30pt Gabriola', fill: 'white', align: 'justified', wordWrap: true, wordWrapWidth: 1135 };
+    style = { font: 'Revalia', fill: 'white', align: 'justified', wordWrap: true, wordWrapWidth: 1135, fontSize: 30 };
 
-    game.add.text(120, 200, "Year 2245, Human intergalactic missions are on a new high, explorers of the day and age, daring astronauts (Historical term for explorers) storm nook and corners of the cluster, but not all missions are adventurous and enticing, some… are horrifyingly deadly.", style);
+    game.add.text(120, 200, "Year 2245, Human intergalactic missions are on a new high, explorers of the day and age, daring astronauts (Historical term for explorers) storm nook and corners of the cluster, but not all missions are adventurous and enticing, some... are horrifyingly deadly.", style);
     game.add.text(120, 375, "One such unfortunate explorer is caught in a labyrinth of razor-sharp debris plagued with unwelcoming creatures whose natural instinct is to kill anything incognizant. His only hope is to run for his life till the mathematics of certainty proves to be a life saver.", style);
     game.add.text(120, 550, "An inferno in Heaven with the devil on back!!! My lads!!! Let the the games begin!!!", style);
   
@@ -533,7 +534,7 @@ function create4()
     quitButton.scale.setTo(quitButton_scale, quitButton_scale);
     fullButton.scale.setTo(fullButton_scale, fullButton_scale);
 
-    style = { font: '18pt Hobo Std', fill: 'white', align: 'justified', wordWrap: true, wordWrapWidth: 1135 };
+    style = { font: '18pt Hobo Std', fill: 'white', align: 'justified', wordWrap: true, wordWrapWidth: 1135, fontSize:25 };
 
         arrows=game.add.sprite(175, 175, 'arrows');
         arrows.scale.setTo(0.55,0.55);
