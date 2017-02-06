@@ -31,6 +31,12 @@ var nfood=0;
 // var nwater=0;
 
 
+var username='AkashG6';
+
+
+var table;
+
+
 var j,k;
 var fx,fy,wx,wy;
 
@@ -312,10 +318,11 @@ function preload0()
     //game.load.audio('ghosts','audio/Mission-Impossible2.ogg');
 
     game.load.image('mute_button', 'images/background/mute_button.png');
-
     game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
-};
 
+
+    
+};
 
 function create0()
 {
@@ -349,7 +356,7 @@ function create0()
 
     style = { font: 'Revalia', fill: 'white', align: 'justified', wordWrap: true, wordWrapWidth: 1135, fontSize: 30 };
 
-    game.add.text(120, 200, "Year 2245, Human intergalactic missions are on a new high, explorers of the day and age, daring astronauts (Historical term for explorers) storm nook and corners of the cluster, but not all missions are adventurous and enticing, some... are horrifyingly deadly.", style);
+    game.add.text(120, 200, "Year 2245, Human intergalactic missions are on a new high, explorers of the day and age, daring astronauts (Historical term for explorers) storm nook and corners of the cluster, but not all missions are adventurous and enticing, some… are horrifyingly deadly.", style);
     game.add.text(120, 375, "One such unfortunate explorer is caught in a labyrinth of razor-sharp debris plagued with unwelcoming creatures whose natural instinct is to kill anything incognizant. His only hope is to run for his life till the mathematics of certainty proves to be a life saver.", style);
     game.add.text(120, 550, "An inferno in Heaven with the devil on back!!! My lads!!! Let the the games begin!!!", style);
   
@@ -594,6 +601,7 @@ function update4()
 
 function again()
 {
+    score=0;
     game.sound.stopAll();
     button_press.play();
     game.state.start('gameState2');
@@ -605,6 +613,7 @@ function preload5()
     game.load.audio('button_press','audio/blop.mp3');
     game.load.image('mute_button', 'images/background/mute_button.png');
     game.load.image('play_again_button', 'images/background/again.png');
+    game.load.image('table', 'images/background/table.png');
 };
 
 function create5()
@@ -625,12 +634,12 @@ function create5()
        mute_button.tint = 16700000;
     }
 
-    score_text = game.add.text(game.world.width/2,100+75,"Your Score : "+score,{fontSize: '25px', fill:'#FFF'});
+    score_text = game.add.text(game.world.width/2,100+60,"Your Score : "+score,{fontSize: '25px', fill:'#FFF'});
     score_text.anchor.setTo(0.5,0.5);
-    // score_text = game.add.text(game.world.width/2,100+125,score,{fontSize: '25px', fill:'#FFF'});
-    // score_text.anchor.setTo(0.5,0.5);
 
-    play_again_button = game.add.button(game.world.width/2-50, 600, 'play_again_button', again, this, 2, 1, 0);
+    table = game.add.sprite(game.world.width/2-300, 200, 'table');
+
+    play_again_button = game.add.button(game.world.width/2-50, 625, 'play_again_button', again, this, 2, 1, 0);
     play_again_button.scale.setTo(0.5, 0.5);
 
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
@@ -644,7 +653,7 @@ function create5()
         $.ajax({
         type: 'POST',
         url: '/input_score',
-        data: { score:score },
+        data: { score:score, username:username },
         dataType: 'json',
         success: function(response){
             if(response.msg === "success"){
@@ -662,9 +671,21 @@ function create5()
         url: '/get_limitScore',
         dataType: 'json',
         success: function(response){
-            for(j=0;j<5;j++)
+
+            
+            for(j=0;j<7;j++)
             {
-                score_text = game.add.text(game.world.width/2,200+j*75,response[j].score,{fontSize: '25px', fill:'#FFF'});
+                score_text = game.add.text(445,280+j*46,j+1,{fontSize: '25px', fill:'#000'});
+                score_text.anchor.setTo(0.5,0.5);
+            }
+            for(j=0;j<7;j++)
+            {
+                score_text = game.add.text(675,280+j*46,response[j].username,{fontSize: '25px', fill:'#000'});
+                score_text.anchor.setTo(0.5,0.5);
+            }
+            for(j=0;j<7;j++)
+            {
+                score_text = game.add.text(915,280+j*46,response[j].score,{fontSize: '25px', fill:'#000'});
                 score_text.anchor.setTo(0.5,0.5);
             }
         }
@@ -803,6 +824,8 @@ function goFull() {
     flamethrower_flames.enableBody=true;
     game.physics.arcade.enable(flamethrower_flames);
     flamethrower_flames.animations.add('burn', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28], 10, false);
+    //flamethrower_flames.body.setSize(490,359,490,359);
+
 
     mflamethrower_flames = game.add.sprite(760,325,'mflamethrower_flames');
     mflamethrower_flames.scale.setTo(0.2,0.2);
@@ -1557,12 +1580,12 @@ else if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)+1]==1)&&((a
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////          A1          ///////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//console.log('x1,y1 : '+a1.x+' , '+a1.y);
+console.log('x1,y1 : '+a1.x+' , '+a1.y);
 a1.body.velocity.x=0;
 a1.body.velocity.y=0;
 if (a1.x>=280&&a1.x<=320&&a1.y>=198&&a1.y<200) 
     {
-        decide1=game.rnd.integerInRange(1,5);
+        decide1=game.rnd.integerInRange(1,7);
         console.log(decide1);
     }
 
@@ -2122,14 +2145,14 @@ if (a1.x>=280&&a1.x<=320&&a1.y>=198&&a1.y<200)
 ///////////////////////////////////////////////////          A2          ///////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//console.log('x2,y2 : '+a2.x+' , '+a2.y);
+console.log('x2,y2 : '+a2.x+' , '+a2.y);
 
     a2.body.velocity.x=0;
     a2.body.velocity.y=0;
 
     if (a2.x>=1040&&a2.x<=1080&&a2.y==220) 
     {
-        decide2=game.rnd.integerInRange(1,5);
+        decide2=game.rnd.integerInRange(1,7);
         console.log(decide2);
     }
 
@@ -2817,7 +2840,7 @@ else if (decide2==7)
 ///////////////////////////////////////////////////          A3          ///////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//console.log('x3,y3 : '+a3.x+' , '+a3.y);
+console.log('x3,y3 : '+a3.x+' , '+a3.y);
 
     a3.body.velocity.x=0;
     a3.body.velocity.y=0;
@@ -3532,7 +3555,7 @@ else if (decide3==5)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-//console.log('x4,y4 : '+a4.x+' , '+a4.y);
+console.log('x4,y4 : '+a4.x+' , '+a4.y);
 
     a4.body.velocity.x=0;
     a4.body.velocity.y=0;
@@ -4047,7 +4070,7 @@ a5.body.velocity.x=0;
 a5.body.velocity.y=0;
 if (a5.x>=280&&a5.x<=320&&a5.y>=198&&a5.y<200) 
     {
-        decide5=game.rnd.integerInRange(1,5);
+        decide5=game.rnd.integerInRange(1,7);
         //console.log(decide5);
     }
 
@@ -4614,7 +4637,7 @@ if (bot6==1)
 
     if (a6.x>=1040&&a6.x<=1080&&a6.y==220) 
     {
-        decide6=game.rnd.integerInRange(1,5);
+        decide6=game.rnd.integerInRange(1,7);
         console.log(decide6);
     }
 
