@@ -25,13 +25,18 @@ var flagh;
 var flag1;
 var bot5=0;
 var bot6=0;
-var food;
+var oxygen;
 // var water;
-var nfood=0;
+var noxygen=0;
 // var nwater=0;
 
+var movementKeys;
+var w,s,a,d;
+// var ring;
+// var ring1=0;
+var ring_sprite;
 
-var username='AkashG6';
+var username='KVD';
 
 
 var table;
@@ -44,7 +49,7 @@ var map = [
 
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0],
-    [0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0],
+    [0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0],
     [0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0],
     [0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0],
     [0,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,1,0],
@@ -73,7 +78,7 @@ var map = [
     [0,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,1,0],
     [0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0],
     [0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0],
-    [0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0],
+    [0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0],
     [0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ];
@@ -269,7 +274,7 @@ gameState2.prototype={
 function updateScore()
 {
     
-    if (seconds==15||seconds==30||seconds==45||seconds==59) 
+    if (seconds==15||seconds==30||seconds==45||seconds==59||seconds==5||seconds==10||seconds==20||seconds==25) 
     {
         score += 1;
         score_text.text = score;
@@ -567,21 +572,21 @@ function create4()
 
 
 
-        game.add.text(455, 555, "And stay away from their Flamethrowers ", style);
-        flamethrower = game.add.sprite(150,545,'flamethrower');
+        game.add.text(465, 510, "And stay away from their Flamethrowers ", style);
+        flamethrower = game.add.sprite(150,500,'flamethrower');
         flamethrower.scale.setTo(0.5,0.5);
         flamethrower.enableBody=true;
         game.physics.arcade.enable(flamethrower);
-        mflamethrower = game.add.sprite(1050,545,'mflamethrower');
+        mflamethrower = game.add.sprite(1050,500,'mflamethrower');
         mflamethrower.scale.setTo(0.5,0.5);
         mflamethrower.enableBody=true;
         game.physics.arcade.enable(mflamethrower);
-        flamethrower_flames = game.add.sprite(265,465,'flamethrower_flames');
+        flamethrower_flames = game.add.sprite(265,420,'flamethrower_flames');
         flamethrower_flames.scale.setTo(0.4,0.4);
         flamethrower_flames.enableBody=true;
         game.physics.arcade.enable(flamethrower_flames);
         flamethrower_flames.animations.add('burn', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28], 10, true);
-        mflamethrower_flames = game.add.sprite(880,465,'mflamethrower_flames');
+        mflamethrower_flames = game.add.sprite(880,420,'mflamethrower_flames');
         mflamethrower_flames.scale.setTo(0.4,0.4);
         mflamethrower_flames.enableBody=true;
         game.physics.arcade.enable(mflamethrower_flames);
@@ -590,6 +595,12 @@ function create4()
         mflamethrower_flames.animations.play('mburn');
 
 
+        game.add.text(465, 630, "Collect the oxygen pack for bonus points ! ", style);
+        oxygen = game.add.sprite(335,605,'oxygen');
+        oxygen.scale.setTo(0.084,0.072);
+
+        oxygen = game.add.sprite(935,605,'oxygen');
+        oxygen.scale.setTo(0.084,0.072);
 
 
 };
@@ -650,47 +661,150 @@ function create5()
     quitButton.scale.setTo(quitButton_scale, quitButton_scale);
     fullButton.scale.setTo(fullButton_scale, fullButton_scale);
 
-        $.ajax({
-        type: 'POST',
-        url: '/input_score',
-        data: { score:score, username:username },
+
+    $.ajax({
+        type:'GET',
+        url: '/sdoghGidusg',
         dataType: 'json',
         success: function(response){
-            if(response.msg === "success"){
-                console.log('success');
-            }
-            else{
-                $('#error-msg').html('');
-                $('#error-msg').append('<span>Server error!</span>');
-            }
-        }
-        });
+            console.log(response);
+            j=0;
+            while(response[j]!==null)
+            {
+                console.log('enterd while');
+                if (username===response[j].username) 
+                {
+                    console.log('username found');
+                    if (score>response[j].score) 
+                    {
+                        console.log(username+' made a higher score');
+                        //send score
+                        $.ajax({
+                        type: 'POST',
+                        url: '/asGAssdgG',
+                        data: { score:score, username:username },
+                        dataType: 'json',
+                        success: function(response){
+                            if(response.msg === "success"){
+                                console.log('success');
+                            }
+                            else{
+                                $('#error-msg').html('');
+                                $('#error-msg').append('<span>Server error!</span>');
+                            }
+                        }
+                        });
+                        //rec score
+                        $.ajax({
+                            type: 'GET',
+                            url: '/sdoghGidusg',
+                            dataType: 'json',
+                            success: function(response){
 
-        $.ajax({
-        type: 'GET',
-        url: '/get_limitScore',
-        dataType: 'json',
-        success: function(response){
+                                j=0;
+                                while(response[j]!==null&&j<7)
+                                {
+                                    score_text = game.add.text(445,280+j*46,j+1,{fontSize: '25px', fill:'#000'});
+                                    score_text.anchor.setTo(0.5,0.5);
+                            
+                                    score_text = game.add.text(675,280+j*46,response[j].username,{fontSize: '25px', fill:'#000'});
+                                    score_text.anchor.setTo(0.5,0.5);
+                               
+                                    score_text = game.add.text(915,280+j*46,response[j].score,{fontSize: '25px', fill:'#000'});
+                                    score_text.anchor.setTo(0.5,0.5);
+                                    
+                                    j++;
+                                }
+                            }
+                            });
+                        break;
 
-            
-            for(j=0;j<7;j++)
-            {
-                score_text = game.add.text(445,280+j*46,j+1,{fontSize: '25px', fill:'#000'});
-                score_text.anchor.setTo(0.5,0.5);
-            }
-            for(j=0;j<7;j++)
-            {
-                score_text = game.add.text(675,280+j*46,response[j].username,{fontSize: '25px', fill:'#000'});
-                score_text.anchor.setTo(0.5,0.5);
-            }
-            for(j=0;j<7;j++)
-            {
-                score_text = game.add.text(915,280+j*46,response[j].score,{fontSize: '25px', fill:'#000'});
-                score_text.anchor.setTo(0.5,0.5);
-            }
+                       
+                    }
+                    else
+                    {
+                        console.log("score not sent" + username);
+                        //rec_score
+
+                        $.ajax({
+                            type: 'GET',
+                            url: '/sdoghGidusg',
+                            dataType: 'json',
+                            success: function(response){
+
+                                j=0;
+                                while(response[j]!==null&&j<7)
+                                {
+                                    score_text = game.add.text(445,280+j*46,j+1,{fontSize: '25px', fill:'#000'});
+                                    score_text.anchor.setTo(0.5,0.5);
+                                
+                                    score_text = game.add.text(675,280+j*46,response[j].username,{fontSize: '25px', fill:'#000'});
+                                    score_text.anchor.setTo(0.5,0.5);
+                                
+                                    score_text = game.add.text(915,280+j*46,response[j].score,{fontSize: '25px', fill:'#000'});
+                                    score_text.anchor.setTo(0.5,0.5);
+                                    
+                                    j++;
+                                }
+                            }
+                            });
+                        break;
+
+                    }
+
+                }
+                else if(response[j+1]==null) // outermost else
+                {
+                    console.log('last else');
+                    $.ajax({
+                        type: 'POST',
+                        url: '/asGAssdgG',
+                        data: { score:score, username:username },
+                        dataType: 'json',
+                        success: function(response){
+                            if(response.msg === "success"){
+                                console.log('success');
+                            }
+                            else{
+                                $('#error-msg').html('');
+                                $('#error-msg').append('<span>Server error!</span>');
+                            }
+                        }
+                        });
+                        
+                        $.ajax({
+                            type: 'GET',
+                            url: '/sdoghGidusg',
+                            dataType: 'json',
+                            success: function(response){
+
+                                j=0;
+                                while(response[j]!==null&&j<7)
+                                {
+                                    score_text = game.add.text(445,280+j*46,j+1,{fontSize: '25px', fill:'#000'});
+                                    score_text.anchor.setTo(0.5,0.5);
+                                
+                                    score_text = game.add.text(675,280+j*46,response[j].username,{fontSize: '25px', fill:'#000'});
+                                    score_text.anchor.setTo(0.5,0.5);
+                                
+                                    score_text = game.add.text(915,280+j*46,response[j].score,{fontSize: '25px', fill:'#000'});
+                                    score_text.anchor.setTo(0.5,0.5);
+                                    
+                                    j++;
+                                }
+                            }
+                            });
+
+
+
+                    break;
+                }
+                j++;
+            } // end of outer while loops
         }
-        });
-    
+    });
+
+
      
 };
 
@@ -749,8 +863,7 @@ function goFull() {
 
     game.load.spritesheet('a1', 'images/aliens/spider2.png',35,35);
 
-    game.load.spritesheet('food', 'images/food.png',280,220);
-    //game.load.spritesheet('water', 'images/water.png',180,180);
+    game.load.spritesheet('oxygen', 'images/oxygen_tank.png',917,1057);
 
     game.load.image('pause_button', 'images/background/pause_button.png');
     game.load.image('mute_button', 'images/background/mute_button.png');
@@ -761,6 +874,7 @@ function goFull() {
     game.load.audio('score_increase_sound','audio/score_increase.mp3');
     game.load.audio('pirates','audio/piratesogg.ogg');
 
+    game.load.spritesheet('ring_sprite', 'images/ring_sprite.png', 256, 256);
 
 
 
@@ -772,7 +886,10 @@ function goFull() {
     bot5=0;
     bot6=0;
 
-
+    w = game.input.keyboard.addKey(Phaser.Keyboard.W);
+    s = game.input.keyboard.addKey(Phaser.Keyboard.S);
+    a = game.input.keyboard.addKey(Phaser.Keyboard.A);
+    d = game.input.keyboard.addKey(Phaser.Keyboard.D);
 
     button_press=game.add.audio('button_press');
     kill_sound=game.add.audio('kill_sound');
@@ -833,6 +950,13 @@ function goFull() {
     game.physics.arcade.enable(mflamethrower_flames);
     mflamethrower_flames.animations.add('mburn', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28], 10, false);
     
+
+    ring_sprite=game.add.sprite(488,485,'ring_sprite');
+    ring_sprite.scale.setTo(0.4,0.4);
+    game.physics.arcade.enable(ring_sprite);
+    ring_sprite.enableBody=true;
+
+    ring_sprite.animations.add('blink', [0,1], 3, true);
 
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
@@ -1186,11 +1310,11 @@ function fix()
     }
 }
 
-function generate_food()
+function generate_oxygen()
 {
-    if (nfood==0) 
+    if (noxygen==0) 
     {
-        nfood=1;
+        noxygen=1;
         fx=0;
         fy=0;
 
@@ -1209,10 +1333,10 @@ function generate_food()
         }
         
 
-        food=game.add.sprite(fx,fy,'food');
-        food.scale.setTo(0.12,0.12);
-        game.physics.arcade.enable(food);
-        food.enableBody=true; 
+        oxygen=game.add.sprite(fx,fy,'oxygen');
+        oxygen.scale.setTo(0.042,0.036);
+        game.physics.arcade.enable(oxygen);
+        oxygen.enableBody=true; 
 
     }
     
@@ -1220,43 +1344,12 @@ function generate_food()
     
 }
 
-// function generate_water()
-// {
-//     if (nwater==0) 
-//     {
-//         nwater=1;
-//         wx=0;
-//         wy=0;
-        
-//         while(map[wx/40][wy/40]==0)
-//         {
-//             wx=game.rnd.integerInRange(1,32);
-//             wy=game.rnd.integerInRange(1,17);
-            
-//             wx=wx*40;
-//             wy=wy*40;
-//             if(wx>(astronaut.x-200)&&wx<(astronaut.x+200)||wy>(astronaut.y-200)&&wy<(astronaut.y+200))
-//             {
-//                wx=0;
-//                wy=0;
-//             }
-//         }
-        
-
-//         water=game.add.sprite(wx,wy,'water');
-//         water.scale.setTo(0.45,0.45);
-//         game.physics.arcade.enable(water);
-//         water.enableBody=true;
-        
-//     }
-    
-// }
 
 
-function collect_food()
+function collect_oxygen()
 {
-    nfood=0;
-    food.kill();
+    noxygen=0;
+    oxygen.kill();
     score += 1;
     score = score + 10;
     score_text.text = score;
@@ -1264,17 +1357,22 @@ function collect_food()
     
 }
 
-// function collect_water()
-// {
-//     nwater=0;
-//     water.kill();
-//     score = score + 10;
-//     score_text.text = score;
-//     score_increase_sound.play();
-// }
-
  function update2()
  {
+
+    
+    if (cursors.right.isDown||d.isDown||cursors.down.isDown||s.isDown||cursors.left.isDown||a.isDown||cursors.up.isDown||w.isDown) 
+    {
+        ring_sprite.animations.stop();
+        ring_sprite.frame=1;
+    }
+    else if (minutes==0&&seconds<=1) 
+    {
+        ring_sprite.animations.play('blink');    
+    }
+    
+        
+    
 
     game.physics.arcade.overlap(astronaut, walls, fix, null, this);
 
@@ -1290,7 +1388,7 @@ function collect_food()
     game.physics.arcade.collide(a5,walls);
     game.physics.arcade.collide(a6,walls);
 
-    game.physics.arcade.overlap(astronaut, food, collect_food, null, this);
+    game.physics.arcade.overlap(astronaut, oxygen, collect_oxygen, null, this);
     // game.physics.arcade.overlap(astronaut, water, collect_water, null, this);
 
     game.physics.arcade.overlap(astronaut, a0, showGameOver, null, this);
@@ -1320,7 +1418,7 @@ function collect_food()
 
     if (seconds==20||seconds==50) 
         {
-            generate_food();
+            generate_oxygen();
         }
     // if (seconds==30||seconds==59) 
     //     {
@@ -1329,8 +1427,8 @@ function collect_food()
 
         if ((minutes>=1&&seconds==10)||seconds==40) 
         {
-            nfood=0;
-            food.kill();
+            noxygen=0;
+            oxygen.kill();
         }
         // if (seconds==50||(minutes>=1&&seconds==20)) 
         // {
@@ -1382,7 +1480,7 @@ function collect_food()
     astronaut.body.velocity.y = 0;
     x=astronaut.x;
     y=astronaut.y;
-    if (cursors.left.isDown)
+    if (cursors.left.isDown||a.isDown)
     {
         astronaut.body.velocity.x = -150;
         astronaut.animations.play('left');
@@ -1390,7 +1488,7 @@ function collect_food()
         flag=1;
         flag1=1;
     }
-    else if (cursors.right.isDown)
+    else if (cursors.right.isDown||d.isDown)
     {
         astronaut.body.velocity.x = 150;
         astronaut.animations.play('right');
@@ -1398,7 +1496,7 @@ function collect_food()
         flagh=1;
         flag1=1;
     }
-    else if (cursors.down.isDown)
+    else if (cursors.down.isDown||s.isDown)
     {
         astronaut.body.velocity.y = +150;
         astronaut.animations.play('down');
@@ -1406,7 +1504,7 @@ function collect_food()
         flagv=1;
         flag1=1;
     }
-    else if (cursors.up.isDown)
+    else if (cursors.up.isDown||w.isDown)
     {
         astronaut.body.velocity.y = -150;
         astronaut.animations.play('up');
@@ -1476,7 +1574,7 @@ y0=a0.y;
 if (astronaut.x>a0.x&&(map[parseInt(a0.x/40+1)][parseInt(a0.y/40)]==1)&&((astronaut.x-a0.x)>30)) 
 {
 
-    console.log('in right map['+parseInt(a0.x/40+1)+']['+parseInt(a0.y/40)+'] = '+ map[parseInt(a0.x/40+1)][parseInt(a0.y/40)]);
+    //console.log('in right map['+parseInt(a0.x/40+1)+']['+parseInt(a0.y/40)+'] = '+ map[parseInt(a0.x/40+1)][parseInt(a0.y/40)]);
     if (a0.x<(a0.x+40)) 
     {
         a0.body.velocity.x = 130;
@@ -1485,7 +1583,7 @@ if (astronaut.x>a0.x&&(map[parseInt(a0.x/40+1)][parseInt(a0.y/40)]==1)&&((astron
 }
 else if (astronaut.x<a0.x&&(map[parseInt(a0.x/40-1)][parseInt(a0.y/40)]==1)&&((a0.x-astronaut.x)>30)) 
 {
-    console.log('in left map['+parseInt(a0.x/40-1)+']['+parseInt(a0.y/40)+'] = '+ map[parseInt(a0.x/40-1)][parseInt(a0.y/40)]);
+    //console.log('in left map['+parseInt(a0.x/40-1)+']['+parseInt(a0.y/40)+'] = '+ map[parseInt(a0.x/40-1)][parseInt(a0.y/40)]);
     if (a0.x>(a0.x-40)) 
     {
         a0.body.velocity.x = -130;
@@ -1494,7 +1592,7 @@ else if (astronaut.x<a0.x&&(map[parseInt(a0.x/40-1)][parseInt(a0.y/40)]==1)&&((a
 }
 else if (astronaut.y<a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)-1]==1)&&((a0.y-astronaut.y)>30)) 
 {
-    console.log('in up map['+parseInt(a0.x/40)+']['+parseInt(a0.y/40-1)+'] = '+ map[parseInt(a0.x/40)][parseInt(a0.y/40-1)]);
+    //console.log('in up map['+parseInt(a0.x/40)+']['+parseInt(a0.y/40-1)+'] = '+ map[parseInt(a0.x/40)][parseInt(a0.y/40-1)]);
     if (a0.y>(a0.y-40)) 
     {
         a0.body.velocity.y = -130;
@@ -1503,7 +1601,7 @@ else if (astronaut.y<a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)-1]==1)&&((a
 }
 else if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)+1]==1)&&((astronaut.y-a0.y)>30)) 
 {
-    console.log('in down map['+parseInt(a0.x/40)+']['+parseInt(a0.y/40+1)+'] = '+ map[parseInt(a0.x/40)][parseInt(a0.y/40+1)]);
+    //console.log('in down map['+parseInt(a0.x/40)+']['+parseInt(a0.y/40+1)+'] = '+ map[parseInt(a0.x/40)][parseInt(a0.y/40+1)]);
     if (a0.y<(a0.y+40)) 
     {
         a0.body.velocity.y = 130;
@@ -1580,13 +1678,13 @@ else if (astronaut.y>a0.y&&(map[parseInt(a0.x/40)][parseInt(a0.y/40)+1]==1)&&((a
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////          A1          ///////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-console.log('x1,y1 : '+a1.x+' , '+a1.y);
+//console.log('x1,y1 : '+a1.x+' , '+a1.y);
 a1.body.velocity.x=0;
 a1.body.velocity.y=0;
 if (a1.x>=280&&a1.x<=320&&a1.y>=198&&a1.y<200) 
     {
         decide1=game.rnd.integerInRange(1,7);
-        console.log(decide1);
+        //console.log(decide1);
     }
 
 //////////////////////////////////////////////////        A1 Path1        ///////////////////////////////////////////////////////
@@ -2145,7 +2243,7 @@ if (a1.x>=280&&a1.x<=320&&a1.y>=198&&a1.y<200)
 ///////////////////////////////////////////////////          A2          ///////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-console.log('x2,y2 : '+a2.x+' , '+a2.y);
+//console.log('x2,y2 : '+a2.x+' , '+a2.y);
 
     a2.body.velocity.x=0;
     a2.body.velocity.y=0;
@@ -2153,7 +2251,7 @@ console.log('x2,y2 : '+a2.x+' , '+a2.y);
     if (a2.x>=1040&&a2.x<=1080&&a2.y==220) 
     {
         decide2=game.rnd.integerInRange(1,7);
-        console.log(decide2);
+        //console.log(decide2);
     }
 
 //////////////////////////////////////////////////         A2 Path1        ///////////////////////////////////////////////////////
@@ -2475,7 +2573,7 @@ if (decide2==1)
             a2p4=0;
             a2.body.velocity.x = -120;
             a2.animations.play('a2left');
-            console.log(a2p4);
+            //console.log(a2p4);
         }
         else if (a2.x>=200&&a2.x<=880&&a2.y>=680&&a2.y<=720&&a2p4==0) 
         {
@@ -2840,7 +2938,7 @@ else if (decide2==7)
 ///////////////////////////////////////////////////          A3          ///////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-console.log('x3,y3 : '+a3.x+' , '+a3.y);
+//console.log('x3,y3 : '+a3.x+' , '+a3.y);
 
     a3.body.velocity.x=0;
     a3.body.velocity.y=0;
@@ -3490,7 +3588,7 @@ else if (decide3==5)
             a3p5=1;
             a3.body.velocity.x = 120;
             a3.animations.play('a3right');
-            console.log(a3p5);
+            //console.log(a3p5);
         }
         else if (a3.x>=525&&a3.x<=680&&a3.y>=40&&a3.y<=80&&a3p5==1) 
         {
@@ -3555,7 +3653,7 @@ else if (decide3==5)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-console.log('x4,y4 : '+a4.x+' , '+a4.y);
+//console.log('x4,y4 : '+a4.x+' , '+a4.y);
 
     a4.body.velocity.x=0;
     a4.body.velocity.y=0;
@@ -3563,7 +3661,7 @@ console.log('x4,y4 : '+a4.x+' , '+a4.y);
     if (a4.x==1038&&a4.y>=600&&a4.y<640) 
     {
         decide4=game.rnd.integerInRange(1,5);
-        console.log(decide4);
+        //console.log(decide4);
     }
 
 //////////////////////////////////////////////////         A4 Path1        ///////////////////////////////////////////////////////
@@ -4546,7 +4644,7 @@ else if (decide5==5)
         {
             
             a5.body.velocity.x = 120;
-            console.log(a5p7);
+            //console.log(a5p7);
             a5.animations.play('a5right');
         }
         else if (a5.x>=120&&a5.x<=160&&a5.y>=200&&a5.y<=360&&a5p71==1) 
@@ -4960,7 +5058,7 @@ else if (decide6==4)
             a6p4=0;
             a6.body.velocity.x = -120;
             a6.animations.play('a6left');
-            console.log(a6p4);
+            //console.log(a6p4);
         }
         else if (a6.x>=200&&a6.x<=880&&a6.y>=680&&a6.y<=720&&a6p4==0) 
         {
